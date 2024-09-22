@@ -243,6 +243,7 @@ E:\Intern\CourierManagement\obj\Debug\net8.0\CourierManagement.MvcApplicationPar
 E:\Intern\CourierManagement\obj\Debug\net8.0\CourierManagement.MvcApplicationPartsAssemblyInfo.cache
 E:\Intern\CourierManagement\obj\Debug\net8.0\CourierManagement.RazorAssemblyInfo.cache
 E:\Intern\CourierManagement\obj\Debug\net8.0\CourierManagement.RazorAssemblyInfo.cs
+E:\Intern\CourierManagement\obj\Debug\net8.0\CourierManagement.sourcelink.json
 E:\Intern\CourierManagement\obj\Debug\net8.0\staticwebassets.build.json
 E:\Intern\CourierManagement\obj\Debug\net8.0\staticwebassets.development.json
 E:\Intern\CourierManagement\obj\Debug\net8.0\staticwebassets\msbuild.CourierManagement.Microsoft.AspNetCore.StaticWebAssets.props

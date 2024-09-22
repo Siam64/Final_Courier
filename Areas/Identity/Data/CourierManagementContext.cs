@@ -19,4 +19,5 @@ public class CourierManagementContext : IdentityDbContext<ApplicationUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+    public DbSet<CourierManagement.DataModel.Lookup> Lookups { get; set; } = default!;
 }
