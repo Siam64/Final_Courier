@@ -55,13 +55,104 @@ namespace CourierManagement.Controllers
 
                 }
 
-                catch
+                catch(Exception ex)
                 {
                     return Json(new { success = false, message = PopupMessage.error });
                 }
 
         }
-        
+
+        public IActionResult GetUpdateLookup(LookupVM model)
+        {
+            if(model == null || model.Id < 1)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            var result = _context.Lookups.Where(x => x.Id == model.Id).First();
+            if(result == null)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            return Json(new
+            {
+                success = true,
+                message = PopupMessage.success,
+                data = new
+                {
+                    result.Id,
+                    result.IsActive,
+                    result.Name,
+                    result.Serial,
+                    result.Type,
+                    result.Value
+                }
+
+            });
+
+
+        }
+
+
+
+
+
+        [HttpPost]
+        public IActionResult UpdateLookup(LookupVM model)
+        {
+            if(model == null || model.Id < 0)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
+            model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+
+            Lookup data = _context.Lookups.Where(x=>x.Id==model.Id).FirstOrDefault();
+            if(data == null)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            data.Name = model.Name;
+            data.Value = model.Value;
+            data.Type = model.Type;
+            data.Serial = model.Serial;
+            data.IsActive = model.IsActive;
+            data.UpdateBy = model.UpdateBy;
+            data.UpdateAt = model.UpdateAt;
+
+            try
+            {
+                _context.Lookups.Update(data);
+                _context.SaveChanges();
+                var dataResult= _context.Lookups.OrderBy(x => x.Id == data.Id).ToList();
+                return Json(new { success = true, message = PopupMessage.success, data = dataResult });
+
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult DeleteLookup(int Id)
+        {
+            if(Id < 0)
+                return Json(new { success = false, message = PopupMessage.error });
+
+
+            var data = _context.Lookups.Where(x => x.Id == Id).FirstOrDefault();
+
+            try
+            {
+                _context.Lookups.Remove(data);
+                _context.SaveChanges();
+                return Json(new { success = true, message = PopupMessage.success});
+
+            }
+            catch (Exception ex) 
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+
+            }
+        }
 
     }
 }
