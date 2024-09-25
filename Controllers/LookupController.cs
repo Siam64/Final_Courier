@@ -120,7 +120,9 @@ namespace CourierManagement.Controllers
             {
                 _context.Lookups.Update(data);
                 _context.SaveChanges();
-                var dataResult= _context.Lookups.OrderBy(x => x.Id == data.Id).ToList();
+                ModelState.Clear();
+
+                var dataResult= _context.Lookups.Where(x => x.Id == data.Id).ToList();
                 return Json(new { success = true, message = PopupMessage.success, data = dataResult });
 
             }

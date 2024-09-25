@@ -33,43 +33,44 @@ namespace CourierManagement.Controllers
             model.Customer.CreateBy = GuidHelper.ToGuidOrDefault(userid);
             model.Customer.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
 
-            Customer Customerdata = new Customer();
+            Customer SenderCustomerdata = new Customer();
+            Customer ReceiverCustomerdata = new Customer();
             Parcel Parceldata = new Parcel();
 
-            Customerdata.Customer_City = "";
-            Customerdata.Customer_Name = model.Customer.Sender_Name;
-            Customerdata.Customer_Phone = model.Customer.Sender_Name;
-            Customerdata.Customer_Email = model.Customer.Sender_Email;
-            Customerdata.Customer_Phone = model.Customer.Sender_Email;
-            Customerdata.Customer_Address = model.Customer.Sender_Address;
-            Customerdata.Note = model.Customer.Note;
-            Customerdata.CreateAt = model.Customer.CreateAt;
-            Customerdata.UpdateAt = model.Customer.UpdateAt;
-            Customerdata.CreateBy = model.Customer.CreateBy;
-            Customerdata.UpdateBy = model.Customer.UpdateBy;
-            _context.Add(Customerdata);
+            SenderCustomerdata.Customer_City = "";
+            SenderCustomerdata.Customer_Name = model.Customer.Sender_Name;
+            SenderCustomerdata.Customer_Phone = model.Customer.Sender_Phone;
+            SenderCustomerdata.Customer_Email = model.Customer.Sender_Email;
+            SenderCustomerdata.Customer_City = model.Customer.Sender_City;
+            SenderCustomerdata.Customer_Address = model.Customer.Sender_Address;
+            SenderCustomerdata.Note = model.Customer.Sender_Note;
+            SenderCustomerdata.CreateAt = model.Customer.CreateAt;
+            SenderCustomerdata.UpdateAt = model.Customer.UpdateAt;
+            SenderCustomerdata.CreateBy = model.Customer.CreateBy;
+            SenderCustomerdata.UpdateBy = model.Customer.UpdateBy;
+            _context.Add(SenderCustomerdata);
             _context.SaveChanges();
 
-            Guid SenderId = Customerdata.Customer_ID;
-                            Parceldata.Sender_ID = Customerdata.Customer_ID;
+            Guid SenderId = SenderCustomerdata.Customer_ID;
+            Parceldata.Sender_ID = SenderCustomerdata.Customer_ID;
 
 
 
-            Customerdata.Customer_Name = model.Customer.Receiver_Name;
-            Customerdata.Customer_Phone = model.Customer.Receiver_Name;
-            Customerdata.Customer_Email = model.Customer.Receiver_Email;
-            Customerdata.Customer_Phone = model.Customer.Receiver_Email;
-            Customerdata.Customer_City = model.Customer.Receiver_City;
-            Customerdata.Customer_Address = model.Customer.Receiver_Address;
-            Customerdata.CreateAt = model.Customer.CreateAt;
-            Customerdata.UpdateAt = model.Customer.UpdateAt;
-            Customerdata.CreateBy = model.Customer.CreateBy;
-            Customerdata.UpdateBy = model.Customer.UpdateBy;
+            ReceiverCustomerdata.Customer_Name = model.Customer.Receiver_Name;
+            ReceiverCustomerdata.Customer_Phone = model.Customer.Receiver_Phone;
+            ReceiverCustomerdata.Customer_Email = model.Customer.Receiver_Email;
+            ReceiverCustomerdata.Customer_City = model.Customer.Receiver_City;
+            ReceiverCustomerdata.Customer_Address = model.Customer.Receiver_Address;
+            ReceiverCustomerdata.Note = model.Customer.Receiver_Note;
+            ReceiverCustomerdata.CreateAt = model.Customer.CreateAt;
+            ReceiverCustomerdata.UpdateAt = model.Customer.UpdateAt;
+            ReceiverCustomerdata.CreateBy = model.Customer.CreateBy;
+            ReceiverCustomerdata.UpdateBy = model.Customer.UpdateBy;
 
-            _context.Add(Customerdata);
+            _context.Add(ReceiverCustomerdata);
             _context.SaveChanges();
 
-            Guid ReceiverId = Customerdata.Customer_ID;
+            Guid ReceiverId = ReceiverCustomerdata.Customer_ID;
             Parceldata.Receiver_ID = ReceiverId;
             Parceldata.Sender_ID = SenderId;
 
@@ -85,13 +86,9 @@ namespace CourierManagement.Controllers
             Parceldata.UpdateAt = model.Parcel.UpdateAt;
             Parceldata.UpdateBy = model.Parcel.UpdateBy;
 
-            bool IsSave=false;
-
-           
-
-                _context.Add(Parceldata);
-                _context.SaveChanges();
-                IsSave = true;
+            _context.Add(Parceldata);
+            _context.SaveChanges();
+                
             
 
             

@@ -10,8 +10,9 @@ namespace CourierManagement.ViewModel
         public string Sender_Phone { get; set; }
         public string Sender_Name { get; set; }
         public string Sender_Email { get; set; }
+        public string Sender_City { get; set; }
         public string Sender_Address { get; set; }
-        public string Note { get; set; }
+        public string Sender_Note { get; set; }
 
 
         public Guid Receiver_ID { get; set; }
@@ -20,6 +21,8 @@ namespace CourierManagement.ViewModel
         public string Receiver_Email { get; set; }
         public string Receiver_City { get; set; }
         public string Receiver_Address { get; set; }
+        public string Receiver_Note { get; set; }
+
 
 
         public DateTime CreateAt { get; set; }

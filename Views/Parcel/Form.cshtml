@@ -34,14 +34,19 @@
                                 <span asp-validation-for="Customer.Sender_Email" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
+                                <label asp-for="Customer.Sender_City" class="form-label">City</label>
+                                <input asp-for="Customer.Sender_City" id="Sender_City" class="form-control" placeholder="Enter City" />
+                                <span asp-validation-for="Customer.Sender_City" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
                                 <label asp-for="Customer.Sender_Address" class="form-label">Address</label>
                                 <input asp-for="Customer.Sender_Address" id="Sender_Address" class="form-control" placeholder="Enter Address" />
                                 <span asp-validation-for="Customer.Sender_Address" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label asp-for="Customer.Note" class="form-label">Note</label>
-                                <input asp-for="Customer.Note" id="Note" class="form-control" placeholder="Additional Note" />
-                                <span asp-validation-for="Customer.Note" class="text-danger"></span>
+                                <label asp-for="Customer.Sender_Note" class="form-label">Note</label>
+                                <input asp-for="Customer.Sender_Note" id="Sender_Note" class="form-control" placeholder="Additional Note" />
+                                <span asp-validation-for="Customer.Sender_Note" class="text-danger"></span>
                             </div>
                         </div>
 
@@ -71,6 +76,11 @@
                                 <label asp-for="Customer.Receiver_Address" class="form-label">Address</label>
                                 <input asp-for="Customer.Receiver_Address" id="Receiver_Address" class="form-control" placeholder="Enter Address" />
                                 <span asp-validation-for="Customer.Receiver_Address" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Receiver_Note" class="form-label">Note</label>
+                                <input asp-for="Customer.Receiver_Note" id="Receiver_Note" class="form-control" placeholder="Additional Note" />
+                                <span asp-validation-for="Customer.Receiver_Note" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
