@@ -5,64 +5,122 @@
 }
 
 
-
-@* <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow-lg mb-4">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4 class="mb-0">Fill the form</h4>
-                </div>
-                <div>
-
-                </div>
+<div class="d-flex align-items-start min-vh-100 pt-3 w-100">
+    <div class="col-12">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h3 class="mb-0">FiroTech Courier</h3>
             </div>
-        </div>
-    </div>
-</div> *@
+            <div class="card-body">
+                <form asp-action="Form" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
-<div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
-        <div class="col-md-8">
-            <div class="card shadow-lg">
-                <div class="card-header bg-primary text-white text-center">
-                    <h3 class="mb-0">Sender Information</h3>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Create">
-                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="text-center">Sender Information</h4>
+                            <div class="mb-3">
                                 <label asp-for="Customer.Sender_Name" class="form-label">Name</label>
                                 <input asp-for="Customer.Sender_Name" id="Sender_Name" class="form-control" placeholder="Enter Name" />
                                 <span asp-validation-for="Customer.Sender_Name" class="text-danger"></span>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="mb-3">
                                 <label asp-for="Customer.Sender_Phone" class="form-label">Phone Number</label>
-                                <input asp-for="Customer.Sender_Phone" id="Sender_Phone" class="form-control" placeholder="Enter Phone Number" />
+                                <input asp-for="Customer.Sender_Phone" id="Sender_Phone" class="form-control" placeholder="01XXXXXXXXX" />
                                 <span asp-validation-for="Customer.Sender_Phone" class="text-danger"></span>
                             </div>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Sender_Email" class="form-label">Email</label>
+                                <input asp-for="Customer.Sender_Email" id="Sender_Email" class="form-control" placeholder="email@email.com" />
+                                <span asp-validation-for="Customer.Sender_Email" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Sender_Address" class="form-label">Address</label>
+                                <input asp-for="Customer.Sender_Address" id="Sender_Address" class="form-control" placeholder="Enter Address" />
+                                <span asp-validation-for="Customer.Sender_Address" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Note" class="form-label">Note</label>
+                                <input asp-for="Customer.Note" id="Note" class="form-control" placeholder="Additional Note" />
+                                <span asp-validation-for="Customer.Note" class="text-danger"></span>
+                            </div>
                         </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="Customer.Sender_Email" class="form-label">Email</label>
-                            <input asp-for="Customer.Sender_Email" id="Sender_Email" class="form-control" placeholder="Email" />
-                            <span asp-validation-for="Customer.Sender_Email" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="Customer.Sender_Address" class="form-label">Address</label>
-                            <input asp-for="Customer.Sender_Address" id="Sender_Address" class="form-control" placeholder="Enter Address" />
-                            <span asp-validation-for="Customer.Sender_Address" class="text-danger"></span>
+
+                        <div class="col-md-6">
+                            <h4 class="text-center">Receiver Information</h4>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Receiver_Name" class="form-label">Name</label>
+                                <input asp-for="Customer.Receiver_Name" id="Receiver_Name" class="form-control" placeholder="Enter Name" />
+                                <span asp-validation-for="Customer.Receiver_Name" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Receiver_Phone" class="form-label">Phone Number</label>
+                                <input asp-for="Customer.Receiver_Phone" id="Receiver_Phone" class="form-control" placeholder="01XXXXXXXXX" />
+                                <span asp-validation-for="Customer.Receiver_Phone" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Receiver_Email" class="form-label">Email</label>
+                                <input asp-for="Customer.Receiver_Email" id="Receiver_Email" class="form-control" placeholder="email@email.com" />
+                                <span asp-validation-for="Customer.Receiver_Email" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Receiver_City" class="form-label">City</label>
+                                <input asp-for="Customer.Receiver_City" id="Receiver_City" class="form-control" placeholder="Enter City" />
+                                <span asp-validation-for="Customer.Receiver_City" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Customer.Receiver_Address" class="form-label">Address</label>
+                                <input asp-for="Customer.Receiver_Address" id="Receiver_Address" class="form-control" placeholder="Enter Address" />
+                                <span asp-validation-for="Customer.Receiver_Address" class="text-danger"></span>
+                            </div>
                         </div>
                     </div>
+
+                    <hr />
+
+                    <div>
+                        <h4 class="text-center">Parcel Info</h4>
+                    </div>
+
                     <div class="row">
-                        <div class="col-md-12 mb-6">
-                            <label asp-for="Customer.Note" class="form-label">Note</label>
-                            <input asp-for="Customer.Note" id="Note" class="form-control" placeholder="Additional Note" />
-                            <span asp-validation-for="Customer.Note" class="text-danger"></span>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Parcel.Parcel_Type" class="form-label">Parcel Type</label>
+                            <input asp-for="Parcel.Parcel_Type" id="Parcel_Type" class="form-control" placeholder="Enter Parcel Type" />
+                            <span asp-validation-for="Parcel.Parcel_Type" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Parcel.Unit_Price" class="form-label">Unit Price</label>
+                            <input asp-for="Parcel.Unit_Price" id="Unit_Price" class="form-control" placeholder="Enter Unit Price" />
+                            <span asp-validation-for="Parcel.Unit_Price" class="text-danger"></span>
                         </div>
                     </div>
-                    </form>
-                </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Parcel.Weight" class="form-label">Weight (in grams)</label>
+                            <input asp-for="Parcel.Weight" id="Weight" class="form-control" placeholder="Enter Weight" />
+                            <span asp-validation-for="Parcel.Weight" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Parcel.Final_Price" class="form-label">Final Price</label>
+                            <input asp-for="Parcel.Final_Price" id="Final_Price" class="form-control" placeholder="Enter Final Price" />
+                            <span asp-validation-for="Parcel.Final_Price" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Parcel.DelivaryDate" class="form-label">Delivery Date</label>
+                        <input asp-for="Parcel.DelivaryDate" id="DelivaryDate" type="date" class="form-control" />
+                        <span asp-validation-for="Parcel.DelivaryDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 </div>
+
+

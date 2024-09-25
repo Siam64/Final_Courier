@@ -20,4 +20,7 @@ public class CourierManagementContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
     public DbSet<CourierManagement.DataModel.Lookup> Lookups { get; set; } = default!;
+    public DbSet<CourierManagement.DataModel.Customer> Customer { get; set; } = default!;
+    public DbSet<CourierManagement.DataModel.Parcel> Parcel { get; set; } = default!;
+
 }

@@ -6,20 +6,14 @@ namespace CourierManagement.DataModel
     {
         [Key]
         public int ID { get; set; }
-        public Guid Sender_ID { get; set; }
-        public string Sender_Phone { get; set; }
-        public string Sender_Name { get; set; }
-        public string Sender_Email { get; set; }
-        public string Sender_Address { get; set; }
+        public Guid Customer_ID { get; set; }
+        public string Customer_Phone { get; set; }
+        public string Customer_Name { get; set; }
+        public string Customer_Email { get; set; }
+        public string Customer_City { get; set; }
+        public string Customer_Address { get; set; }
         public string Note { get; set; }
 
-
-        public Guid Receiver_ID { get; set; }
-        public string Receiver_Phone { get; set; }
-        public string Receiver_Name { get; set; }
-        public string Receiver_Email { get; set; }
-        public string Receiver_City { get; set; }
-        public string Receiver_Address { get; set; }
 
 
         public DateTime CreateAt { get; set; }

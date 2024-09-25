@@ -3,48 +3,60 @@
   "WorkspaceRootPath": "E:\\Intern\\CourierManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\parcel\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\parcel\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\viewmodel\\customervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:viewmodel\\customervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\lookup\\createlookup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\lookup\\createlookup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\viewmodel\\parcelvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:viewmodel\\parcelvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\datamodel\\parcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:datamodel\\parcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\controllers\\parcelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:controllers\\parcelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\migrations\\20240925055619_updatecustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:migrations\\20240925055619_updatecustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\migrations\\20240924161655_createcustomerandparcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:migrations\\20240924161655_createcustomerandparcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\datamodel\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:datamodel\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\viewmodel\\customervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:viewmodel\\customervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\controllers\\lookupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:controllers\\lookupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\datamodel\\lookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:datamodel\\lookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\lookup\\createlookup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\lookup\\createlookup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\parcel\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\parcel\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\datamodel\\parcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:datamodel\\parcel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\models\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:models\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\areas\\identity\\data\\couriermanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:areas\\identity\\data\\couriermanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\viewmodel\\parcelvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:viewmodel\\parcelvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\viewmodel\\lookupvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:viewmodel\\lookupvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\models\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:models\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\datamodel\\lookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:datamodel\\lookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,138 +66,175 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "20240925055619_UpdateCustomer.cs",
+              "DocumentMoniker": "E:\\Intern\\CourierManagement\\Migrations\\20240925055619_UpdateCustomer.cs",
+              "RelativeDocumentMoniker": "Migrations\\20240925055619_UpdateCustomer.cs",
+              "ToolTip": "E:\\Intern\\CourierManagement\\Migrations\\20240925055619_UpdateCustomer.cs",
+              "RelativeToolTip": "Migrations\\20240925055619_UpdateCustomer.cs",
+              "ViewState": "AgIAAAgAAAAAMzMzMzMrwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T05:56:21.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20240924161655_CreateCustomerAndParcel.cs",
+              "DocumentMoniker": "E:\\Intern\\CourierManagement\\Migrations\\20240924161655_CreateCustomerAndParcel.cs",
+              "RelativeDocumentMoniker": "Migrations\\20240924161655_CreateCustomerAndParcel.cs",
+              "ToolTip": "E:\\Intern\\CourierManagement\\Migrations\\20240924161655_CreateCustomerAndParcel.cs",
+              "RelativeToolTip": "Migrations\\20240924161655_CreateCustomerAndParcel.cs",
+              "ViewState": "AgIAACUAAAAANDMzMzMLwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T05:54:47.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CourierManagementContext.cs",
+              "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Data\\CourierManagementContext.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Data\\CourierManagementContext.cs",
+              "ToolTip": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Data\\CourierManagementContext.cs",
+              "RelativeToolTip": "Areas\\Identity\\Data\\CourierManagementContext.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA/wBkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T16:12:56.157Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Form.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Parcel\\Form.cshtml",
               "RelativeDocumentMoniker": "Views\\Parcel\\Form.cshtml",
               "ToolTip": "E:\\Intern\\CourierManagement\\Views\\Parcel\\Form.cshtml",
               "RelativeToolTip": "Views\\Parcel\\Form.cshtml",
-              "ViewState": "AgIAAA4AAABgzczMzMwnwB0AAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAB4mZmZmZkuwHsAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-09-24T03:16:34.804Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "CustomerVM.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\ViewModel\\CustomerVM.cs",
               "RelativeDocumentMoniker": "ViewModel\\CustomerVM.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\ViewModel\\CustomerVM.cs",
               "RelativeToolTip": "ViewModel\\CustomerVM.cs",
-              "ViewState": "AgIAAAUAAAAQXmZmZmYUwCAAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAABUPSAAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T02:56:39.498Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "ParcelVM.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\ViewModel\\ParcelVM.cs",
               "RelativeDocumentMoniker": "ViewModel\\ParcelVM.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\ViewModel\\ParcelVM.cs",
               "RelativeToolTip": "ViewModel\\ParcelVM.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAABQPQMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T03:12:53.798Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-24T03:12:53.798Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "Parcel.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\DataModel\\Parcel.cs",
               "RelativeDocumentMoniker": "DataModel\\Parcel.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\DataModel\\Parcel.cs",
               "RelativeToolTip": "DataModel\\Parcel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAABwzMzMzMw9wAYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T03:05:19.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-24T03:05:19.076Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "ParcelController.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Controllers\\ParcelController.cs",
               "RelativeDocumentMoniker": "Controllers\\ParcelController.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\Controllers\\ParcelController.cs",
               "RelativeToolTip": "Controllers\\ParcelController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAhwEUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T03:00:36.312Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "Customer.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\DataModel\\Customer.cs",
               "RelativeDocumentMoniker": "DataModel\\Customer.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\DataModel\\Customer.cs",
               "RelativeToolTip": "DataModel\\Customer.cs",
-              "ViewState": "AgIAAA0AAAAgMzMzM7MpwBIAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAA/v//////vwsAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T02:35:59.33Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "Helper.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Models\\Helper.cs",
               "RelativeDocumentMoniker": "Models\\Helper.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\Models\\Helper.cs",
               "RelativeToolTip": "Models\\Helper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAABgzMzMzMwnwB4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-22T16:25:01.487Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "LookupController.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Controllers\\LookupController.cs",
               "RelativeDocumentMoniker": "Controllers\\LookupController.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\Controllers\\LookupController.cs",
               "RelativeToolTip": "Controllers\\LookupController.cs",
-              "ViewState": "AgIAABIAAACAZmZmZmYUwDAAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAKTMzMzP7vyEAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-22T15:44:24.611Z"
+              "WhenOpened": "2024-09-22T15:44:24.611Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "CreateLookup.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Lookup\\CreateLookup.cshtml",
               "RelativeDocumentMoniker": "Views\\Lookup\\CreateLookup.cshtml",
               "ToolTip": "E:\\Intern\\CourierManagement\\Views\\Lookup\\CreateLookup.cshtml",
               "RelativeToolTip": "Views\\Lookup\\CreateLookup.cshtml",
-              "ViewState": "AgIAAAMAAAAAMTMzMzMrwA0AAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAI0AAACALjMzMzMrwA0AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-09-22T14:32:15.313Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "LookupVM.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\ViewModel\\LookupVM.cs",
               "RelativeDocumentMoniker": "ViewModel\\LookupVM.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\ViewModel\\LookupVM.cs",
               "RelativeToolTip": "ViewModel\\LookupVM.cs",
-              "ViewState": "AgIAAAEAAAAAMjMzMzP7vwoAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAMjMzMzMbwAoAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-22T13:50:58.12Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "Lookup.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\DataModel\\Lookup.cs",
               "RelativeDocumentMoniker": "DataModel\\Lookup.cs",

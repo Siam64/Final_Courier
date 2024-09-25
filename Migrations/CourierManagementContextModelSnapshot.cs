@@ -97,6 +97,58 @@ namespace CourierManagement.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("CourierManagement.DataModel.Customer", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Customer_Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Customer_City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Customer_Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("Customer_ID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Customer_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Customer_Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Customer");
+                });
+
             modelBuilder.Entity("CourierManagement.DataModel.Lookup", b =>
                 {
                     b.Property<int>("Id")
@@ -138,6 +190,56 @@ namespace CourierManagement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lookups");
+                });
+
+            modelBuilder.Entity("CourierManagement.DataModel.Parcel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DelivaryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Final_Price")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("Parcel_ID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Parcel_Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("Receiver_ID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Sender_ID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Unit_Price")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdateBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Parcel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
