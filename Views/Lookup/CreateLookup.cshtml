@@ -210,23 +210,30 @@
                 success: function (response) {
                     Swal.fire("Saved!");
                     if (response.success) {
-                        $('#lookupnewTable tbody').find('button[data-id="' + LookupId + '"]').closest('tr').remove();
-                        var newRow = `
+
+                        $('#lookupnewtable tbody').find('button[data-id="' + lookupid + '"]').closest('tr').remove();
+
+                        var newrow = `
 
                                     <tr>
                                     <td> ${response.data[response.data.length - 1].serial}</td>
                                     <td> ${response.data[response.data.length - 1].value}</td>
                                     <td> ${response.data[response.data.length - 1].name}</td>
                                     <td> ${response.data[response.data.length - 1].type}</td>
-                                    <td> ${response.data[response.data.length - 1].isActive ? 'Yes' : 'No'}</td>
+                                    <td> ${response.data[response.data.length - 1].isactive ? 'yes' : 'no'}</td>
                                     <td>
-                                    <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="${response.data[response.data.length - 1].id}">Update</button>
-                                    <button type="button" id="deleteButton" class="btn btn-danger btn-lg" data-id="${response.data[response.data.length - 1].id}">Delete</button>
+                                    <button type="button" class="btn btn-success btn-lg getupdatebutton" data-id="${response.data[response.data.length - 1].id}">update</button>
+                                    <button type="button" id="deletebutton" class="btn btn-danger btn-lg" data-id="${response.data[response.data.length - 1].id}">delete</button>
                                     </td>
                                     </tr>
                                 `;
-                        $('#lookupnewTable').append(newRow);
+                        $('#lookupnewtable').append(newrow);
 
+                        // $('#lookupnewTable tbody').find('button[data-id="' + LookupId + '"]').closest('tr').find('td').eq(0).text(LookupData.Serial);
+                        // $('#lookupnewTable tbody').find('button[data-id="' + LookupId + '"]').closest('tr').find('td').eq(1).text(LookupData.Value);
+                        // $('#lookupnewTable tbody').find('button[data-id="' + LookupId + '"]').closest('tr').find('td').eq(2).text(LookupData.Name);
+                        // $('#lookupnewTable tbody').find('button[data-id="' + LookupId + '"]').closest('tr').find('td').eq(3).text(LookupData.Type);
+                        // $('#lookupnewTable tbody').find('button[data-id="' + LookupId + '"]').closest('tr').find('td').eq(4).text(LookupData.IsActive == "true" ? "Yes" : "No");
                         $('#lookupForm')[0].reset();
                     }
                     },

@@ -2,11 +2,13 @@
 using CourierManagement.DataModel;
 using CourierManagement.Models;
 using CourierManagement.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace CourierManagement.Controllers
 {
+    [Authorize]
     public class LookupController : Controller
     {
         private readonly CourierManagementContext _context;

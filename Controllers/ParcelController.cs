@@ -2,11 +2,13 @@
 using CourierManagement.DataModel;
 using CourierManagement.Models;
 using CourierManagement.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace CourierManagement.Controllers
 {
+    //[Authorize]
     public class ParcelController : Controller
     {
         private readonly CourierManagementContext _context;
@@ -37,7 +39,7 @@ namespace CourierManagement.Controllers
             Customer ReceiverCustomerdata = new Customer();
             Parcel Parceldata = new Parcel();
 
-            SenderCustomerdata.Customer_City = "";
+            
             SenderCustomerdata.Customer_Name = model.Customer.Sender_Name;
             SenderCustomerdata.Customer_Phone = model.Customer.Sender_Phone;
             SenderCustomerdata.Customer_Email = model.Customer.Sender_Email;

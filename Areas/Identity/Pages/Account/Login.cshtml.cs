@@ -116,7 +116,7 @@ namespace CourierManagement.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("CreateLookup", "Lookup");
+                    return RedirectToAction("Welcome", "Home");
                     //return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

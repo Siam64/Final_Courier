@@ -13,6 +13,11 @@ namespace CourierManagement.Controllers
             _logger = logger;
         }
 
+        public IActionResult Welcome()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
