@@ -12,8 +12,6 @@ namespace CourierManagement.Controllers
     public class ParcelController : Controller
     {
         private readonly CourierManagementContext _context;
-        bool isSave = false;
-
         public ParcelController(CourierManagementContext context)
         {
             _context = context;
@@ -39,62 +37,73 @@ namespace CourierManagement.Controllers
             Customer ReceiverCustomerdata = new Customer();
             Parcel Parceldata = new Parcel();
 
-            
-            SenderCustomerdata.Customer_Name = model.Customer.Sender_Name;
-            SenderCustomerdata.Customer_Phone = model.Customer.Sender_Phone;
-            SenderCustomerdata.Customer_Email = model.Customer.Sender_Email;
-            SenderCustomerdata.Customer_City = model.Customer.Sender_City;
-            SenderCustomerdata.Customer_Address = model.Customer.Sender_Address;
-            SenderCustomerdata.Note = model.Customer.Sender_Note;
-            SenderCustomerdata.CreateAt = model.Customer.CreateAt;
-            SenderCustomerdata.UpdateAt = model.Customer.UpdateAt;
-            SenderCustomerdata.CreateBy = model.Customer.CreateBy;
-            SenderCustomerdata.UpdateBy = model.Customer.UpdateBy;
-            _context.Add(SenderCustomerdata);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                SenderCustomerdata.Customer_ID = Guid.NewGuid();
+                SenderCustomerdata.Customer_Name = model.Customer.Sender_Name;
+                SenderCustomerdata.Customer_Phone = model.Customer.Sender_Phone;
+                SenderCustomerdata.Customer_Email = model.Customer.Sender_Email;
+                SenderCustomerdata.Customer_City = model.Customer.Sender_City;
+                SenderCustomerdata.Customer_Address = model.Customer.Sender_Address;
+                SenderCustomerdata.Note = model.Customer.Sender_Note;
+                SenderCustomerdata.CreateAt = model.Customer.CreateAt;
+                SenderCustomerdata.UpdateAt = model.Customer.UpdateAt;
+                SenderCustomerdata.CreateBy = model.Customer.CreateBy;
+                SenderCustomerdata.UpdateBy = model.Customer.UpdateBy;
 
-            Guid SenderId = SenderCustomerdata.Customer_ID;
+                _context.Add(SenderCustomerdata);
+                _context.SaveChanges();
+            }
+            else { 
+            
+            }
+
             Parceldata.Sender_ID = SenderCustomerdata.Customer_ID;
 
+            if (ModelState.IsValid)
+            {
+                ReceiverCustomerdata.Customer_ID = Guid.NewGuid();
+                ReceiverCustomerdata.Customer_Name = model.Customer.Receiver_Name;
+                ReceiverCustomerdata.Customer_Phone = model.Customer.Receiver_Phone;
+                ReceiverCustomerdata.Customer_Email = model.Customer.Receiver_Email;
+                ReceiverCustomerdata.Customer_City = model.Customer.Receiver_City;
+                ReceiverCustomerdata.Customer_Address = model.Customer.Receiver_Address;
+                ReceiverCustomerdata.Note = model.Customer.Receiver_Note;
+                ReceiverCustomerdata.CreateAt = model.Customer.CreateAt;
+                ReceiverCustomerdata.UpdateAt = model.Customer.UpdateAt;
+                ReceiverCustomerdata.CreateBy = model.Customer.CreateBy;
+                ReceiverCustomerdata.UpdateBy = model.Customer.UpdateBy;
+
+                _context.Add(ReceiverCustomerdata);
+                _context.SaveChanges();
+            }
+            else
+            {
+
+            }
+
+            Parceldata.Receiver_ID = ReceiverCustomerdata.Customer_ID;
 
 
-            ReceiverCustomerdata.Customer_Name = model.Customer.Receiver_Name;
-            ReceiverCustomerdata.Customer_Phone = model.Customer.Receiver_Phone;
-            ReceiverCustomerdata.Customer_Email = model.Customer.Receiver_Email;
-            ReceiverCustomerdata.Customer_City = model.Customer.Receiver_City;
-            ReceiverCustomerdata.Customer_Address = model.Customer.Receiver_Address;
-            ReceiverCustomerdata.Note = model.Customer.Receiver_Note;
-            ReceiverCustomerdata.CreateAt = model.Customer.CreateAt;
-            ReceiverCustomerdata.UpdateAt = model.Customer.UpdateAt;
-            ReceiverCustomerdata.CreateBy = model.Customer.CreateBy;
-            ReceiverCustomerdata.UpdateBy = model.Customer.UpdateBy;
+            if (ModelState.IsValid)
+            {
+                Parceldata.Parcel_ID = Guid.NewGuid();
+                Parceldata.Parcel_Type = model.Parcel.Parcel_Type;
+                Parceldata.Unit_Price = model.Parcel.Unit_Price;
+                Parceldata.Weight = model.Parcel.Weight;
+                Parceldata.Final_Price = model.Parcel.Final_Price;
+                Parceldata.DelivaryDate = model.Parcel.DelivaryDate;
+                Parceldata.CreateAt = model.Customer.CreateAt;
+                Parceldata.CreateBy = model.Customer.CreateBy;
+                Parceldata.UpdateAt = model.Customer.UpdateAt;
+                Parceldata.UpdateBy = model.Customer.UpdateBy;
 
-            _context.Add(ReceiverCustomerdata);
-            _context.SaveChanges();
-
-            Guid ReceiverId = ReceiverCustomerdata.Customer_ID;
-            Parceldata.Receiver_ID = ReceiverId;
-            Parceldata.Sender_ID = SenderId;
-
-
-
-            Parceldata.Parcel_Type = model.Parcel.Parcel_Type;
-            Parceldata.Unit_Price = model.Parcel.Unit_Price;
-            Parceldata.Weight = model.Parcel.Weight;
-            Parceldata.Final_Price = model.Parcel.Final_Price;
-            Parceldata.DelivaryDate = model.Parcel.DelivaryDate;
-            Parceldata.CreateAt = model.Parcel.CreateAt;
-            Parceldata.CreateBy = model.Parcel.CreateBy;
-            Parceldata.UpdateAt = model.Parcel.UpdateAt;
-            Parceldata.UpdateBy = model.Parcel.UpdateBy;
-
-            _context.Add(Parceldata);
-            _context.SaveChanges();
-                
+                _context.Add(Parceldata);
+                _context.SaveChanges();
+            }
+            else { 
             
-
-            
-
+            }
             return View(model);
         }
     }

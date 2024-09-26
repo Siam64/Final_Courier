@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace CourierManagement.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class LookupController : Controller
     {
         private readonly CourierManagementContext _context;
