@@ -8,19 +8,15 @@ namespace CourierManagement.ViewModel
         public int ID { get; set; }
         public Guid Parcel_ID { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
         public string Parcel_Type { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
         public double Unit_Price { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
         public double Weight { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
         public double Final_Price { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
+        //[Required(ErrorMessage = "This field is required")]
         public DateTime DelivaryDate { get; set; }
         public Guid Sender_ID { get; set; }
         public Guid Receiver_ID { get; set; }

@@ -25,7 +25,7 @@ namespace CourierManagement.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Form(MultimodelVM model)
+        public IActionResult Form([FromBody] MultimodelVM model)
         {
             var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
             model.Customer.CreateAt = DateTime.UtcNow;

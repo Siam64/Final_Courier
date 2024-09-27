@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="Serial" class="form-label">Serial</label>
-                                <input id="Serial" type="number" class="form-control" placeholder="Enter Serial" />
+                                <input id="Serial" type="number" class="form-control" placeholder="Enter Serial" required />
                             </div>
                         </div>
                         <div class="row">
@@ -211,7 +211,7 @@
                     Swal.fire("Saved!");
                     if (response.success) {
 
-                        $('#lookupnewtable tbody').find('button[data-id="' + lookupid + '"]').closest('tr').remove();
+                        $('#lookupnewTable tbody').find('button[data-id="' + lookupid + '"]').closest('tr').remove();
 
                         var newrow = `
 
@@ -227,7 +227,7 @@
                                     </td>
                                     </tr>
                                 `;
-                        $('#lookupnewtable').append(newrow);
+                        $('#lookupnewTable').append(newrow);
 
                         // $('#lookupnewTable tbody').find('button[data-id="' + LookupId + '"]').closest('tr').find('td').eq(0).text(LookupData.Serial);
                         // $('#lookupnewTable tbody').find('button[data-id="' + LookupId + '"]').closest('tr').find('td').eq(1).text(LookupData.Value);

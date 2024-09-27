@@ -12,40 +12,40 @@
                 <h3 class="mb-0">FiroTech Courier</h3>
             </div>
             <div class="card-body">
-                <form asp-action="Form" method="post">
+                <form asp-action="Form" id="cpForm">
+                    @Html.AntiForgeryToken()
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
-
                     <div class="row">
                         <div class="col-md-6">
                             <h4 class="text-center">Sender Information</h4>
                             <div class="mb-3">
                                 <label asp-for="Customer.Sender_Name" class="form-label">Name</label>
-                                <input asp-for="Customer.Sender_Name" id="Sender_Name" class="form-control" placeholder="Enter Name" />
+                                <input asp-for="Customer.Sender_Name" id="Sender_Name" class="form-control" placeholder="Enter Name" required />
                                 <span asp-validation-for="Customer.Sender_Name" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Sender_Phone" class="form-label">Phone Number</label>
-                                <input asp-for="Customer.Sender_Phone" id="Sender_Phone" class="form-control" placeholder="01XXXXXXXXX" />
+                                <input asp-for="Customer.Sender_Phone" id="Sender_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
                                 <span asp-validation-for="Customer.Sender_Phone" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Sender_Email" class="form-label">Email</label>
-                                <input asp-for="Customer.Sender_Email" id="Sender_Email" class="form-control" placeholder="email@email.com" />
+                                <input asp-for="Customer.Sender_Email" id="Sender_Email" class="form-control" placeholder="email@email.com" required />
                                 <span asp-validation-for="Customer.Sender_Email" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Sender_City" class="form-label">City</label>
-                                <input asp-for="Customer.Sender_City" id="Sender_City" class="form-control" placeholder="Enter City" />
+                                <input asp-for="Customer.Sender_City" id="Sender_City" class="form-control" placeholder="Enter City" required />
                                 <span asp-validation-for="Customer.Sender_City" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Sender_Address" class="form-label">Address</label>
-                                <input asp-for="Customer.Sender_Address" id="Sender_Address" class="form-control" placeholder="Enter Address" />
+                                <input asp-for="Customer.Sender_Address" id="Sender_Address" class="form-control" placeholder="Enter Address" required />
                                 <span asp-validation-for="Customer.Sender_Address" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Sender_Note" class="form-label">Note</label>
-                                <input asp-for="Customer.Sender_Note" id="Sender_Note" class="form-control" placeholder="Additional Note" />
+                                <input asp-for="Customer.Sender_Note" id="Sender_Note" class="form-control" placeholder="Additional Note" required />
                                 <span asp-validation-for="Customer.Sender_Note" class="text-danger"></span>
                             </div>
                         </div>
@@ -54,32 +54,32 @@
                             <h4 class="text-center">Receiver Information</h4>
                             <div class="mb-3">
                                 <label asp-for="Customer.Receiver_Name" class="form-label">Name</label>
-                                <input asp-for="Customer.Receiver_Name" id="Receiver_Name" class="form-control" placeholder="Enter Name" />
+                                <input asp-for="Customer.Receiver_Name" id="Receiver_Name" class="form-control" placeholder="Enter Name" required />
                                 <span asp-validation-for="Customer.Receiver_Name" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Receiver_Phone" class="form-label">Phone Number</label>
-                                <input asp-for="Customer.Receiver_Phone" id="Receiver_Phone" class="form-control" placeholder="01XXXXXXXXX" />
+                                <input asp-for="Customer.Receiver_Phone" id="Receiver_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
                                 <span asp-validation-for="Customer.Receiver_Phone" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Receiver_Email" class="form-label">Email</label>
-                                <input asp-for="Customer.Receiver_Email" id="Receiver_Email" class="form-control" placeholder="email@email.com" />
+                                <input asp-for="Customer.Receiver_Email" id="Receiver_Email" class="form-control" placeholder="email@email.com" required />
                                 <span asp-validation-for="Customer.Receiver_Email" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Receiver_City" class="form-label">City</label>
-                                <input asp-for="Customer.Receiver_City" id="Receiver_City" class="form-control" placeholder="Enter City" />
+                                <input asp-for="Customer.Receiver_City" id="Receiver_City" class="form-control" placeholder="Enter City" required />
                                 <span asp-validation-for="Customer.Receiver_City" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Receiver_Address" class="form-label">Address</label>
-                                <input asp-for="Customer.Receiver_Address" id="Receiver_Address" class="form-control" placeholder="Enter Address" />
+                                <input asp-for="Customer.Receiver_Address" id="Receiver_Address" class="form-control" placeholder="Enter Address" required />
                                 <span asp-validation-for="Customer.Receiver_Address" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Receiver_Note" class="form-label">Note</label>
-                                <input asp-for="Customer.Receiver_Note" id="Receiver_Note" class="form-control" placeholder="Additional Note" />
+                                <input asp-for="Customer.Receiver_Note" id="Receiver_Note" class="form-control" placeholder="Additional Note" required />
                                 <span asp-validation-for="Customer.Receiver_Note" class="text-danger"></span>
                             </div>
                         </div>
@@ -94,12 +94,12 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label asp-for="Parcel.Parcel_Type" class="form-label">Parcel Type</label>
-                            <input asp-for="Parcel.Parcel_Type" id="Parcel_Type" class="form-control" placeholder="Enter Parcel Type" />
+                            <input asp-for="Parcel.Parcel_Type" id="Parcel_Type" class="form-control" placeholder="Enter Parcel Type" required />
                             <span asp-validation-for="Parcel.Parcel_Type" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label asp-for="Parcel.Unit_Price" class="form-label">Unit Price</label>
-                            <input asp-for="Parcel.Unit_Price" id="Unit_Price" class="form-control" placeholder="Enter Unit Price" />
+                            <input asp-for="Parcel.Unit_Price" id="Unit_Price" class="form-control" placeholder="Enter Unit Price" required />
                             <span asp-validation-for="Parcel.Unit_Price" class="text-danger"></span>
                         </div>
                     </div>
@@ -107,30 +107,90 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label asp-for="Parcel.Weight" class="form-label">Weight (in grams)</label>
-                            <input asp-for="Parcel.Weight" id="Weight" class="form-control" placeholder="Enter Weight" />
+                            <input asp-for="Parcel.Weight" id="Weight" class="form-control" placeholder="Enter Weight" required />
                             <span asp-validation-for="Parcel.Weight" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label asp-for="Parcel.Final_Price" class="form-label">Final Price</label>
-                            <input asp-for="Parcel.Final_Price" id="Final_Price" class="form-control" placeholder="Enter Final Price" />
+                            <input asp-for="Parcel.Final_Price" id="Final_Price" class="form-control" placeholder="Enter Final Price" required />
                             <span asp-validation-for="Parcel.Final_Price" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Parcel.DelivaryDate" class="form-label">Delivery Date</label>
-                        <input asp-for="Parcel.DelivaryDate" id="DelivaryDate" type="date" class="form-control" />
+                        <label asp-for="Parcel.DelivaryDate" class="form-label">Delivary Date</label>
+                        <input asp-for="Parcel.DelivaryDate" id="DelivaryDate" type="date" class="form-control" required />
                         <span asp-validation-for="Parcel.DelivaryDate" class="text-danger"></span>
                     </div>
 
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+                        <button type="reset" id="clearButton" class="btn btn-secondary">Clear Form</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/js/jquery-3.6.0.min.js"></script>
+<script src="~/js/alert.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#submitButton").click(function (event) {
+            event.preventDefault();
+            var form = document.getElementById('cpForm');
+            if (!form.checkValidity()) {
+                Swal.fire("Error", "Please fill in all fields.", "error");
+                return;
+            }
+            var mainData = {
+                Customer: {
+                    Sender_Name: $('#Sender_Name').val(),
+                    Sender_Phone: $('#Sender_Phone').val(),
+                    Sender_Email: $('#Sender_Email').val(),
+                    Sender_City: $('#Sender_City').val(),
+                    Sender_Address: $('#Sender_Address').val(),
+                    Sender_Note: $('#Sender_Note').val(),
+                    Receiver_Name: $('#Receiver_Name').val(),
+                    Receiver_Phone: $('#Receiver_Phone').val(),
+                    Receiver_Email: $('#Receiver_Email').val(),
+                    Receiver_City: $('#Receiver_City').val(),
+                    Receiver_Address: $('#Receiver_Address').val(),
+                    Receiver_Note: $('#Receiver_Note').val()
+                },
+                Parcel: {
+                    Parcel_Type: $('#Parcel_Type').val(),
+                    Unit_Price: $('#Unit_Price').val(),
+                    Weight: $('#Weight').val(),
+                    Final_Price: $('#Final_Price').val(),
+                    DelivaryDate: $('#DelivaryDate').val()
+                }
+            };
+
+
+            var antiForgeryToken = $('input[name="__RequestVerificationToken"]').val();
+            $.ajax({
+                url: '/Parcel/Form',
+                type: 'POST',
+                data: JSON.stringify(mainData),
+                contentType: 'application/json',
+                headers: {
+                    "RequestVerificationToken": antiForgeryToken
+                },
+
+                success: function () {
+                    Swal.fire("Saved!");
+                    $('#cpForm')[0].reset();
+                },
+
+                error: function () {
+                    swal.fire("Failed!");
+                }
+            })
+        });
+    });
+</script>
 
 
