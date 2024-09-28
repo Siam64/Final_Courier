@@ -19,8 +19,28 @@ namespace CourierManagement.Controllers
 
         public IActionResult Form()
         {
+            ViewBag.CityList = _context.Lookups
+                .Where(x=>x.Type == LookupTypes.City && x.IsActive)
+                .OrderBy(x=>x.Serial)
+                .ToList();
+
+            ViewBag.ParcelList = _context.Lookups
+                .Where(x => x.Type == LookupTypes.ParcelType && x.IsActive)
+                .OrderBy(x => x.Serial)
+                .ToList();
             return View();
         }
+
+        public IActionResult OrderTable()
+        {
+            ViewBag.List = _context.Customer
+                .OrderBy(x => x.ID)
+                .ToList();
+            return View();
+        }
+
+        
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -35,8 +35,19 @@
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Sender_City" class="form-label">City</label>
-                                <input asp-for="Customer.Sender_City" id="Sender_City" class="form-control" placeholder="Enter City" required />
-                                <span asp-validation-for="Customer.Sender_City" class="text-danger"></span>
+                                <select asp-for="Customer.Sender_City" id="Sender_City" class="form-control" >
+                                @if(ViewBag.CityList != null)
+                                {
+                                    @foreach(var city in ViewBag.CityList)
+                                    {
+                                        <option value="@city.Value">@city.Name</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="">No City available</option>
+                                }
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Sender_Address" class="form-label">Address</label>
@@ -69,8 +80,19 @@
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Receiver_City" class="form-label">City</label>
-                                <input asp-for="Customer.Receiver_City" id="Receiver_City" class="form-control" placeholder="Enter City" required />
-                                <span asp-validation-for="Customer.Receiver_City" class="text-danger"></span>
+                                <select asp-for="Customer.Receiver_City" id="Receiver_City" class="form-control">
+                                    @if (ViewBag.CityList != null)
+                                    {
+                                        @foreach (var city in ViewBag.CityList)
+                                        {
+                                            <option value="@city.Value">@city.Name</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option value="">No City available</option>
+                                    }
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Customer.Receiver_Address" class="form-label">Address</label>

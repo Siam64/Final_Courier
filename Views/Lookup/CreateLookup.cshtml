@@ -3,8 +3,13 @@
 @{
     ViewData["Title"] = "Create";
 }
-<h4 class="text-center">Manage Lookup Table</h4>
-<hr/>
+@* <h4 class="text-center">Manage Lookup Table</h4>
+<hr/> *@
+<link rel="stylesheet" src="~/css/bcon.css">
+<link rel="stylesheet" src="~/css/bcon2.css">
+<link rel="stylesheet" src="~/css/button.css">
+
+
 
 <div class="container">
     <div class="row">
@@ -46,10 +51,17 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="class=" d-grid gap-2"">
-                            <button type="button" id="submitButton" class="btn btn-success btn-lg">Submit</button>
-                            <button type="button" id="submitUpdateButton" class="btn btn-success btn-lg">Confirm Update</button>
-                        </div>
+                        <div class="d-grid gap-4">
+                            <button type="button" id="submitButton" class="btn btn-success btn-lg custom-button">
+                                <i class="fas fa-check-circle"></i> Submit
+                            </button>
+                            <button type="button" id="submitUpdateButton" class="btn btn-primary btn-lg custom-button">
+                                <i class="fas fa-sync-alt"></i> Confirm Update
+                            </button>
+                            <button type="reset" id="clearButton" class="btn btn-danger btn-lg custom-button">
+                                <i class="fas fa-times-circle"></i> Clear Form
+                            </button>
+                        </div>          
                     </form>
                 </div>
             </div>
@@ -83,8 +95,12 @@
                                         <td>@city.Type</td>
                                         <td>@(city.IsActive ? "Yes" : "No")</td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="@city.Id">Update</button>
-                                            <button type="button" id="deleteButton" class="btn btn-danger btn-lg" data-id="@city.Id">Delete</button>
+                                            <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="@city.Id" title="Update">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button type="button" id="deleteButton" class="btn btn-danger btn-lg" data-id="@city.Id" title="Delete">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -222,8 +238,12 @@
                                     <td> ${response.data[response.data.length - 1].type}</td>
                                     <td> ${response.data[response.data.length - 1].isactive ? 'yes' : 'no'}</td>
                                     <td>
-                                    <button type="button" class="btn btn-success btn-lg getupdatebutton" data-id="${response.data[response.data.length - 1].id}">update</button>
-                                    <button type="button" id="deletebutton" class="btn btn-danger btn-lg" data-id="${response.data[response.data.length - 1].id}">delete</button>
+                                    <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="${response.data[response.data.length - 1].id}" title="Update">
+                                    <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button type="button" id="deleteButton" class="btn btn-danger btn-lg" data-id="${response.data[response.data.length - 1].id}" title="Delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                    </button>
                                     </td>
                                     </tr>
                                 `;
@@ -283,8 +303,12 @@
                                 <td> ${response.data[response.data.length - 1].type}</td>
                                 <td> ${response.data[response.data.length - 1].isActive ? 'Yes' : 'No'}</td>
                                 <td>
-                                <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="${response.data[response.data.length - 1].id}">Update</button>
-                                <button type="button" id="deleteButton" class="btn btn-danger btn-lg" data-id="${response.data[response.data.length - 1].id}">Delete</button>
+                                <button type="button" class="btn btn-success btn-lg GetupdateButton" data-id="${response.data[response.data.length - 1].id}" title="Update">
+                                <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" id="deleteButton" class="btn btn-danger btn-lg" data-id="${response.data[response.data.length - 1].id}" title="Delete">
+                                <i class="fas fa-trash-alt"></i>
+                                </button>
                                 </td>
                                 </tr>
                             `;

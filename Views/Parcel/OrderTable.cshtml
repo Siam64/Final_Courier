@@ -1,0 +1,48 @@
+﻿@model CourierManagement.DataModel.Parcel
+
+@{
+}
+
+<div class="col-12">
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-secondary text-white text-center">
+            <h4 class="mb-0">Customer Data</h4>
+        </div>
+        <div>
+            <table class="table table-hover table-bordered text-center align-middle" id="OrderTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Customer Phone</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Customer Email</th>
+                        <th scope="col">Customer City</th>
+                        <th scope="col">Customer Address</th>
+                        <th scope="col">Customer Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(ViewBag.List != null)
+                    {
+                        @foreach(var field in ViewBag.List)
+                        {
+                            <tr>
+                                <td>@field.Customer_Phone</td>
+                                <td>@field.Customer_Name</td>
+                                <td>@field.Customer_Email</td>
+                                <td>@field.Customer_City</td>
+                                <td>@field.Customer_Address</td>
+                                <td>@field.Note</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-muted">No data available</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

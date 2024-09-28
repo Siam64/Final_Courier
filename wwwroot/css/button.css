@@ -1,0 +1,28 @@
+.custom-button {
+    border-radius: 8px; /* Slight rounding for a modern look */
+    padding: 10px 20px; /* Adjust the padding for a balanced shape */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: bold;
+}
+
+    .custom-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .custom-button i {
+        margin-right: 8px;
+    }
+
+#submitButton {
+    background: linear-gradient(135deg, #28a745, #218838);
+}
+
+#submitUpdateButton {
+    background: linear-gradient(135deg, #007bff, #0069d9);
+}
+
+#clearButton {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}

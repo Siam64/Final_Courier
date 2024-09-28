@@ -221,6 +221,18 @@
       "PackagePath": "staticwebassets\\assets\\js\\tabs.js"
     },
     {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\css\\bcon.css",
+      "PackagePath": "staticwebassets\\css\\bcon.css"
+    },
+    {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\css\\bcon2.css",
+      "PackagePath": "staticwebassets\\css\\bcon2.css"
+    },
+    {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\css\\button.css",
+      "PackagePath": "staticwebassets\\css\\button.css"
+    },
+    {
       "Id": "E:\\Intern\\CourierManagement\\wwwroot\\css\\sb-admin-2.css",
       "PackagePath": "staticwebassets\\css\\sb-admin-2.css"
     },
