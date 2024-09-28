@@ -237,6 +237,30 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\img\\undraw_posting_photo.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_posting_photo.svg"
+    },
+    {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\img\\undraw_profile.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_profile.svg"
+    },
+    {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\img\\undraw_profile_1.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_profile_1.svg"
+    },
+    {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\img\\undraw_profile_2.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_profile_2.svg"
+    },
+    {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\img\\undraw_profile_3.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_profile_3.svg"
+    },
+    {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\img\\undraw_rocket.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_rocket.svg"
+    },
+    {
       "Id": "E:\\Intern\\CourierManagement\\wwwroot\\js\\alert.js",
       "PackagePath": "staticwebassets\\js\\alert.js"
     },
