@@ -116,8 +116,24 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label asp-for="Parcel.Parcel_Type" class="form-label">Parcel Type</label>
-                            <input asp-for="Parcel.Parcel_Type" id="Parcel_Type" class="form-control" placeholder="Enter Parcel Type" required />
-                            <span asp-validation-for="Parcel.Parcel_Type" class="text-danger"></span>
+                            <select asp-for="Parcel.Parcel_Type" id="Parcel_Type" class="form-control" >
+                                @if(ViewBag.ParcelList != null)
+                                {
+                                    @foreach(var parcel in ViewBag.ParcelList)
+                                    {
+                                        <option value="@parcel.Value">@parcel.Name</option>
+                                    }
+
+                                }
+                                else
+                                {
+                                    <option value="">No Parcel Type available</option>
+                                }
+
+                            </select>
+                           
+                            
+                            
                         </div>
                         <div class="col-md-6 mb-3">
                             <label asp-for="Parcel.Unit_Price" class="form-label">Unit Price</label>
@@ -203,7 +219,14 @@
                 },
 
                 success: function () {
-                    Swal.fire("Saved!");
+                    Swal.fire({
+                        title: "Saved!",
+                        icon: "success",
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(function () {
+                        window.location.href = "/Parcel/OrderTable";
+                    });
                     $('#cpForm')[0].reset();
                 },
 

@@ -17,6 +17,12 @@ namespace CourierManagement.Controllers
             _context = context;
         }
 
+
+        public IActionResult ImageUpload()
+        {
+            return View();
+        }
+
         public IActionResult Form()
         {
             ViewBag.CityList = _context.Lookups
@@ -33,13 +39,21 @@ namespace CourierManagement.Controllers
 
         public IActionResult OrderTable()
         {
-            ViewBag.List = _context.Customer
+            var customerList = _context.Customer
                 .OrderBy(x => x.ID)
                 .ToList();
+
+            var parcelList = _context.Parcel
+                .OrderBy(x => x.ID)
+                .ToList();
+
+            ViewData["CList"] = customerList;
+            ViewData["PList"] = parcelList;
+
             return View();
         }
 
-        
+
 
 
         [HttpPost]

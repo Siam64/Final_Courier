@@ -2,7 +2,6 @@
 
 @{
 }
-
 <div class="col-12">
     <div class="card shadow-lg mb-4">
         <div class="card-header bg-secondary text-white text-center">
@@ -21,9 +20,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(ViewBag.List != null)
+                    @if (ViewData["CList"] != null)
                     {
-                        @foreach(var field in ViewBag.List)
+                        var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
+                        @foreach (var field in customerList)
                         {
                             <tr>
                                 <td>@field.Customer_Phone</td>
@@ -32,6 +32,53 @@
                                 <td>@field.Customer_City</td>
                                 <td>@field.Customer_Address</td>
                                 <td>@field.Note</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-muted">No data available</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="col-12">
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-secondary text-white text-center">
+            <h4 class="mb-0">Parcel Data</h4>
+        </div>
+        <div>
+            <table class="table table-hover table-bordered text-center align-middle" id="ParceTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Parcel Type</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Weight/Piece</th>
+                        <th scope="col">Final Price</th>
+                        <th scope="col">Delivary Date</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewData["PList"] != null)
+                    {
+                        var parcelList = (List<CourierManagement.DataModel.Parcel>)ViewData["PList"];
+                        @foreach (var field in parcelList)
+                        {
+                            <tr>
+                                <td>@field.Parcel_Type</td>
+                                <td>@field.Unit_Price</td>
+                                <td>@field.Weight</td>
+                                <td>@field.Final_Price</td>
+                                <td>@field.DelivaryDate</td>
                             </tr>
                         }
                     }
