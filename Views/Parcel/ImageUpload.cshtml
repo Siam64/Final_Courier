@@ -1,7 +1,63 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewBag.Title = "Upload Image using Dropzone.js";
 }
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+<body>
+    <div class="container">
+        <div class="col-md-12">
+            <form action="/Parcel/ImageUpload" class="dropzone" id="imageUploadDropzone" enctype="multipart/form-data">
+                <div class="dz-message needsclick">
+                    <i class="fa fa-picture-o fa-5x" aria-hidden="true"></i>
+                    <span>Click or Drop Image</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+ <script>
+    Dropzone.options.imageUploadDropzone = {
+        paramName: "img",
+        maxFilesize: 5,
+        acceptedFiles: "image/*",
+        addRemoveLinks: false,
+        headers: {
+            'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val()
+        },
+
+        success: function (img, response) {
+            if (response.success) {
+                alert("File uploaded successfully.");
+                img.uploadedFileName = img.name;
+            } else {
+                alert("File upload failed: " + response.message);
+            }
+        },
+
+        removedfile: function (img) {
+            if (img.uploadedFileName) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Parcel/DeleteImage',
+                    data: { fileName: img.uploadedFileName },
+                    headers: {
+                        'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert("File deleted successfully.");
+                        } else {
+                            alert("File deletion failed: " + response.message);
+                        }
+                    },
+                    error: function (response) {
+                        alert("An error occurred while deleting the file.");
+                    }
+                });
+            }
+        }
+    };
+</script> 
+

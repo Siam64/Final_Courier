@@ -5,6 +5,7 @@ using CourierManagement.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.IO;
 
 namespace CourierManagement.Controllers
 {
@@ -21,6 +22,49 @@ namespace CourierManagement.Controllers
         public IActionResult ImageUpload()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ImageUpload(IFormFile img)
+        {
+            if (img != null && img.Length > 0)
+            {
+                string projecfile = Directory.GetCurrentDirectory();
+                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadedFile");
+                if (!Directory.Exists(uploadsFolderPath))
+                {
+                    Directory.CreateDirectory(uploadsFolderPath);
+                }
+                var fileName = Path.GetFileName(img.FileName);
+                var path = Path.Combine(uploadsFolderPath, fileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    img.CopyTo(stream);
+                }
+
+                return Json(new { success = true, fileName = fileName });
+
+            }
+            return Json(new { success = false, message = "File upload failed." });
+        }
+
+        public IActionResult DeleteImage(string fileName)
+        {
+            var sessionFileName = HttpContext.Session.GetString("UploadedFile");
+            if (!string.IsNullOrEmpty(sessionFileName) && sessionFileName == fileName)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UploadedImages", fileName);
+
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                    HttpContext.Session.Remove("UploadedFile");
+                    return Json(new { success = true });
+                }
+            }
+            return Json(new { success = false, message = "File deletion failed." });
         }
 
         public IActionResult Form()
