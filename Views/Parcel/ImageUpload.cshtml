@@ -23,9 +23,6 @@
         maxFilesize: 5,
         acceptedFiles: "image/*",
         addRemoveLinks: false,
-        headers: {
-            'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val()
-        },
 
         success: function (img, response) {
             if (response.success) {
@@ -42,9 +39,7 @@
                     type: 'POST',
                     url: '/Parcel/DeleteImage',
                     data: { fileName: img.uploadedFileName },
-                    headers: {
-                        'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val()
-                    },
+ 
                     success: function (response) {
                         if (response.success) {
                             alert("File deleted successfully.");

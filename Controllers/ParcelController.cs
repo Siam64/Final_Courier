@@ -13,9 +13,12 @@ namespace CourierManagement.Controllers
     public class ParcelController : Controller
     {
         private readonly CourierManagementContext _context;
-        public ParcelController(CourierManagementContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ParcelController(CourierManagementContext context, IWebHostEnvironment Webhost)
         {
             _context = context;
+            _webHostEnvironment = Webhost;
+
         }
 
 
@@ -25,13 +28,13 @@ namespace CourierManagement.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[Route("samiul")]
         public IActionResult ImageUpload(IFormFile img)
         {
             if (img != null && img.Length > 0)
             {
                 string projecfile = Directory.GetCurrentDirectory();
-                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadedFile");
+                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), _webHostEnvironment.WebRootPath, "UploadedFile");
                 if (!Directory.Exists(uploadsFolderPath))
                 {
                     Directory.CreateDirectory(uploadsFolderPath);
@@ -50,6 +53,7 @@ namespace CourierManagement.Controllers
             return Json(new { success = false, message = "File upload failed." });
         }
 
+        [HttpPost]
         public IActionResult DeleteImage(string fileName)
         {
             var sessionFileName = HttpContext.Session.GetString("UploadedFile");

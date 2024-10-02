@@ -158,6 +158,9 @@ sup {
   top: -.5em;
 }
 
+
+
+
 a {
   color: #4e73df;
   text-decoration: none;
@@ -4034,6 +4037,13 @@ input[type="button"].btn-block {
   color: #858796;
   pointer-events: none;
   cursor: default;
+}
+
+.nav-link.active {
+    background-color: #007bff;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 .nav-tabs {

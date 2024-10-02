@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "E:\\Intern\\CourierManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\parcel\\imageupload.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\parcel\\imageupload.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\shared\\_adminbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\shared\\_adminbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\controllers\\parcelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:controllers\\parcelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\parcel\\imageupload.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\parcel\\imageupload.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\parcel\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\parcel\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -43,10 +51,6 @@
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\parcel\\ordertable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\parcel\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\parcel\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\viewmodel\\multivm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:viewmodel\\multivm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -71,10 +75,6 @@
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:areas\\identity\\data\\couriermanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\shared\\_adminbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\shared\\_adminbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\lookup\\createlookup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\lookup\\createlookup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -93,10 +93,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\models\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:models\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\views\\shared\\_userbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|solutionrelative:views\\shared\\_userbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CF28607-1F0F-46C9-9DAD-8E0C04B89D49}|CourierManagement.csproj|e:\\intern\\couriermanagement\\controllers\\lookupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -122,7 +118,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Document",
@@ -132,7 +128,7 @@
               "RelativeDocumentMoniker": "Controllers\\ParcelController.cs",
               "ToolTip": "E:\\Intern\\CourierManagement\\Controllers\\ParcelController.cs",
               "RelativeToolTip": "Controllers\\ParcelController.cs",
-              "ViewState": "AgIAAAgAAADIzMzMzMwHwCkAAABKAAAAAAAAAA==",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAawJ8AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T03:00:36.312Z",
               "IsPinned": true,
@@ -140,20 +136,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ImageUpload.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Parcel\\ImageUpload.cshtml",
               "RelativeDocumentMoniker": "Views\\Parcel\\ImageUpload.cshtml",
               "ToolTip": "E:\\Intern\\CourierManagement\\Views\\Parcel\\ImageUpload.cshtml",
               "RelativeToolTip": "Views\\Parcel\\ImageUpload.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-29T16:19:25.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-29T16:19:25.644Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Logout.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Logout.cshtml",
@@ -165,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\_ViewImports.cshtml",
@@ -177,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
@@ -189,7 +184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Register.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
@@ -201,7 +196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Login.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
@@ -213,7 +208,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
@@ -225,7 +220,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "MultiVM.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\ViewModel\\MultiVM.cs",
               "RelativeDocumentMoniker": "ViewModel\\MultiVM.cs",
@@ -237,7 +232,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "OrderTable.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Parcel\\OrderTable.cshtml",
               "RelativeDocumentMoniker": "Views\\Parcel\\OrderTable.cshtml",
@@ -249,7 +244,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Customer.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\DataModel\\Customer.cs",
               "RelativeDocumentMoniker": "DataModel\\Customer.cs",
@@ -261,19 +256,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "_UserBar.cshtml",
-              "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Shared\\_UserBar.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_UserBar.cshtml",
-              "ToolTip": "E:\\Intern\\CourierManagement\\Views\\Shared\\_UserBar.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_UserBar.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-28T10:01:59.856Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
@@ -285,7 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 25,
               "Title": "Register.cshtml.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
@@ -297,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 26,
               "Title": "Index.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
@@ -333,15 +316,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 0,
               "Title": "_AdminBar.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Shared\\_AdminBar.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_AdminBar.cshtml",
               "ToolTip": "E:\\Intern\\CourierManagement\\Views\\Shared\\_AdminBar.cshtml",
               "RelativeToolTip": "Views\\Shared\\_AdminBar.cshtml",
-              "ViewState": "AgIAABYAAABAAAAAAAAhwCUAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAFAAAACAZWZmZmYkwFwAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-26T04:26:15.14Z"
+              "WhenOpened": "2024-09-26T04:26:15.14Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -357,7 +341,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "CourierManagementContext.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Areas\\Identity\\Data\\CourierManagementContext.cs",
               "RelativeDocumentMoniker": "Areas\\Identity\\Data\\CourierManagementContext.cs",
@@ -369,19 +353,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "Form.cshtml",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Views\\Parcel\\Form.cshtml",
               "RelativeDocumentMoniker": "Views\\Parcel\\Form.cshtml",
               "ToolTip": "E:\\Intern\\CourierManagement\\Views\\Parcel\\Form.cshtml",
               "RelativeToolTip": "Views\\Parcel\\Form.cshtml",
-              "ViewState": "AgIAAHAAAADAmZmZmZkuwOgAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAANcAAAAAAAAAAAAiwPEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-09-24T03:16:34.804Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CustomerVM.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\ViewModel\\CustomerVM.cs",
               "RelativeDocumentMoniker": "ViewModel\\CustomerVM.cs",
@@ -393,7 +377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "ParcelVM.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\ViewModel\\ParcelVM.cs",
               "RelativeDocumentMoniker": "ViewModel\\ParcelVM.cs",
@@ -405,7 +389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Parcel.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\DataModel\\Parcel.cs",
               "RelativeDocumentMoniker": "DataModel\\Parcel.cs",
@@ -429,7 +413,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 23,
               "Title": "LookupController.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\Controllers\\LookupController.cs",
               "RelativeDocumentMoniker": "Controllers\\LookupController.cs",
@@ -441,7 +425,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 24,
               "Title": "LookupVM.cs",
               "DocumentMoniker": "E:\\Intern\\CourierManagement\\ViewModel\\LookupVM.cs",
               "RelativeDocumentMoniker": "ViewModel\\LookupVM.cs",

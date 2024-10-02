@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CourierManagement")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d961a437ad9f344b3d9924d8e57d0fb43ff685c3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+912ded8810174e932c23c97de3a3f5d4c85a5a98")]
 [assembly: System.Reflection.AssemblyProductAttribute("CourierManagement")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CourierManagement")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

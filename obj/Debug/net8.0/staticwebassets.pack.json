@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\CourierManagement.bundle.scp.css"
     },
     {
+      "Id": "E:\\Intern\\CourierManagement\\wwwroot\\UploadedFile\\IMG_20190701_054337.jpg",
+      "PackagePath": "staticwebassets\\UploadedFile\\IMG_20190701_054337.jpg"
+    },
+    {
       "Id": "E:\\Intern\\CourierManagement\\wwwroot\\assets\\css\\animated.css",
       "PackagePath": "staticwebassets\\assets\\css\\animated.css"
     },

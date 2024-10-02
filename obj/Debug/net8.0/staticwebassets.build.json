@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "P254gCoK0YQsYuRMoExonEN/j/ulWZIX+eG7Ss0QXmg=",
+  "Hash": "8v9On/DoIuuVSMQK/7/PrKgkq5hhg295rSP0I27fYLU=",
   "Source": "CourierManagement",
   "BasePath": "_content/CourierManagement",
   "Mode": "Default",
@@ -4157,6 +4157,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\scss\\utilities\\_text.scss"
+    },
+    {
+      "Identity": "E:\\Intern\\CourierManagement\\wwwroot\\UploadedFile\\IMG_20190701_054337.jpg",
+      "SourceId": "CourierManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Intern\\CourierManagement\\wwwroot\\",
+      "BasePath": "_content/CourierManagement",
+      "RelativePath": "UploadedFile/IMG_20190701_054337.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedFile\\IMG_20190701_054337.jpg"
     },
     {
       "Identity": "E:\\Intern\\CourierManagement\\wwwroot\\vendor\\bootstrap\\css\\bootstrap.min.css",
