@@ -21,6 +21,43 @@ namespace CourierManagement.Controllers
 
         }
 
+        public IActionResult PriceTable()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult PriceTable(PriceTableVM model)
+        {
+            if (model == null)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            model.CreateAt = DateTime.UtcNow;
+            model.UpdateAt = DateTime.UtcNow;
+            model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
+            model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+
+            PriceTable data = new PriceTable();
+            data.ParcelType = model.ParcelType;
+            data.BasePrice = model.BasePrice;
+            data.CreateAt = model.CreateAt;
+            data.CreateBy = model.CreateBy;
+            data.UpdateBy = model.UpdateBy;
+            data.UpdateAt = model.UpdateAt;
+
+            try
+            {
+                _context.PriceTable.Add(data);
+                _context.SaveChanges();
+                return Json(new { success = true, message = PopupMessage.success });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
+        }
+
 
         public IActionResult ImageUpload()
         {

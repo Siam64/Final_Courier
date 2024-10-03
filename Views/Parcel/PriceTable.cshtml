@@ -1,0 +1,93 @@
+﻿@model CourierManagement.DataModel.PriceTable
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-lg mb-4">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Manage Price Table</h4>
+                </div>
+                <div class="card-body">
+                    <form id="pricetable">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="ParcelType" class="form-label">Parcel Type</label>
+                                <input id="Id" type="hidden" class="form-control" placeholder="" />
+                                <input id="ParcelType" type="text" class="form-control" placeholder="Enter Parcel Type" required />
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="BasePrice" class="form-label">Unit Price</label>
+                                <input id="BasePrice" type="number" class="form-control" placeholder="Enter Unit Price" required />
+                            </div>
+                        </div>
+
+                        @* <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="Value" class="form-label">Value</label>
+                                <input id="Value" type="text" class="form-control" placeholder="Enter Value" required />
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="Serial" class="form-label">Serial</label>
+                                <input id="Serial" type="number" class="form-control" placeholder="Enter Serial" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="control-label">IsActive</label>
+                                <select class="form-control" id="IsActive" required>
+                                    <option value="-1">Select one</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div> *@
+                        <div class ="d-grid gap-4">
+                            <button type="submit" id="submitButton">Submit</button>
+                            <button type="button" id="submitUpdateButton">Confirm Update</button>
+                            <button type="reset" id="clearForm">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/jquery-3.6.0.min.js"></script>
+<script src="~/js/alert.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#submitButton").click(function () {
+            var form = document.getElementById('lookupForm');
+            if (!form.checkValidity()) {
+                Swal.fire("Error", "Please fill in all required fields.", "error");
+                return;
+            }
+
+            var mainData = {
+                ParcelType: $('#ParcelType').val(),
+                BasePrice: $('#BasePrice').val(),
+            };
+
+            $.ajax({
+
+                url: '/Parcel/PriceTable',
+                type: 'POST',
+                data: mainData,
+
+                success: function () {
+                    Swal.fire("Saved!");
+                },
+
+                error: function () {
+                    swal.fire("Failed!");
+                }
+
+            })
+        });
+    });
+</script>
