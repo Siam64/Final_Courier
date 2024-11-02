@@ -136,12 +136,21 @@ namespace CourierManagement.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Welcome", "Home", new { area = "" });
+                    //return RedirectToAction("Welcome", "Home", new { area = "" });
+                    return Redirect("/Identity/Account/Login");
                     //return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    if (error.Code == "PasswordMismatch")
+                    {
+                        ModelState.AddModelError(string.Empty, "The password provided does not match the criteria or password mismatch.");
+                    }
+                    else
+                    {
+                        // Add any other errors to the model state
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
                 }
             }
 
