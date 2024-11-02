@@ -99,15 +99,15 @@ namespace CourierManagement.Controllers
         [HttpPost]
         public IActionResult UpdateLookup(LookupVM model)
         {
-            if(model == null || model.Id < 0)
+            if (model == null || model.Id < 0)
                 return Json(new { success = false, message = PopupMessage.error });
 
             var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
             model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
             model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
 
-            Lookup data = _context.Lookups.Where(x=>x.Id==model.Id).FirstOrDefault();
-            if(data == null)
+            Lookup data = _context.Lookups.Where(x => x.Id == model.Id).FirstOrDefault();
+            if (data == null)
                 return Json(new { success = false, message = PopupMessage.error });
 
             data.Name = model.Name;
@@ -124,19 +124,18 @@ namespace CourierManagement.Controllers
                 _context.SaveChanges();
                 ModelState.Clear();
 
-                var dataResult= _context.Lookups.Where(x => x.Id == data.Id).ToList();
+                var dataResult = _context.Lookups.Where(x => x.Id == data.Id).OrderBy(x => x.Id).ToList();
                 return Json(new { success = true, message = PopupMessage.success, data = dataResult });
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Json(new { success = false, message = PopupMessage.error });
             }
-
         }
+   
 
-        [HttpPost]
-        public IActionResult DeleteLookup(int Id)
+    //[HttpPost]
+    public IActionResult DeleteLookup(int Id)
         {
             if(Id < 0)
                 return Json(new { success = false, message = PopupMessage.error });
