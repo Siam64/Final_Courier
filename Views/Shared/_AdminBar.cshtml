@@ -1,4 +1,6 @@
-﻿<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+﻿
+
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Home/Welcome">
@@ -32,13 +34,13 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
+            <span>Operations</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "Form" ? "active" : "")" href="/Parcel/Form">
-                    <i class="fas fa-user-plus"></i> Add Customer
+                    <i class="fas fa-user-plus"></i> Take Order
                 </a>
 
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "OrderTable" ? "active" : "")" href="/Parcel/OrderTable">
@@ -62,11 +64,14 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <h6 class="collapse-header">Components:</h6>
+                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "PriceTable" ? "active" : "")" href="/Parcel/PriceTable">
+                    <i class="fas fa-table"></i> Price Table
+                </a>
+
+                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Lookup" && ViewContext.RouteData.Values["action"].ToString() == "CreateLookup" ? "active" : "")" href="/Lookup/CreateLookup">
+                    <i class="fas fa-table"></i> Manage City & Parcel
+                </a>
             </div>
         </div>
     </li>
@@ -74,11 +79,11 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
+@*     <!-- Heading -->
     <div class="sidebar-heading">
         Addons
     </div>
-
+ *@
     <!-- Nav Item - Charts -->
    @*  <li class="nav-item">
         <a class="nav-link" href="/Lookup/CreateLookup">
@@ -88,18 +93,18 @@
     </li> *@
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Lookup" && ViewContext.RouteData.Values["action"].ToString() == "CreateLookup" ? "active" : "")" >
+ @*  <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Lookup" && ViewContext.RouteData.Values["action"].ToString() == "CreateLookup" ? "active" : "")" >
 
-        <a class="nav-link" asp-controller="Lookup" asp-action="CreateLookup">
+    <a class="nav-link" asp-controller="Lookup" asp-action="CreateLookup">
         <i class="fas fa-fw fa-table"></i>
         <span>Manage Lookup Table</span>
     </a>
-</li>
+  </li> *@
 
 
 
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+   @*  <hr class="sidebar-divider d-none d-md-block"> *@
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

@@ -1,4 +1,5 @@
 using CourierManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,7 +13,7 @@ namespace CourierManagement.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize]
         public IActionResult Welcome()
         {
             return View();

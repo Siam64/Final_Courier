@@ -23,6 +23,7 @@ namespace CourierManagement.Controllers
 
         public IActionResult PriceTable()
         {
+            ViewBag.PriceList = _context.PriceTable.ToList();
             return View();
         }
         [HttpPost]
@@ -50,11 +51,89 @@ namespace CourierManagement.Controllers
             {
                 _context.PriceTable.Add(data);
                 _context.SaveChanges();
+                var newdata = _context.PriceTable.Where(x => x.Id == data.Id).OrderBy(x => x.Id).ToList();
+
+                return Json(new { success = true, message = PopupMessage.success, nData= newdata });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
+        }
+
+
+        public IActionResult deletePrice(int Id)
+        {
+            if (Id < 0)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            var data = _context.PriceTable.Where(x => x.Id == Id).FirstOrDefault();
+            try
+            {
+                _context.PriceTable.Remove(data);
+                _context.SaveChanges();
                 return Json(new { success = true, message = PopupMessage.success });
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = PopupMessage.error });
+            }
+        }
+
+        public IActionResult getDataForupdate(PriceTableVM model)
+        {
+            if (model == null || model.Id < 1)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            var result = _context.PriceTable.Where(x => x.Id == model.Id).First();
+            if (result == null)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            return Json(new
+            {
+                success = true,
+                message = PopupMessage.success,
+                data = new
+                {
+                   result.Id,
+                   result.ParcelType,
+                   result.BasePrice
+                }
+
+            });
+            
+        }
+
+
+        public IActionResult updatePriceTable(PriceTableVM model)
+        {
+            if (model == null || model.Id < 0)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            model.CreateBy = GuidHelper.ToGuidOrDefault(userid);
+            model.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
+
+            PriceTable data = _context.PriceTable.Where(x=>x.Id == model.Id).FirstOrDefault();
+            if (data == null)
+                return Json(new { success = false, message = PopupMessage.error });
+
+            data.ParcelType = model.ParcelType;
+            data.BasePrice = model.BasePrice;
+
+            try
+            {
+                _context.PriceTable.Update(data);
+                _context.SaveChanges();
+
+                var dataResult = _context.PriceTable.Where(x => x.Id == data.Id).OrderBy(x => x.Id).ToList();
+                return Json(new { success = true, message = PopupMessage.success, data = dataResult });
+            }
+            catch (Exception ex) { 
+
+                return Json(new {success = false, message = PopupMessage.error});
+            
+            
             }
         }
 
@@ -90,6 +169,10 @@ namespace CourierManagement.Controllers
             return Json(new { success = false, message = "File upload failed." });
         }
 
+
+
+
+
         [HttpPost]
         public IActionResult DeleteImage(string fileName)
         {
@@ -107,6 +190,9 @@ namespace CourierManagement.Controllers
             }
             return Json(new { success = false, message = "File deletion failed." });
         }
+
+
+
 
         public IActionResult Form()
         {

@@ -10,6 +10,12 @@
     
     <link rel="stylesheet" src="~/css/button.css">
     <link href="~/css/pagination.css" rel="stylesheet">
+    <style>
+        .small-alert {
+            font-size: 8px;
+            padding: 8px;
+        }
+    </style>
    
 </header>
 
@@ -40,7 +46,7 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="Serial" class="form-label">Serial</label>
-                                <input id="Serial" type="number" class="form-control" placeholder="Enter Serial" required />
+                                <input id="Serial" type="number" class="form-control"  placeholder="Enter Serial" required />
                             </div>
                         </div>
                         <div class="row">
@@ -121,8 +127,7 @@
 
         //Delete
         $(document).on('click', '.deleteButton', function () {
-            var id = $(this).data('id');
-
+         var id = $(this).data('id');
             Swal.fire({
                 title: 'Are you sure?',
                 icon: 'warning',
@@ -132,30 +137,89 @@
                 confirmButtonText: 'Yes, delete it!',
                 cancelButtonText: 'No, cancel!'
             }).then((result) => {
-                if (result.isConfirmed) {
-                    var LookupData = {
-                        id: id
-                    };
-                    $.ajax({
-                        url: '@Url.Action("DeleteLookup", "Lookup")',
-                        type: 'POST',
-                        data: LookupData,
+        if (result.isConfirmed) {
+            var LookupData = {
+                id: id
+            };
+            $.ajax({
+                url: '@Url.Action("DeleteLookup", "Lookup")',
+                type: 'POST',
+                data: LookupData,
+                success: function (response) {
+                    if (response.success) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Removed!",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    customClass: {
+                                        popup: 'small-alert'
+                                    }
+                                });
+                        
+                        // Clear existing table rows
+                        $('#lookupnewTable tbody').empty();
+                        
+                        // Rebuild table with updated data
+                        response.data.forEach(function(item) {
+                            var newRow = `
+                                <tr>
+                                    <td>${item.serial}</td>
+                                    <td>${item.value}</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.type}</td>
+                                    <td>${item.isActive ? 'Yes' : 'No'}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-primary GetupdateButton" data-id="${item.id}">Update</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger deleteButton" data-id="${item.id}">Delete</button>
+                                    </td>
+                                </tr>
+                            `;
+                            $('#lookupnewTable tbody').append(newRow);
+                        });
 
-                        success: function (receive) {
-
-                            if (receive.success) {
-                                Swal.fire("Removed!");
-                                //$('#lookupnewTable tbody').find('button[data-id="' + id + '"]').closest('tr').remove();
-                                $('button.deleteButton[data-id= "' + id + '"]').closest('tr').remove();
+                        // Update the serial number in the form
+                        $.ajax({
+                            url: '@Url.Action("GetNextSerial", "Lookup")',
+                            type: 'GET',
+                            success: function(serialResponse) {
+                                $('#Serial').val(serialResponse.nextSerial);
                             }
-                        },
-                        error: function () {
-                            Swal.fire("Failed!");
-                        }
+                        });
+                        $('button.deleteButton[data-id= "' + id + '"]').closest('tr').remove();
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        title: "Failed!",
+                        icon: "error",
+                        timer: 1500,
+                        showConfirmButton: false
                     });
                 }
             });
+        }
+    });
+});
+
+
+
+
+        $('#resetButton').on('click', function () {
+            $('#submitUpdateButton').attr('hidden', true);
+            $('#lookupForm')[0].reset();
+                     $.ajax({
+                         url: '@Url.Action("GetNextSerial", "Lookup")',
+                         type: 'GET',
+                         success: function(serialResponse) {
+                         $('#Serial').val(serialResponse.nextSerial);
+                         }
+                     });
         });
+
+
+
 
         //getting data in form
 
@@ -202,7 +266,22 @@
 
 
         $(document).ready(function () {
-            loadPage(1);
+          
+
+
+            $.ajax({
+                url: '@Url.Action("GetNextSerial", "Lookup")',
+                type: 'GET',
+                success: function(response) {
+                    $('#Serial').val(response.nextSerial);
+                },
+                error: function() {
+                    //$('#Serial').val(1);
+                }
+            });
+       
+
+
 
             //confirm update
             $("#submitUpdateButton").click(function () {
@@ -251,6 +330,13 @@
                             $('#submitUpdateButton').attr('hidden', true);
                             $('#lookupForm')[0].reset();
                             // "${response.data[response.data.length - 1].id}"
+                                     $.ajax({
+                                         url: '@Url.Action("GetNextSerial", "Lookup")',
+                                         type: 'GET',
+                                         success: function(serialResponse) {
+                                        $('#Serial').val(serialResponse.nextSerial);
+                                        }
+                                     });
                         }
                     },
 
@@ -284,7 +370,16 @@
                     type: 'POST',
                     data: LookupData,
                     success: function (response) {
-                        Swal.fire("Saved!");
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Invoice has been saved!",
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'small-alert'
+                            }
+                        });
 
                         if (response.success) {
                             var newRow = `
@@ -302,10 +397,26 @@
                             `;
                             $('#lookupnewTable tbody').append(newRow);
                             $('#lookupForm')[0].reset();
+                            $.ajax({
+                                 url: '@Url.Action("GetNextSerial", "Lookup")',
+                                 type: 'GET',
+                                 success: function(serialResponse) {
+                                $('#Serial').val(serialResponse.nextSerial);
+                                }
+                             });
                         }
                     },
                     error: function () {
-                        Swal.fire("Failed!");
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Failed",
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'small-alert'
+                            }
+                        });
                     }
                 });
             });

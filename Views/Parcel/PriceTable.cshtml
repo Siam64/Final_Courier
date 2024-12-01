@@ -1,6 +1,22 @@
 ﻿@model CourierManagement.DataModel.PriceTable
 
-<div class="container">
+
+<header>
+    <style>
+       /*  .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
+        } */
+
+        .small-alert {
+            font-size: 8px;
+            padding: 8px;
+        }
+
+    </style>
+</header>
+
+<div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="card shadow-lg mb-4">
@@ -20,31 +36,9 @@
                                 <input id="BasePrice" type="number" class="form-control" placeholder="Enter Unit Price" required />
                             </div>
                         </div>
-
-                        @* <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="Value" class="form-label">Value</label>
-                                <input id="Value" type="text" class="form-control" placeholder="Enter Value" required />
-                            </div>
-
-                            <div class="col-md-12 mb-3">
-                                <label for="Serial" class="form-label">Serial</label>
-                                <input id="Serial" type="number" class="form-control" placeholder="Enter Serial" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label class="control-label">IsActive</label>
-                                <select class="form-control" id="IsActive" required>
-                                    <option value="-1">Select one</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
-                                </select>
-                            </div>
-                        </div> *@
-                        <div class ="d-grid gap-4">
+                        <div class="d-grid gap-4">
                             <button type="submit" id="submitButton">Submit</button>
-                            <button type="button" id="submitUpdateButton">Confirm Update</button>
+                            <button type="button" id="submitUpdateButton" hidden >Confirm Update</button>
                             <button type="reset" id="clearForm">Clear Form</button>
                         </div>
                     </form>
@@ -52,42 +46,265 @@
             </div>
         </div>
     </div>
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-secondary text-white text-center">
+            <h4 class="mb-0">Price data</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" id="PriceTable">
+                <table class="table table-hover table-bordered text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Parcel Type</th>
+                            <th>Price/Kg</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.PriceList != null && ViewBag.PriceList.Count > 0)
+                        {
+                            foreach (var data in ViewBag.PriceList)
+                            {
+                                <tr>
+                                    <td>@data.ParcelType</td>
+                                    <td>@data.BasePrice</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-primary GetupdateButton" data-id="@data.Id">Update</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger deleteButton" data-id="@data.Id">Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 
 <script src="~/js/jquery-3.6.0.min.js"></script>
 <script src="~/js/alert.js"></script>
+<script src="~/js/alert2.js"></script>
 
 <script>
-    $(document).ready(function () {
 
-        $("#submitButton").click(function () {
-            var form = document.getElementById('lookupForm');
-            if (!form.checkValidity()) {
-                Swal.fire("Error", "Please fill in all required fields.", "error");
-                return;
-            }
-
-            var mainData = {
-                ParcelType: $('#ParcelType').val(),
-                BasePrice: $('#BasePrice').val(),
-            };
-
-            $.ajax({
-
-                url: '/Parcel/PriceTable',
-                type: 'POST',
-                data: mainData,
-
-                success: function () {
-                    Swal.fire("Saved!");
-                },
-
-                error: function () {
-                    swal.fire("Failed!");
-                }
-
-            })
+     $('#clearForm').on('click', function () {
+            $('#submitUpdateButton').attr('hidden', true);
+            $('#ParcelType').val('');
+            $('#BasePrice').val('');
         });
+   
+     $(document).ready(function () {
+         $("#submitButton").click(function (e) {
+             e.preventDefault(); 
+
+             var form = document.getElementById('pricetable');
+             if (!form.checkValidity()) {
+                 Swal.fire("Error", "Please fill in all required fields.", "error");
+                 return;
+             }
+
+             var mainData = {
+                 ParcelType: $('#ParcelType').val(),
+                 BasePrice: $('#BasePrice').val(),
+             };
+
+             console.log(mainData);
+
+             $.ajax({
+                 url: '/Parcel/PriceTable',
+                 type: 'POST',
+                data: mainData,
+                 
+                 success: function (response) {
+                     Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Invoice has been saved!",
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'small-alert'
+                            }
+                     });
+                     console.log(response);
+                        if(response.success){
+                            var newRow = `
+                                <tr>
+                                    <td>${response.nData[0].parcelType}</td>
+                                    <td>${response.nData[0].basePrice}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-primary GetupdateButton" data-id="${response.nData[0].id}">Update</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger deleteButton" data-id="${response.nData[0].id}">Delete</button>
+                                    </td>
+                                </tr>
+                            `;
+                            $('#PriceTable tbody').append(newRow);
+
+                            // Clear the form after successful submission
+                            $('#ParcelType').val('');
+                            $('#BasePrice').val('');
+                        }
+                 },
+                 error: function () {
+                      Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Failed",
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'small-alert'
+                            }
+                        });
+                 }
+             });
+         });
+
+
+          $("#submitUpdateButton").click(function () {
+
+              var PriceId = $('#Id').val()
+              if (!PriceId) {
+                    Swal.fire("Error", "Cant update without submitting", "error");
+                    return;
+              }
+
+              var PriceData = {
+                    Id: PriceId,
+                    ParcelType: $('#ParcelType').val(),
+                    BasePrice: $('#BasePrice').val(),
+              };
+
+              $.ajax({
+                    url: '@Url.Action("updatePriceTable", "Parcel")',
+                    type: 'POST',
+                    data: PriceData,
+
+
+                    success: function (response) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Invoice has been saved!",
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'small-alert'
+                            }
+                        });
+
+                        if(response.success){
+                             $('#PriceTable tbody').find('button[data-id="' + PriceId + '"]').closest('tr').remove();
+
+                             var newRow = `
+
+                                                 <tr>
+                                                 <td> ${response.data[response.data.length - 1].parcelType}</td>
+                                                 <td> ${response.data[response.data.length - 1].basePrice}</td>
+                                                 <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary GetupdateButton" data-id="${response.data[0].id}">Update</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger deleteButton" data-id="${response.data[0].id}">Delete</button>
+                                                 </tr>
+                                    `;
+                            $('#PriceTable tbody').append(newRow);
+                            $('#submitUpdateButton').attr('hidden', true);
+                            $('#ParcelType').val('');
+                            $('#BasePrice').val('');
+
+                        }
+                    
+                    
+                    
+                    },
+              });
+
+          });
+     });
+
+    $(document).on('click', '.deleteButton', function () {
+           var id = $(this).data('id');
+
+           Swal.fire({
+               title: 'Are you sure?',
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes, delete it!',
+               cancelButtonText: 'No, cancel!'
+           }).then((result) => {
+               if (result.isConfirmed) {
+                   var PriceData = {
+                       id: id
+                   };
+                   $.ajax({
+                       url: '@Url.Action("deletePrice", "Parcel")',
+                       type: 'POST',
+                       data: PriceData,
+
+                       success: function (receive) {
+
+                           if (receive.success) {
+                               Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Removed",
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                    customClass: {
+                                    popup: 'small-alert'
+                                    }
+                                });
+                               $('button.deleteButton[data-id= "' + id + '"]').closest('tr').remove();
+                           }
+                       },
+                       error: function () {
+                         Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Something went wrong",
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'small-alert'
+                            }
+                        });
+                       }
+                   });
+               }
+           });
     });
+
+
+    $(document).on('click', '.GetupdateButton', function () {
+           //alert("working");
+            var id = $(this).data('id');
+            var updateId = {
+                id: id
+            };
+            $('#submitUpdateButton').removeAttr('hidden');
+            $.ajax({
+                url: '@Url.Action("getDataForupdate", "Parcel")',
+                type: 'POST',
+                data: updateId,
+
+                 success: function (response) {
+
+                     if(response.success){
+                          $('#Id').val(response.data.id);
+                          $('#ParcelType').val(response.data.parcelType);
+                          $('#BasePrice').val(response.data.basePrice);
+                     }
+                 
+                 
+                 },
+
+            });
+            console.log(updateId);
+        });
+
+
 </script>
