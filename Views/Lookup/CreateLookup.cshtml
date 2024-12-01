@@ -1,21 +1,19 @@
-﻿@model CourierManagement.DataModel.Lookup
-
-@{
+﻿ @model CourierManagement.Services.Pagination<CourierManagement.DataModel.Lookup>
+@{ 
     ViewData["Title"] = "Create";
+    
 }
 @* <h4 class="text-center">Manage Lookup Table</h4>
 <hr/> *@
 
 <header>
-    <link rel="stylesheet" src="~/css/bcon.css">
-    <link rel="stylesheet" src="~/css/bcon2.css">
+    
     <link rel="stylesheet" src="~/css/button.css">
+    <link href="~/css/pagination.css" rel="stylesheet">
+   
 </header>
 
-
-
-
-<div class="container-fluid py-2">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="card shadow-lg mb-4">
@@ -70,44 +68,11 @@
                     <h4 class="mb-0">Lookup Data</h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover table-bordered text-center align-middle" id="lookupnewTable">
-                        <thead class="table-dark">
-                            <tr>
-                                <th scope="col">Serial</th>
-                                <th scope="col">Value</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">IsActive</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (ViewBag.List != null && ViewBag.List.Count > 0)
-                            {
-                                foreach (var city in ViewBag.List)
-                                {
-                                    <tr>
-                                        <td>@city.Serial</td>
-                                        <td>@city.Value</td>
-                                        <td>@city.Name</td>
-                                        <td>@city.Type</td>
-                                        <td>@(city.IsActive ? "Yes" : "No")</td>
-                                        <td>
-                                            <button type="button" class="btn btn-sm btn-outline-primary GetupdateButton" data-id="@city.Id">Update</button>
-                                            <button type="button" class="btn btn-sm btn-outline-danger deleteButton" data-id="@city.Id">Delete</button>
-
-                                        </td>
-                                    </tr>
-                                }
-                            }
-                            else
-                            {
-                                <tr>
-                                    <td colspan="7" class="text-muted">No data available</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                    <div class="table-responsive" id="lookupTableContainer">
+                         @{
+                            @Html.Partial("_lookupPartial", Model)
+                        } 
+                    </div>
                 </div>
             </div>
         </div>
@@ -120,6 +85,39 @@
     <script src="~/js/alert.js"></script>
 
     <script>
+        debugger;
+        function loadPage(pageNumber) {
+            $.ajax({
+                url: '@Url.Action("LoadPage", "Lookup")',
+                data: { pageNumber: pageNumber },
+                success: function (result) {
+                    $('#lookupTableContainer').html(result);
+
+                    // Update the active button
+                    updateActiveButton(pageNumber);
+                },
+                error: function () {
+                    alert('Error loading data.');
+                }
+            });
+        }
+
+        // Function to update the active button
+        function updateActiveButton(pageNumber) {
+            // Remove 'active' class from all buttons
+            $('#pagination button').removeClass('active');
+
+            // Add 'active' class to the button for the current page
+            $('#pagination button').each(function () {
+                if ($(this).text() == pageNumber) {
+                    $(this).addClass('active');
+                }
+            });
+        }
+        $(document).ready(function () {
+            loadPage(1);
+        });
+
 
         //Delete
         $(document).on('click', '.deleteButton', function () {
@@ -204,7 +202,7 @@
 
 
         $(document).ready(function () {
-
+            loadPage(1);
 
             //confirm update
             $("#submitUpdateButton").click(function () {
