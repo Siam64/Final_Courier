@@ -1,6 +1,7 @@
 ﻿using CourierManagement.Data;
 using CourierManagement.DataModel;
 using CourierManagement.Models;
+using CourierManagement.Services;
 using CourierManagement.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +18,21 @@ namespace CourierManagement.Controllers
         {
             _context = context;
         }
-        public IActionResult CreateLookup()
+        public async Task<IActionResult> CreateLookup(int? pageNumber)
         {
-            ViewBag.List = _context.Lookups.OrderBy(x=>x.Id).ToList();
-            return View();
+            //ViewBag.List = _context.Lookups.OrderBy(x=>x.Id).ToList();
+            int pageSize = 10;
+            var lookups = _context.Lookups.AsQueryable();
+            var paginatedLookups = await Pagination<Lookup>.CreateAsync(lookups.OrderByDescending(x => x.Id), pageNumber ?? 1, pageSize);
+            return View(paginatedLookups);
+        }
+
+        public async Task<IActionResult> LoadPage(int? pageNumber)
+        {
+            int pageSize = 10;
+            var lookups = _context.Lookups.AsQueryable();
+            var paginatedLookups = await Pagination<Lookup>.CreateAsync(lookups.OrderByDescending(x => x.Id), pageNumber ?? 1, pageSize);
+            return PartialView("_lookupPartial", paginatedLookups);
         }
 
         [HttpPost]
