@@ -72,6 +72,10 @@
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Lookup" && ViewContext.RouteData.Values["action"].ToString() == "CreateLookup" ? "active" : "")" href="/Lookup/CreateLookup">
                     <i class="fas fa-table"></i> Manage City & Parcel
                 </a>
+
+                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Employee" && ViewContext.RouteData.Values["action"].ToString() == "Employee" ? "active" : "")" href="/Employee/Employee">
+                    <i class="fas fa-user-plus"></i> Manage Employee
+                </a>
             </div>
         </div>
     </li>

@@ -26,12 +26,12 @@
                 <div class="card-body">
                     <form id="pricetable">
                         <div class="row">
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="ParcelType" class="form-label">Parcel Type</label>
                                 <input id="Id" type="hidden" class="form-control" placeholder="" />
                                 <input id="ParcelType" type="text" class="form-control" placeholder="Enter Parcel Type" required />
                             </div>
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="BasePrice" class="form-label">Unit Price</label>
                                 <input id="BasePrice" type="number" class="form-control" placeholder="Enter Unit Price" required />
                             </div>
@@ -94,7 +94,7 @@
             $('#submitUpdateButton').attr('hidden', true);
             $('#ParcelType').val('');
             $('#BasePrice').val('');
-        });
+     });
    
      $(document).ready(function () {
          $("#submitButton").click(function (e) {
@@ -226,7 +226,7 @@
 
     $(document).on('click', '.deleteButton', function () {
            var id = $(this).data('id');
-
+           console.log(id);
            Swal.fire({
                title: 'Are you sure?',
                icon: 'warning',
@@ -241,7 +241,7 @@
                        id: id
                    };
                    $.ajax({
-                       url: '@Url.Action("deletePrice", "Parcel")',
+                       url: '@Url.Action("deletePrice", "Employee")',
                        type: 'POST',
                        data: PriceData,
 
