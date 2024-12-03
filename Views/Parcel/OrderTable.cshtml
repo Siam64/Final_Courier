@@ -1,91 +1,66 @@
-﻿@model CourierManagement.DataModel.Parcel
-
+﻿@model IEnumerable<CourierManagement.DataModel.Parcel>
 @{
+    var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
 }
+<header>
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" rel="stylesheet" />
+   
+</header>
+
 <div class="col-12">
     <div class="card shadow-lg mb-4">
         <div class="card-header bg-secondary text-white text-center">
-            <h4 class="mb-0">Customer Data</h4>
+            <h4 class="mb-0">Orders</h4>
         </div>
         <div>
             <table class="table table-hover table-bordered text-center align-middle" id="OrderTable">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col">Customer Phone</th>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">Customer Email</th>
-                        <th scope="col">Customer City</th>
-                        <th scope="col">Customer Address</th>
-                        <th scope="col">Customer Note</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (ViewData["CList"] != null)
-                    {
-                        var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
-                        @foreach (var field in customerList)
-                        {
-                            <tr>
-                                <td>@field.Customer_Phone</td>
-                                <td>@field.Customer_Name</td>
-                                <td>@field.Customer_Email</td>
-                                <td>@field.Customer_City</td>
-                                <td>@field.Customer_Address</td>
-                                <td>@field.Note</td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="7" class="text-muted">No data available</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-
-
-
-<div class="col-12">
-    <div class="card shadow-lg mb-4">
-        <div class="card-header bg-secondary text-white text-center">
-            <h4 class="mb-0">Parcel Data</h4>
-        </div>
-        <div>
-            <table class="table table-hover table-bordered text-center align-middle" id="ParceTable">
-                <thead class="table-dark">
-                    <tr>
+                        <th scope="col">Serial</th>
+                        <th scope="col">Track Number</th>
+                        <th scope="col">Sender</th>
                         <th scope="col">Parcel Type</th>
-                        <th scope="col">Unit Price</th>
-                        <th scope="col">Weight/Piece</th>
-                        <th scope="col">Final Price</th>
-                        <th scope="col">Delivary Date</th>
-
+                        <th scope="col">Weight</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Receiver</th>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if (ViewData["PList"] != null)
+                    @if (Model != null && Model.Any())
                     {
-                        var parcelList = (List<CourierManagement.DataModel.Parcel>)ViewData["PList"];
-                        @foreach (var field in parcelList)
+                        @foreach (var parcel in Model)
                         {
+                            var sender = customerList.FirstOrDefault(c => c.Customer_ID == parcel.Sender_ID);
+                            var receiver = customerList.FirstOrDefault(c => c.Customer_ID == parcel.Receiver_ID);
+
                             <tr>
-                                <td>@field.Parcel_Type</td>
-                                <td>@field.Unit_Price</td>
-                                <td>@field.Weight</td>
-                                <td>@field.Final_Price</td>
-                                <td>@field.DelivaryDate</td>
+                                <td>@parcel.ID</td>
+                                <td>@parcel.TrackingNumber</td>
+                                <td>@(sender?.Customer_Name ?? "N/A")</td>
+                                <td>@parcel.Parcel_Type</td>
+                                <td>@parcel.Weight kg</td>
+                                <td>@parcel.Final_Price</td>
+                                <td>@(receiver?.Customer_Name ?? "N/A")</td>
+                                <td>@parcel.OrderDate.ToString("dd/MM/yyyy")</td>
+                                <td>@parcel.Status</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="@Url.Action("Edit", "Parcel", new { id = parcel.ID })"
+                                           class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="@Url.Action("OrderDetails", "Order", new { id = parcel.ID })"
+                                           class="btn btn-info btn-sm">Details</a>
+                                    </div>
+                                </td>
                             </tr>
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="7" class="text-muted">No data available</td>
+                            <td colspan="8" class="text-muted">No data available</td>
                         </tr>
                     }
                 </tbody>
@@ -93,3 +68,13 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
+<script>
+    new DataTable('#OrderTable');
+
+</script>
+

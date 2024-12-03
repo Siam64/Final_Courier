@@ -211,19 +211,16 @@ namespace CourierManagement.Controllers
         public IActionResult OrderTable()
         {
             var customerList = _context.Customer
-                .OrderBy(x => x.ID)
+                .OrderBy(x => x.Customer_ID)
                 .ToList();
 
             var parcelList = _context.Parcel
-                .OrderBy(x => x.ID)
+                .OrderByDescending(x => x.CreateAt)  
                 .ToList();
 
             ViewData["CList"] = customerList;
-            ViewData["PList"] = parcelList;
-
-            return View();
+            return View(parcelList);
         }
-
 
 
 
@@ -298,6 +295,9 @@ namespace CourierManagement.Controllers
                 Parceldata.Weight = model.Parcel.Weight;
                 Parceldata.Final_Price = model.Parcel.Final_Price;
                 Parceldata.DelivaryDate = model.Parcel.DelivaryDate;
+                Parceldata.TrackingNumber = DateTime.Now.ToString("yyyyMMddHHmmss");
+                Parceldata.Status = "Processing";
+                Parceldata.OrderDate = DateTime.UtcNow;
                 Parceldata.CreateAt = model.Customer.CreateAt;
                 Parceldata.CreateBy = model.Customer.CreateBy;
                 Parceldata.UpdateAt = model.Customer.UpdateAt;
@@ -310,6 +310,30 @@ namespace CourierManagement.Controllers
             
             }
             return View(model);
+        }
+
+
+        public IActionResult Edit(int id)
+        {
+            MultimodelVM model = new MultimodelVM();
+            model.Parcels = _context.Parcel.Where(x => x.ID == id).FirstOrDefault();
+            if (model.Parcels.Receiver_ID != Guid.Empty && model.Parcels.Sender_ID != Guid.Empty) { 
+            
+                model.ReciverCustomer = _context.Customer.Where(x=>x.Customer_ID == model.Parcels.Receiver_ID).FirstOrDefault();
+                model.SenderCustomer = _context.Customer.Where(x=>x.Customer_ID == model.Parcels.Sender_ID).FirstOrDefault();
+            }
+
+            ViewBag.CityList = _context.Lookups
+                .Where(x => x.Type == LookupTypes.City && x.IsActive)
+                .OrderBy(x => x.Serial)
+                .ToList();
+
+            ViewBag.ParcelList = _context.Lookups
+                .Where(x => x.Type == LookupTypes.ParcelType && x.IsActive)
+                .OrderBy(x => x.Serial)
+                .ToList();
+
+            return View("Form",model);
         }
     }
 }

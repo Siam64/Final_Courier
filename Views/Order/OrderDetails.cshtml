@@ -1,0 +1,121 @@
+﻿@model CourierManagement.DataModel.Parcel
+@{
+    var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
+    var sender = customerList.FirstOrDefault(c => c.Customer_ID == Model.Sender_ID);
+    var receiver = customerList.FirstOrDefault(c => c.Customer_ID == Model.Receiver_ID);
+}
+
+
+
+
+<div class="container-fluid">
+    @* Parcel *@
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="border rounded p-3 bg-light">
+                <h5 class="text-secondary mb-3">Parcel Information</h5>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Tracking Number:</strong></p>
+                        <p class="text-muted">@Model.TrackingNumber</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Parcel Type:</strong></p>
+                        <p class="text-muted">@Model.Parcel_Type</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Weight:</strong></p>
+                        <p class="text-muted">@Model.Weight kg</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Unit Price:</strong></p>
+                        <p class="text-muted">@Model.Unit_Price</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Final Price:</strong></p>
+                        <p class="text-muted">@Model.Final_Price</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Order Date:</strong></p>
+                        <p class="text-muted">@Model.OrderDate.ToString("dd/MM/yyyy")</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Estimated Delivery Date:</strong></p>
+                        <p class="text-muted">@Model.DelivaryDate.ToString("dd/MM/yyyy")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row g-4">
+        @* Sender *@
+        <div class="col-md-6">
+            <div class="border rounded p-3 h-100">
+                <h5 class="text-primary mb-3">Sender Details</h5>
+                <div class="mb-2">
+                    <strong>Name:</strong>
+                    <p class="text-muted">@sender.Customer_Name</p>
+                </div>
+                <div class="mb-2">
+                    <strong>Phone:</strong>
+                    <p class="text-muted">@sender.Customer_Phone</p>
+                </div>
+                <div class="mb-2">
+                    <strong>Email:</strong>
+                    <p class="text-muted">@sender.Customer_Email</p>
+                </div>
+                <div class="mb-2">
+                    <strong>City:</strong>
+                    <p class="text-muted">@sender.Customer_City</p>
+                </div>
+                <div class="mb-2">
+                    <strong>Address:</strong>
+                    <p class="text-muted">@sender.Customer_Address</p>
+                </div>
+                <div class="mb-2">
+                    <strong>Note:</strong>
+                    <p class="text-muted">@(string.IsNullOrEmpty(sender.Note) ? "N/A" : sender.Note)</p>
+                </div>
+            </div>
+        </div>
+
+        @* Receiver *@
+        <div class="col-md-6">
+            <div class="border rounded p-3 h-100">
+                <h5 class="text-success mb-3">Receiver Details</h5>
+                <div class="mb-2">
+                    <strong>Name:</strong>
+                    <p class="text-muted">@receiver.Customer_Name</p>
+                </div>
+                <div class="mb-2">
+                    <strong>Phone:</strong>
+                    <p class="text-muted">@receiver.Customer_Phone</p>
+                </div>
+                <div class="mb-2">
+                    <strong>Email:</strong>
+                    <p class="text-muted">@receiver.Customer_Email</p>
+                </div>
+                <div class="mb-2">
+                    <strong>City:</strong>
+                    <p class="text-muted">@receiver.Customer_City</p>
+                </div>
+                <div class="mb-2">
+                    <strong>Address:</strong>
+                    <p class="text-muted">@receiver.Customer_Address</p>
+                </div>
+                <div class="mb-2">
+                    <strong>Note:</strong>
+                    <p class="text-muted">@(string.IsNullOrEmpty(receiver.Note) ? "N/A" : receiver.Note)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-start">
+        <a href="@Url.Action("Edit", "Parcel", new { id = @Model.ID })"
+           class="btn btn-info btn-sm text-white fw-bold ">Edit</a>
+    </div>
+
+</div>
+ 

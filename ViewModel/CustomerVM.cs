@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CourierManagement.DataModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CourierManagement.ViewModel
 {
@@ -46,6 +47,9 @@ namespace CourierManagement.ViewModel
     public class MultimodelVM
     {
         public CustomerVM Customer { get; set; }
+        public Customer SenderCustomer { get; set; }
+        public Customer ReciverCustomer { get; set; }
+        public Parcel Parcels { get; set; }
         public ParcelVM Parcel { get; set; }
     }
 }

@@ -4,7 +4,6 @@
     ViewData["Title"] = "Form";
 }
 
-
 <div class="d-flex align-items-start min-vh-100 pt-3 w-100">
     <div class="col-12">
         <div class="card shadow-lg">
@@ -12,75 +11,30 @@
                 <h3 class="mb-0">FiroTech Courier</h3>
             </div>
             <div class="card-body">
-                <form asp-action="Form" id="cpForm">
+                <form id="cpForm">
                     @Html.AntiForgeryToken()
-                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    @* <div class="alert alert-danger" role="alert"></div> *@
                     <div class="row">
                         <div class="col-md-6">
                             <h4 class="text-center">Sender Information</h4>
                             <div class="mb-3">
-                                <label asp-for="Customer.Sender_Name" class="form-label">Name</label>
-                                <input asp-for="Customer.Sender_Name" id="Sender_Name" class="form-control" placeholder="Enter Name" required />
-                                <span asp-validation-for="Customer.Sender_Name" class="text-danger"></span>
+                                <label class="form-label">Name</label>
+                                <input id="Sender_Name" value="@Model.SenderCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
+                                <span class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label asp-for="Customer.Sender_Phone" class="form-label">Phone Number</label>
-                                <input asp-for="Customer.Sender_Phone" id="Sender_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
-                                <span asp-validation-for="Customer.Sender_Phone" class="text-danger"></span>
+                                <label class="form-label">Phone Number</label>
+                                <input id="Sender_Phone" value="@Model.SenderCustomer.Customer_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
+                                <span class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label asp-for="Customer.Sender_Email" class="form-label">Email</label>
-                                <input asp-for="Customer.Sender_Email" id="Sender_Email" class="form-control" placeholder="email@email.com" required />
-                                <span asp-validation-for="Customer.Sender_Email" class="text-danger"></span>
+                                <label class="form-label">Email</label>
+                                <input id="Sender_Email" value="@Model.SenderCustomer.Customer_Email" class="form-control" placeholder="email@email.com" required />
+                                <span class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label asp-for="Customer.Sender_City" class="form-label">City</label>
-                                <select asp-for="Customer.Sender_City" id="Sender_City" class="form-control" >
-                                @if(ViewBag.CityList != null)
-                                {
-                                    @foreach(var city in ViewBag.CityList)
-                                    {
-                                        <option value="@city.Value">@city.Name</option>
-                                    }
-                                }
-                                else
-                                {
-                                    <option value="">No City available</option>
-                                }
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="Customer.Sender_Address" class="form-label">Address</label>
-                                <input asp-for="Customer.Sender_Address" id="Sender_Address" class="form-control" placeholder="Enter Address" required />
-                                <span asp-validation-for="Customer.Sender_Address" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="Customer.Sender_Note" class="form-label">Note</label>
-                                <input asp-for="Customer.Sender_Note" id="Sender_Note" class="form-control" placeholder="Additional Note" required />
-                                <span asp-validation-for="Customer.Sender_Note" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <h4 class="text-center">Receiver Information</h4>
-                            <div class="mb-3">
-                                <label asp-for="Customer.Receiver_Name" class="form-label">Name</label>
-                                <input asp-for="Customer.Receiver_Name" id="Receiver_Name" class="form-control" placeholder="Enter Name" required />
-                                <span asp-validation-for="Customer.Receiver_Name" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="Customer.Receiver_Phone" class="form-label">Phone Number</label>
-                                <input asp-for="Customer.Receiver_Phone" id="Receiver_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
-                                <span asp-validation-for="Customer.Receiver_Phone" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="Customer.Receiver_Email" class="form-label">Email</label>
-                                <input asp-for="Customer.Receiver_Email" id="Receiver_Email" class="form-control" placeholder="email@email.com" required />
-                                <span asp-validation-for="Customer.Receiver_Email" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="Customer.Receiver_City" class="form-label">City</label>
-                                <select asp-for="Customer.Receiver_City" id="Receiver_City" class="form-control">
+                                <label class="form-label">City</label>
+                                <select id="Sender_City" class="form-control">
                                     @if (ViewBag.CityList != null)
                                     {
                                         @foreach (var city in ViewBag.CityList)
@@ -95,14 +49,58 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label asp-for="Customer.Receiver_Address" class="form-label">Address</label>
-                                <input asp-for="Customer.Receiver_Address" id="Receiver_Address" class="form-control" placeholder="Enter Address" required />
-                                <span asp-validation-for="Customer.Receiver_Address" class="text-danger"></span>
+                                <label class="form-label">Address</label>
+                                <input id="Sender_Address" value="@Model.SenderCustomer.Customer_Address" class="form-control" placeholder="Enter Address" required />
+                                <span class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label asp-for="Customer.Receiver_Note" class="form-label">Note</label>
-                                <input asp-for="Customer.Receiver_Note" id="Receiver_Note" class="form-control" placeholder="Additional Note" required />
-                                <span asp-validation-for="Customer.Receiver_Note" class="text-danger"></span>
+                                <label class="form-label">Note</label>
+                                <input id="Sender_Note" value="@Model.SenderCustomer.Note" class="form-control" placeholder="Additional Note" required />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-center">Receiver Information</h4>
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input id="Receiver_Name" value="@Model.ReciverCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input id="Receiver_Phone" value="@Model.ReciverCustomer.Customer_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input id="Receiver_Email" value="@Model.ReciverCustomer.Customer_Email" class="form-control" placeholder="email@email.com" required />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">City</label>
+                                <select id="Receiver_City" class="form-control">
+                                    @if (ViewBag.CityList != null)
+                                    {
+                                        @foreach (var city in ViewBag.CityList)
+                                        {
+                                            <option value="@city.Value">@city.Name</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option value="">No City available</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Address</label>
+                                <input id="Receiver_Address" value="@Model.ReciverCustomer.Customer_Address" class="form-control" placeholder="Enter Address" required />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Note</label>
+                                <input id="Receiver_Note" value="@Model.ReciverCustomer.Note" class="form-control" placeholder="Additional Note" required />
+                                <span class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -115,50 +113,47 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label asp-for="Parcel.Parcel_Type" class="form-label">Parcel Type</label>
-                            <select asp-for="Parcel.Parcel_Type" id="Parcel_Type" class="form-control" >
-                                @if(ViewBag.ParcelList != null)
+                            <label class="form-label">Parcel Type</label>
+                            <select id="Parcel_Type" class="form-control">
+                                @if (ViewBag.ParcelList != null)
                                 {
-                                    @foreach(var parcel in ViewBag.ParcelList)
+                                    @foreach (var parcel in ViewBag.ParcelList)
                                     {
                                         <option value="@parcel.Value">@parcel.Name</option>
                                     }
-
                                 }
                                 else
                                 {
                                     <option value="">No Parcel Type available</option>
                                 }
-
                             </select>
-                           
-                            
-                            
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label asp-for="Parcel.Unit_Price" class="form-label">Unit Price</label>
-                            <input asp-for="Parcel.Unit_Price" id="Unit_Price" class="form-control" placeholder="Enter Unit Price" required />
-                            <span asp-validation-for="Parcel.Unit_Price" class="text-danger"></span>
+                            <label class="form-label">Unit Price</label>
+                            <input id="Unit_Price" class="form-control" value="@Model.Parcels.Unit_Price" placeholder="Enter Unit Price" required />
+                            <input id="TrackingNumber" hidden />
+                            <input id="Status" hidden />
+                            <span class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label asp-for="Parcel.Weight" class="form-label">Weight (in grams)</label>
-                            <input asp-for="Parcel.Weight" id="Weight" class="form-control" placeholder="Enter Weight" required />
-                            <span asp-validation-for="Parcel.Weight" class="text-danger"></span>
+                            <label class="form-label">Weight (in grams)</label>
+                            <input id="Weight" value="@Model.Parcels.Weight" class="form-control" placeholder="Enter Weight" required />
+                            <span class="text-danger"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label asp-for="Parcel.Final_Price" class="form-label">Final Price</label>
-                            <input asp-for="Parcel.Final_Price" id="Final_Price" class="form-control" placeholder="Enter Final Price" required />
-                            <span asp-validation-for="Parcel.Final_Price" class="text-danger"></span>
+                            <label class="form-label">Final Price</label>
+                            <input id="Final_Price" class="form-control" value="@Model.Parcels.Final_Price" placeholder="Enter Final Price" required />
+                            <span class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Parcel.DelivaryDate" class="form-label">Delivary Date</label>
-                        <input asp-for="Parcel.DelivaryDate" id="DelivaryDate" type="date" class="form-control" required />
-                        <span asp-validation-for="Parcel.DelivaryDate" class="text-danger"></span>
+                        <label class="form-label">Delivery Date</label>
+                        <input id="DelivaryDate" value="@Model.Parcels.DelivaryDate" type="date" class="form-control" required />
+                        <span class="text-danger"></span>
                     </div>
 
                     <div class="text-center mt-4">
@@ -203,7 +198,10 @@
                     Unit_Price: $('#Unit_Price').val(),
                     Weight: $('#Weight').val(),
                     Final_Price: $('#Final_Price').val(),
-                    DelivaryDate: $('#DelivaryDate').val()
+                    DelivaryDate: $('#DelivaryDate').val(),
+                    DelivaryDate: $('#DelivaryDate').val(),
+                    TrackingNumber: $('#TrackingNumber').val(),
+                    Status: $('#Status').val()
                 }
             };
 
