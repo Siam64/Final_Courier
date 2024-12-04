@@ -196,16 +196,26 @@ namespace CourierManagement.Controllers
 
         public IActionResult Form()
         {
-            ViewBag.CityList = _context.Lookups
-                .Where(x=>x.Type == LookupTypes.City && x.IsActive)
-                .OrderBy(x=>x.Serial)
-                .ToList();
+            // Initialize the model with empty objects
+            MultimodelVM model = new MultimodelVM
+            {
+                SenderCustomer = new Customer(),
+                ReciverCustomer = new Customer(),
+                Parcels = new Parcel(),
+                Customer = new CustomerVM(),
+                Parcel = new ParcelVM()
+            };
 
+            ViewBag.CityList = _context.Lookups
+                .Where(x => x.Type == LookupTypes.City && x.IsActive)
+                .OrderBy(x => x.Serial)
+                .ToList();
             ViewBag.ParcelList = _context.Lookups
                 .Where(x => x.Type == LookupTypes.ParcelType && x.IsActive)
                 .OrderBy(x => x.Serial)
                 .ToList();
-            return View();
+
+            return View(model);  // Pass the initialized model to the view
         }
 
         public IActionResult OrderTable()
@@ -226,90 +236,83 @@ namespace CourierManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public IActionResult Form([FromBody] MultimodelVM model)
         {
-            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            model.Customer.CreateAt = DateTime.UtcNow;
-            model.Customer.UpdateAt = DateTime.UtcNow;
-            model.Customer.CreateBy = GuidHelper.ToGuidOrDefault(userid);
-            model.Customer.UpdateBy = GuidHelper.ToGuidOrDefault(userid);
-
-            Customer SenderCustomerdata = new Customer();
-            Customer ReceiverCustomerdata = new Customer();
-            Parcel Parceldata = new Parcel();
-
-            if (ModelState.IsValid)
+            try
             {
-                SenderCustomerdata.Customer_ID = Guid.NewGuid();
-                SenderCustomerdata.Customer_Name = model.Customer.Sender_Name;
-                SenderCustomerdata.Customer_Phone = model.Customer.Sender_Phone;
-                SenderCustomerdata.Customer_Email = model.Customer.Sender_Email;
-                SenderCustomerdata.Customer_City = model.Customer.Sender_City;
-                SenderCustomerdata.Customer_Address = model.Customer.Sender_Address;
-                SenderCustomerdata.Note = model.Customer.Sender_Note;
-                SenderCustomerdata.CreateAt = model.Customer.CreateAt;
-                SenderCustomerdata.UpdateAt = model.Customer.UpdateAt;
-                SenderCustomerdata.CreateBy = model.Customer.CreateBy;
-                SenderCustomerdata.UpdateBy = model.Customer.UpdateBy;
+                if (model?.Customer == null || model?.Parcel == null)
+                {
+                    return BadRequest("Invalid data submitted");
+                }
 
-                _context.Add(SenderCustomerdata);
+                var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                DateTime currentTime = DateTime.UtcNow;
+                Guid userGuid = GuidHelper.ToGuidOrDefault(userid);
+
+                // Create and save Sender Customer
+                var senderCustomerData = new Customer
+                {
+                    Customer_ID = Guid.NewGuid(),
+                    Customer_Name = model.Customer.Sender_Name,
+                    Customer_Phone = model.Customer.Sender_Phone,
+                    Customer_Email = model.Customer.Sender_Email,
+                    Customer_City = model.Customer.Sender_City,
+                    Customer_Address = model.Customer.Sender_Address,
+                    Note = model.Customer.Sender_Note,
+                    CreateAt = currentTime,
+                    UpdateAt = currentTime,
+                    CreateBy = userGuid,
+                    UpdateBy = userGuid
+                };
+                _context.Add(senderCustomerData);
                 _context.SaveChanges();
-            }
-            else { 
-            
-            }
 
-            Parceldata.Sender_ID = SenderCustomerdata.Customer_ID;
-
-            if (ModelState.IsValid)
-            {
-                ReceiverCustomerdata.Customer_ID = Guid.NewGuid();
-                ReceiverCustomerdata.Customer_Name = model.Customer.Receiver_Name;
-                ReceiverCustomerdata.Customer_Phone = model.Customer.Receiver_Phone;
-                ReceiverCustomerdata.Customer_Email = model.Customer.Receiver_Email;
-                ReceiverCustomerdata.Customer_City = model.Customer.Receiver_City;
-                ReceiverCustomerdata.Customer_Address = model.Customer.Receiver_Address;
-                ReceiverCustomerdata.Note = model.Customer.Receiver_Note;
-                ReceiverCustomerdata.CreateAt = model.Customer.CreateAt;
-                ReceiverCustomerdata.UpdateAt = model.Customer.UpdateAt;
-                ReceiverCustomerdata.CreateBy = model.Customer.CreateBy;
-                ReceiverCustomerdata.UpdateBy = model.Customer.UpdateBy;
-
-                _context.Add(ReceiverCustomerdata);
+                // Create and save Receiver Customer
+                var receiverCustomerData = new Customer
+                {
+                    Customer_ID = Guid.NewGuid(),
+                    Customer_Name = model.Customer.Receiver_Name,
+                    Customer_Phone = model.Customer.Receiver_Phone,
+                    Customer_Email = model.Customer.Receiver_Email,
+                    Customer_City = model.Customer.Receiver_City,
+                    Customer_Address = model.Customer.Receiver_Address,
+                    Note = model.Customer.Receiver_Note,
+                    CreateAt = currentTime,
+                    UpdateAt = currentTime,
+                    CreateBy = userGuid,
+                    UpdateBy = userGuid
+                };
+                _context.Add(receiverCustomerData);
                 _context.SaveChanges();
-            }
-            else
-            {
 
-            }
-
-            Parceldata.Receiver_ID = ReceiverCustomerdata.Customer_ID;
-
-
-            if (ModelState.IsValid)
-            {
-                Parceldata.Parcel_ID = Guid.NewGuid();
-                Parceldata.Parcel_Type = model.Parcel.Parcel_Type;
-                Parceldata.Unit_Price = model.Parcel.Unit_Price;
-                Parceldata.Weight = model.Parcel.Weight;
-                Parceldata.Final_Price = model.Parcel.Final_Price;
-                Parceldata.DelivaryDate = model.Parcel.DelivaryDate;
-                Parceldata.TrackingNumber = DateTime.Now.ToString("yyyyMMddHHmmss");
-                Parceldata.Status = "Processing";
-                Parceldata.OrderDate = DateTime.UtcNow;
-                Parceldata.CreateAt = model.Customer.CreateAt;
-                Parceldata.CreateBy = model.Customer.CreateBy;
-                Parceldata.UpdateAt = model.Customer.UpdateAt;
-                Parceldata.UpdateBy = model.Customer.UpdateBy;
-
-                _context.Add(Parceldata);
+                // Create and save Parcel
+                var parcelData = new Parcel
+                {
+                    Parcel_ID = Guid.NewGuid(),
+                    Sender_ID = senderCustomerData.Customer_ID,
+                    Receiver_ID = receiverCustomerData.Customer_ID,
+                    Parcel_Type = model.Parcel.Parcel_Type,
+                    Unit_Price = model.Parcel.Unit_Price,
+                    Weight = model.Parcel.Weight,
+                    Final_Price = model.Parcel.Final_Price,
+                    DelivaryDate = model.Parcel.DelivaryDate,
+                    TrackingNumber = DateTime.Now.ToString("yyyyMMddHHmmss"),
+                    Status = "Processing",
+                    OrderDate = currentTime,
+                    CreateAt = currentTime,
+                    CreateBy = userGuid,
+                    UpdateAt = currentTime,
+                    UpdateBy = userGuid
+                };
+                _context.Add(parcelData);
                 _context.SaveChanges();
+
+                return Ok(new { success = true });
             }
-            else { 
-            
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = ex.Message });
             }
-            return View(model);
         }
 
 
