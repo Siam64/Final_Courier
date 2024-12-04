@@ -29,7 +29,15 @@
                             <div class="col-md-6 mb-3">
                                 <label for="ParcelType" class="form-label">Parcel Type</label>
                                 <input id="Id" type="hidden" class="form-control" placeholder="" />
-                                <input id="ParcelType" type="text" class="form-control" placeholder="Enter Parcel Type" required />
+                                <select id="ParcelType" class="form-control">
+                                    @if (ViewBag.ParcelType != null)
+                                    {
+                                        @foreach (var parcel in ViewBag.ParcelType)
+                                        {
+                                            <option value="@parcel.Value">@parcel.Name</option>
+                                        }
+                                    }
+                                </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="BasePrice" class="form-label">Unit Price</label>
@@ -105,6 +113,14 @@
                  Swal.fire("Error", "Please fill in all required fields.", "error");
                  return;
              }
+
+                         Swal.fire({
+                           title: 'Saving...',
+                           allowOutsideClick: false,
+                           didOpen: () => {
+                               Swal.showLoading();
+                           }
+                         });
 
              var mainData = {
                  ParcelType: $('#ParcelType').val(),

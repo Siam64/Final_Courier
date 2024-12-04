@@ -11,6 +11,7 @@ namespace CourierManagement.DataModel
         public double Unit_Price { get; set; }
         public double Weight { get; set; }
         public double Final_Price { get; set; }
+        public double Discount { get; set; }
         public DateTime DelivaryDate { get; set; }
         public DateTime OrderDate { get; set; }
         public string TrackingNumber { get; set; }

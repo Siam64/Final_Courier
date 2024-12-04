@@ -24,6 +24,11 @@ namespace CourierManagement.Controllers
         public IActionResult PriceTable()
         {
             ViewBag.PriceList = _context.PriceTable.ToList();
+
+            ViewBag.ParcelType = _context.Lookups
+                .Where(x => x.Type == LookupTypes.ParcelType && x.IsActive)
+                .OrderBy(x => x.Serial)
+                .ToList();
             return View();
         }
         [HttpPost]
@@ -192,6 +197,48 @@ namespace CourierManagement.Controllers
         }
 
 
+    
+        [HttpPost]
+        public JsonResult GetPrice(string parcelType, double weight, double discount)
+        {
+            try
+            {
+                // Get base price from PriceTable based on parcel type
+                var basePrice = _context.PriceTable
+                    .Where(p => p.ParcelType == parcelType)
+                    .Select(p => p.BasePrice)
+                    .FirstOrDefault();
+
+                // Calculate initial price
+                double initialPrice = basePrice * weight;
+
+                // Validate discount and calculate final price
+                double finalPrice;
+                if (discount >= initialPrice)
+                {
+                    finalPrice = 0;
+                }
+                else
+                {
+                    finalPrice = initialPrice - discount;
+                }
+
+                return Json(new
+                {
+                    success = true,
+                    unitPrice = basePrice,
+                    finalPrice = finalPrice
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Error calculating price"
+                });
+            }
+        }
 
 
         public IActionResult Form()
@@ -296,6 +343,7 @@ namespace CourierManagement.Controllers
                     Weight = model.Parcel.Weight,
                     Final_Price = model.Parcel.Final_Price,
                     DelivaryDate = model.Parcel.DelivaryDate,
+                    Discount = model.Parcel.Discount,
                     TrackingNumber = DateTime.Now.ToString("yyyyMMddHHmmss"),
                     Status = "Processing",
                     OrderDate = currentTime,

@@ -46,14 +46,17 @@
                                 <select id="Sender_City" class="form-control">
                                     @if (ViewBag.CityList != null)
                                     {
-                                        @foreach (var city in ViewBag.CityList)
+                                        foreach (var city in ViewBag.CityList)
                                         {
-                                            <option value="@city.Value">@city.Name</option>
+                                            if (Model.SenderCustomer.Customer_City == city.Value)
+                                            {
+                                                <option value="@city.Value" selected>@city.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@city.Value">@city.Name</option>
+                                            }
                                         }
-                                    }
-                                    else
-                                    {
-                                        <option value="">No City available</option>
                                     }
                                 </select>
                             </div>
@@ -64,7 +67,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Note</label>
-                                <input id="Sender_Note" value="@Model.SenderCustomer.Note" class="form-control" placeholder="Additional Note" required />
+                                <input id="Sender_Note" value="@Model.SenderCustomer.Note" class="form-control" placeholder="Additional Note"  />
                                 <span class="text-danger"></span>
                             </div>
                         </div>
@@ -90,14 +93,17 @@
                                 <select id="Receiver_City" class="form-control">
                                     @if (ViewBag.CityList != null)
                                     {
-                                        @foreach (var city in ViewBag.CityList)
+                                        foreach (var city in ViewBag.CityList)
                                         {
-                                            <option value="@city.Value">@city.Name</option>
+                                            if (Model.ReciverCustomer.Customer_City == city.Value)
+                                            {
+                                                <option value="@city.Value" selected>@city.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@city.Value">@city.Name</option>
+                                            }
                                         }
-                                    }
-                                    else
-                                    {
-                                        <option value="">No City available</option>
                                     }
                                 </select>
                             </div>
@@ -108,7 +114,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Note</label>
-                                <input id="Receiver_Note" value="@Model.ReciverCustomer.Note" class="form-control" placeholder="Additional Note" required />
+                                <input id="Receiver_Note" value="@Model.ReciverCustomer.Note" class="form-control" placeholder="Additional Note"  />
                                 <span class="text-danger"></span>
                             </div>
                         </div>
@@ -122,21 +128,11 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Parcel Type</label>
-                            <select id="Parcel_Type" class="form-control">
-                                @if (ViewBag.ParcelList != null)
-                                {
-                                    @foreach (var parcel in ViewBag.ParcelList)
-                                    {
-                                        <option value="@parcel.Value">@parcel.Name</option>
-                                    }
-                                }
-                                else
-                                {
-                                    <option value="">No Parcel Type available</option>
-                                }
-                            </select>
+                            <label class="form-label">Weight (in kg)</label>
+                            <input id="Weight" value="@Model.Parcels.Weight" class="form-control" placeholder="Enter Weight" required />
+                            <span class="text-danger"></span>
                         </div>
+                        
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Unit Price</label>
                             <input id="Unit_Price" class="form-control" value="@Model.Parcels.Unit_Price" placeholder="Enter Unit Price" required />
@@ -148,9 +144,23 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Weight (in grams)</label>
-                            <input id="Weight" value="@Model.Parcels.Weight" class="form-control" placeholder="Enter Weight" required />
-                            <span class="text-danger"></span>
+                            <label class="form-label">Parcel Type</label>
+                            <select id="Parcel_Type" class="form-control">
+                                @if (ViewBag.ParcelList != null)
+                                {
+                                    foreach (var parcel in ViewBag.ParcelList)
+                                    {
+                                        if (Model.Parcels.Parcel_Type == parcel.Value)
+                                        {
+                                            <option value="@parcel.Value" selected>@parcel.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@parcel.Value">@parcel.Name</option>
+                                        }
+                                    }
+                                }
+                            </select>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Final Price</label>
@@ -158,12 +168,23 @@
                             <span class="text-danger"></span>
                         </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Delivery Date</label>
-                        <input id="DelivaryDate" value="@Model.Parcels.DelivaryDate" type="date" class="form-control" required />
-                        <span class="text-danger"></span>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Discount</label>
+                            <input id="Discount" value="@Model.Parcels.Discount" class="form-control"  />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Estimated Delivery Date</label>
+                            <input id="DelivaryDate"
+                                   value="@(Model.Parcels.DelivaryDate == default(DateTime) ? "" : Model.Parcels.DelivaryDate.ToString("yyyy-MM-dd"))"
+                                   type="date"
+                                   class="form-control"
+                                   required />
+                            <span class="text-danger"></span>
+                        </div>
                     </div>
+                    
 
                     <div class="text-center mt-4">
                         <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
@@ -180,6 +201,82 @@
 <script src="~/js/alert2.js"></script>
 <script>
     $(document).ready(function () {
+
+            function calculatePrice() {
+                var parcelType = $("#Parcel_Type").val();
+                var weight = $("#Weight").val();
+                var discount = $("#Discount").val() || 0; // Default to 0 if empty
+
+                // Validate inputs
+                if (!parcelType || !weight || weight <= 0) {
+                    $("#Unit_Price").val('');
+                    $("#Final_Price").val('');
+                    return;
+                }
+
+                // Convert inputs to numbers
+                weight = parseFloat(weight);
+                discount = parseFloat(discount);
+
+                // Ensure discount is not negative
+                if (discount < 0) {
+                    alert('Discount cannot be negative');
+                    $("#Discount").val('0');
+                    discount = 0;
+                }
+
+                // Make AJAX call to get price
+                $.ajax({
+                    url: '/Parcel/GetPrice',
+                    type: 'POST',
+                    data: {
+                        parcelType: parcelType,
+                        weight: weight,
+                        discount: discount
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // Update the unit price (base price) and final price fields
+                            $("#Unit_Price").val(response.unitPrice.toFixed(2));
+                            $("#Final_Price").val(response.finalPrice.toFixed(2));
+
+                            // If final price is 0, show warning about discount being too high
+                            if (response.finalPrice === 0 && discount > 0) {
+                                alert('Warning: Discount amount exceeds the total price. Final price set to 0.');
+                            }
+                        } else {
+                            alert('Error: ' + response.message);
+                            $("#Unit_Price").val('');
+                            $("#Final_Price").val('');
+                        }
+                    },
+                    error: function() {
+                        alert('Error calculating price. Please try again.');
+                        $("#Unit_Price").val('');
+                        $("#Final_Price").val('');
+                    }
+                });
+            }
+
+            // Calculate price when parcel type, weight, or discount changes
+            $("#Parcel_Type").change(function() {
+                calculatePrice();
+            });
+
+            $("#Weight, #Discount").on('input', function() {
+                calculatePrice();
+            });
+
+            // Clear button handler
+            $("#clearButton").click(function() {
+                $("#Unit_Price").val('');
+                $("#Final_Price").val('');
+                $("#Weight").val('');
+                $("#Discount").val('0');
+                $("#DelivaryDate").val('');
+                $("#TrackingNumber").val('');
+                $("#Status").val('');
+            });
 
         $("#submitButton").click(function (event) {
             event.preventDefault();
@@ -210,6 +307,7 @@
                     Final_Price: $('#Final_Price').val(),
                     DelivaryDate: $('#DelivaryDate').val(),
                     DelivaryDate: $('#DelivaryDate').val(),
+                    Discount: $('#Discount').val(),
                     TrackingNumber: $('#TrackingNumber').val(),
                     Status: $('#Status').val()
                 }

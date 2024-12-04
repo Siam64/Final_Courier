@@ -13,7 +13,7 @@ namespace CourierManagement.ViewModel
         public double Unit_Price { get; set; }
 
         public double Weight { get; set; }
-
+        public double Discount { get; set; }
         public double Final_Price { get; set; }
         public string TrackingNumber { get; set; }
         public string  Status { get; set; } 

@@ -356,7 +356,13 @@
                     Swal.fire("Error", "Please fill in all required fields.", "error");
                     return;
                 }
-
+                     Swal.fire({
+                        title: 'Saving...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                     });
                 var LookupData = {
                     Type: $('#Type').val(),
                     Name: $('#Name').val(),
