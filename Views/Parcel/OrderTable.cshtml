@@ -48,7 +48,7 @@
                                 <td>@parcel.Status</td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        @if (parcel.Status == "Delivered")
+                                        @if (parcel.Status == "Delivered" || parcel.Status == "On the way")
                                         {
                                             <a href="@Url.Action("OrderDetails", "Order", new { id = parcel.ID })"
                                                class="btn btn-info btn-sm">Details</a>
@@ -61,6 +61,7 @@
                                                class="btn btn-info btn-sm">Details</a>
                                         }
                                     </div>
+
                                 </td>
                             </tr>
                         }

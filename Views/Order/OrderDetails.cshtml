@@ -29,11 +29,11 @@
                     </div>
                     <div class="col-md-4">
                         <p class="mb-1"><strong>Unit Price:</strong></p>
-                        <p class="text-muted">@Model.Unit_Price</p>
+                        <p class="text-muted">@Model.Unit_Price Taka</p>
                     </div>
                     <div class="col-md-4">
                         <p class="mb-1"><strong>Final Price:</strong></p>
-                        <p class="text-muted">@Model.Final_Price</p>
+                        <p class="text-muted">@Model.Final_Price Taka</p>
                     </div>
                     <div class="col-md-4">
                         <p class="mb-1"><strong>Order Date:</strong></p>
@@ -45,7 +45,11 @@
                     </div>
                     <div class="col-md-4">
                         <p class="mb-1"><strong>Discount:</strong></p>
-                        <p class="text-muted">@Model.Discount</p>
+                        <p class="text-muted">@Model.Discount Taka</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Rider:</strong></p>
+                        <p class="text-muted">@Model.Rider</p>
                     </div>
                 </div>
             </div>
@@ -118,7 +122,7 @@
     </div>
 
     <div class="d-flex justify-content-start">
-        @if (Model.Status == "Delivered")
+        @if (Model.Status == "Delivered" || Model.Status == "On the way")
         {
             <button class="btn btn-secondary btn-sm" disabled>Edit</button>
         }

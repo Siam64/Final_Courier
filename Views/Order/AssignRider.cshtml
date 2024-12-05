@@ -1,13 +1,19 @@
 ﻿@model IEnumerable<CourierManagement.DataModel.Parcel>
-
 @{
     var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
 }
-
+<header>
+    <style>
+        .small-alert {
+            font-size: 8px;
+            padding: 8px;
+        }
+    </style>
+</header>
 <div class="col-12">
     <div class="card shadow-lg mb-4">
         <div class="card-header bg-secondary text-white text-center">
-            <h4 class="mb-0">Shipment</h4>
+            <h4 class="mb-0">Delivery Assignment</h4>
         </div>
         <div>
             <table class="table table-hover table-bordered text-center align-middle" id="ShipmentTable">
@@ -29,7 +35,6 @@
                         {
                             var sender = customerList.FirstOrDefault(c => c.Customer_ID == parcel.Sender_ID);
                             var receiver = customerList.FirstOrDefault(c => c.Customer_ID == parcel.Receiver_ID);
-
                             <tr class="text-left">
                                 <td>@parcel.ID</td>
                                 <td class="text-left">
@@ -37,15 +42,12 @@
                                     <b>Parcel Weight:</b> @parcel.Weight KG <br />
                                     <b>Price:</b> @parcel.Final_Price Taka <br />
                                 </td>
-
                                 <td>@parcel.TrackingNumber</td>
-
                                 <td class="text-left">
                                     <b>Name:</b> @sender?.Customer_Name <br />
                                     <b>Address:</b> @sender?.Customer_Address <br />
                                     <b>Phone:</b> @sender?.Customer_Phone <br />
                                 </td>
-
                                 <td class="text-left">
                                     <b>Name:</b> @receiver?.Customer_Name <br />
                                     <b>Address:</b> @receiver?.Customer_Address <br />
@@ -53,14 +55,25 @@
                                 </td>
                                 <td>@parcel.OrderDate.ToString("dd/MM/yyyy")</td>
                                 <td>
-                                    <select class="form-select">
+                                    <select class="form-select rider-select" data-parcel-id="@parcel.ID" name="riderName">
                                         <option value="">Select Rider</option>
                                         @foreach (var rider in ViewBag.Rider)
                                         {
                                             <option value="@rider">@rider</option>
                                         }
                                     </select>
-                                    <a></a>
+                                    <a href="@Url.Action("UpdateStat", "Order")"
+                                       class="btn btn-info btn-sm mt-2 assign-rider-btn"
+                                       onclick="return validateRiderSelection(this, @parcel.ID)">
+                                        Assign Rider
+                                    </a>
+
+                                    @* <a href="@Url.Action("UpdateStat", "Order", new {id = parcel.ID, riderName = ""})"
+                                       class="btn btn-info btn-sm mt-2 assign-rider-btn"
+                                       data-parcel-id="@parcel.ID"
+                                       onclick="return validateRiderSelection(this, @parcel.ID)">
+                                        Assign Rider
+                                    </a> *@
                                 </td>
                             </tr>
                         }
@@ -68,7 +81,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="8" class="text-muted">No Pending Orders</td>
+                            <td colspan="8" class="text-muted">No Pending Assignments</td>
                         </tr>
                     }
                 </tbody>
@@ -76,3 +89,59 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/jquery-3.6.0.min.js"></script>
+<script src="~/js/alert.js"></script>
+<script>
+            function validateRiderSelection(button, parcelId) {
+        // Find the corresponding select element for this parcel
+        const select = document.querySelector(`.rider-select[data-parcel-id="${parcelId}"]`);
+
+        // Check if a rider is selected
+        if (!select || select.value === "") {
+            Swal.fire({
+                position: "top-end",
+                icon: "warning",
+                title: "Choose a rider",
+                timer: 1500,
+                showConfirmButton: false,
+                customClass: {
+                    popup: 'small-alert'
+                }
+            });
+            return false;
+        }
+
+        // Get the selected rider's value
+        const selectedRider = select.value;
+
+        // Update the button's href with the selected rider as a query parameter
+        button.href = `@Url.Action("UpdateStat", "Order")?id=${parcelId}&rider=${selectedRider}`;
+
+        return true; // Allow navigation
+    }
+
+    // function validateRiderSelection(button, parcelId) {
+    //     // Find the corresponding select element for this parcel
+    //     const select = document.querySelector(`.rider-select[data-parcel-id="${parcelId}"]`);
+
+    //     // Check if a rider is selected
+    //     if (!select || select.value === "") {
+    //         Swal.fire({
+    //                         position: "top-end",
+    //                         icon: "warning",
+    //                         title: "Choose a rider",
+    //                         timer: 1500,
+    //                         showConfirmButton: false,
+    //                         customClass: {
+    //                             popup: 'small-alert'
+    //                         }
+    //                 });
+    //         return false; 
+    //     }
+
+    //       // Update href with selected rider
+    //         button.href = button.href.replace('riderName=', `riderName=${select.value}`);
+    //         return true;
+    // }
+</script>

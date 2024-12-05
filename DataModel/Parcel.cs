@@ -16,6 +16,7 @@ namespace CourierManagement.DataModel
         public DateTime OrderDate { get; set; }
         public string TrackingNumber { get; set; }
         public string Status { get; set; }
+        public string? Rider { get; set; }
         public Guid Sender_ID { get; set; }
         public Guid Receiver_ID { get; set; }
 

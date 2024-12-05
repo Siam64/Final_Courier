@@ -244,7 +244,18 @@
 
                             // If final price is 0, show warning about discount being too high
                             if (response.finalPrice === 0 && discount > 0) {
-                                alert('Warning: Discount amount exceeds the total price. Final price set to 0.');
+                                    Swal.fire({
+                                            position: "top-end",
+                                            icon: "warning",
+                                            title: "Discount exceeds total price!",
+                                            timer: 1500,
+                                            showConfirmButton: false,
+                                            customClass: {
+                                                popup: 'small-alert'
+                                            }
+                                    });
+                                     $("#Discount").val(0);
+                                   
                             }
                         } else {
                             alert('Error: ' + response.message);

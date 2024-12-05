@@ -346,6 +346,7 @@ namespace CourierManagement.Controllers
                     Discount = model.Parcel.Discount,
                     TrackingNumber = DateTime.Now.ToString("yyyyMMddHHmmss"),
                     Status = "Processing",
+                    Rider = "Not Assigned Yet",
                     OrderDate = currentTime,
                     CreateAt = currentTime,
                     CreateBy = userGuid,

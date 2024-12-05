@@ -36,6 +36,7 @@ namespace CourierManagement.Controllers
 
             var parcelList = _context.Parcel
                  .Where(p => p.Status != "Delivered")
+                 .OrderByDescending(x=>x.Parcel_ID)
                  .ToList();
 
             ViewData["CList"] = customerList;
@@ -71,13 +72,29 @@ namespace CourierManagement.Controllers
                .ToList();
 
             var parcelList = _context.Parcel
-                 .Where(p => p.Status != "Delivered")
+                 .Where(p => p.Status != "Delivered" && p.Status != "On the way")
                  .ToList();
 
             ViewBag.Rider = _context.Employee.Select(x=>x.Name).ToList();   
 
             ViewData["CList"] = customerList;
             return View(parcelList);
+        }
+
+        public IActionResult UpdateStat(int id, string rider)
+        {
+            var parcel = _context.Parcel.Find(id);
+
+            if(parcel == null)
+            {
+                return NotFound();
+            }
+
+            parcel.Status = "On the way";
+            parcel.Rider = rider;
+            _context.SaveChanges();
+
+            return RedirectToAction("AssignRider", "Order");
         }
     }
 }

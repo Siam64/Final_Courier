@@ -16,7 +16,8 @@ namespace CourierManagement.ViewModel
         public double Discount { get; set; }
         public double Final_Price { get; set; }
         public string TrackingNumber { get; set; }
-        public string  Status { get; set; } 
+        public string  Status { get; set; }
+        public string? Rider { get; set; }
 
         //[Required(ErrorMessage = "This field is required")]
         public DateTime DelivaryDate { get; set; }

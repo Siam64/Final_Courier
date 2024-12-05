@@ -51,6 +51,9 @@
                     <i class="fa fa-paper-plane"></i> Shipment
                 </a>
 
+                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "AssignRider" ? "active" : "")" href="/Order/AssignRider">
+                    <i class="fa fa-motorcycle"></i> Assign a rider
+                </a>
 
                @*  <a class="collapse-item" href="/Parcel/Form">Add Customer</a>
                 <a class="collapse-item" href="/Parcel/OrderTable">Order Table</a> *@
