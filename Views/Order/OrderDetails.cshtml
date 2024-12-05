@@ -116,9 +116,17 @@
             </div>
         </div>
     </div>
+
     <div class="d-flex justify-content-start">
-        <a href="@Url.Action("Edit", "Parcel", new { id = @Model.ID })"
-           class="btn btn-info btn-sm text-white fw-bold ">Edit</a>
+        @if (Model.Status == "Delivered")
+        {
+            <button class="btn btn-secondary btn-sm" disabled>Edit</button>
+        }
+        else
+        {
+            <a href="@Url.Action("Edit", "Parcel", new { id = @Model.ID })"
+               class="btn btn-info btn-sm text-white fw-bold ">Edit</a>
+        }
     </div>
 
 </div>
