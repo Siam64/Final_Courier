@@ -2,6 +2,7 @@
 using CourierManagement.Models;
 using CourierManagement.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CourierManagement.Controllers
 {
@@ -28,6 +29,7 @@ namespace CourierManagement.Controllers
 
         public IActionResult Shipment()
         {
+ 
             var customerList = _context.Customer
                 .OrderBy(x => x.Customer_ID)
                 .ToList();
@@ -60,6 +62,22 @@ namespace CourierManagement.Controllers
             return RedirectToAction("Shipment", "Order");
  
 
+        }
+
+        public IActionResult AssignRider()
+        {
+            var customerList = _context.Customer
+               .OrderBy(x => x.Customer_ID)
+               .ToList();
+
+            var parcelList = _context.Parcel
+                 .Where(p => p.Status != "Delivered")
+                 .ToList();
+
+            ViewBag.Rider = _context.Employee.Select(x=>x.Name).ToList();   
+
+            ViewData["CList"] = customerList;
+            return View(parcelList);
         }
     }
 }
