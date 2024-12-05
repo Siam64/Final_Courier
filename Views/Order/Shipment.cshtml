@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CourierManagement.DataModel.Parcel>
+@{
+    var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
+}
+
+<div class="col-12">
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-secondary text-white text-center">
+            <h4 class="mb-0">Shipment</h4>
+        </div>
+        <div>
+            <table class="table table-hover table-bordered text-center align-middle" id="ShipmentTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Serial</th>
+                        <th scope="col">Parcel Info</th>
+                        <th scope="col">Track Number</th>
+                        <th scope="col">Sender Info</th>
+                        <th scope="col">Receiver Info</th>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var parcel in Model)
+                        {
+                            var sender = customerList.FirstOrDefault(c => c.Customer_ID == parcel.Sender_ID);
+                            var receiver = customerList.FirstOrDefault(c => c.Customer_ID == parcel.Receiver_ID);
+
+                            <tr class="text-left">
+                                <td>@parcel.ID</td>
+                                <td class="text-left">
+                                  <b>Parcel Type:</b> @parcel.Parcel_Type <br />
+                                  <b>Parcel Weight:</b> @parcel.Weight KG <br />
+                                  <b>Price:</b> @parcel.Final_Price Taka <br />
+                                </td>
+
+                                <td>@parcel.TrackingNumber</td>
+
+                                <td class="text-left">
+                                  <b>Name:</b> @sender?.Customer_Name <br />
+                                  <b>Address:</b> @sender?.Customer_Address <br />
+                                  <b>Phone:</b> @sender?.Customer_Phone <br />
+                                </td>
+                                
+                                <td class="text-left">
+                                    <b>Name:</b> @receiver?.Customer_Name <br />
+                                    <b>Address:</b> @receiver?.Customer_Address <br />
+                                    <b>Phone:</b> @receiver?.Customer_Phone <br />
+                                </td>
+                                <td>@parcel.OrderDate.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        @if (parcel.Status == "Delivered")
+                                        {
+                                            <button class="btn btn-secondary btn-sm" disabled>Delivered</button>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("UpdateStatus", "Order", new { id = parcel.ID })"
+                                               class="btn btn-info btn-sm">Delivered</a>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" class="text-muted">No Pending Orders</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

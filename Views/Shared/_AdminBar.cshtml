@@ -40,11 +40,15 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "Form" ? "active" : "")" href="/Parcel/Form">
-                    <i class="fas fa-user-plus"></i> Take Order
+                    <i class="fa fa-plus"></i> Take Order
                 </a>
 
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "OrderTable" ? "active" : "")" href="/Parcel/OrderTable">
                     <i class="fas fa-table"></i> Order Table
+                </a>
+
+                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "Shipment" ? "active" : "")" href="/Order/Shipment">
+                    <i class="fa fa-paper-plane"></i> Shipment
                 </a>
 
 
@@ -70,7 +74,7 @@
                 </a>
 
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Lookup" && ViewContext.RouteData.Values["action"].ToString() == "CreateLookup" ? "active" : "")" href="/Lookup/CreateLookup">
-                    <i class="fas fa-table"></i> Manage City & Parcel
+                    <i class="fa fa-cogs"></i> Manage City & Parcel
                 </a>
 
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Employee" && ViewContext.RouteData.Values["action"].ToString() == "Employee" ? "active" : "")" href="/Employee/Employee">
