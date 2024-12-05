@@ -28,6 +28,7 @@
                             <h4 class="text-center">Sender Information</h4>
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
+                                
                                 <input id="Sender_Name" value="@Model.SenderCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
                                 <span class="text-danger"></span>
                             </div>
@@ -129,13 +130,14 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Weight (in kg)</label>
+                            <input id="ID" value="@Model.Parcels.ID" />
                             <input id="Weight" value="@Model.Parcels.Weight" class="form-control" placeholder="Enter Weight" required />
                             <span class="text-danger"></span>
                         </div>
                         
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Unit Price</label>
-                            <input id="Unit_Price" class="form-control" value="@Model.Parcels.Unit_Price" placeholder="Enter Unit Price" required />
+                            <input id="Unit_Price" class="form-control" value="@Model.Parcels.Unit_Price" readonly placeholder="Enter Unit Price" required />
                             <input id="TrackingNumber" hidden />
                             <input id="Status" hidden />
                             <span class="text-danger"></span>
@@ -164,7 +166,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Final Price</label>
-                            <input id="Final_Price" class="form-control" value="@Model.Parcels.Final_Price" placeholder="Enter Final Price" required />
+                            <input id="Final_Price" class="form-control" value="@Model.Parcels.Final_Price" readonly placeholder="Enter Final Price" required />
                             <span class="text-danger"></span>
                         </div>
                     </div>
@@ -301,6 +303,7 @@
                     Receiver_Note: $('#Receiver_Note').val()
                 },
                 Parcel: {
+                    ID: $('#ID').val(),
                     Parcel_Type: $('#Parcel_Type').val(),
                     Unit_Price: $('#Unit_Price').val(),
                     Weight: $('#Weight').val(),
@@ -323,10 +326,13 @@
              });
 
 
+             const idValue = document.getElementById('ID').value;
+             const url = idValue > 0 ? '/Parcel/Update' : '/Parcel/Form';
+
 
             var antiForgeryToken = $('input[name="__RequestVerificationToken"]').val();
             $.ajax({
-                url: '/Parcel/Form',
+                url: url,
                 type: 'POST',
                 data: JSON.stringify(mainData),
                 contentType: 'application/json',

@@ -355,11 +355,11 @@ namespace CourierManagement.Controllers
                 _context.Add(parcelData);
                 _context.SaveChanges();
 
-                return Ok(new { success = true });
+                return Json(new { success = true, message = PopupMessage.success });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { success = false, message = ex.Message });
+                return Json(new { success = false, message = PopupMessage.error });
             }
         }
 
@@ -385,6 +385,81 @@ namespace CourierManagement.Controllers
                 .ToList();
 
             return View("Form",model);
+        }
+
+        public IActionResult Update([FromBody] MultimodelVM model)
+        {
+            try
+            {
+                if (model?.Customer == null || model?.Parcel == null)
+                {
+                    return BadRequest("Invalid data submitted");
+                }
+
+                var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                DateTime currentTime = DateTime.UtcNow;
+                Guid userGuid = GuidHelper.ToGuidOrDefault(userid);
+
+                
+                var existingParcel = _context.Parcel
+                    .FirstOrDefault(p => p.ID == model.Parcel.ID);
+
+                if (existingParcel == null)
+                {
+                    return NotFound("Parcel not found");
+                }
+
+                
+                var existingSender = _context.Customer
+                    .FirstOrDefault(c => c.Customer_ID == existingParcel.Sender_ID);
+
+                if (existingSender != null)
+                {
+                    existingSender.Customer_Name = model.Customer.Sender_Name;
+                    existingSender.Customer_Phone = model.Customer.Sender_Phone;
+                    existingSender.Customer_Email = model.Customer.Sender_Email;
+                    existingSender.Customer_City = model.Customer.Sender_City;
+                    existingSender.Customer_Address = model.Customer.Sender_Address;
+                    existingSender.Note = model.Customer.Sender_Note;
+                    existingSender.UpdateAt = currentTime;
+                    existingSender.UpdateBy = userGuid;
+                    _context.Update(existingSender);
+                }
+
+                var existingReceiver = _context.Customer
+                    .FirstOrDefault(c => c.Customer_ID == existingParcel.Receiver_ID);
+
+                if (existingReceiver != null)
+                {
+                    existingReceiver.Customer_Name = model.Customer.Receiver_Name;
+                    existingReceiver.Customer_Phone = model.Customer.Receiver_Phone;
+                    existingReceiver.Customer_Email = model.Customer.Receiver_Email;
+                    existingReceiver.Customer_City = model.Customer.Receiver_City;
+                    existingReceiver.Customer_Address = model.Customer.Receiver_Address;
+                    existingReceiver.Note = model.Customer.Receiver_Note;
+                    existingReceiver.UpdateAt = currentTime;
+                    existingReceiver.UpdateBy = userGuid;
+                    _context.Update(existingReceiver);
+                }
+
+                existingParcel.Parcel_Type = model.Parcel.Parcel_Type;
+                existingParcel.Unit_Price = model.Parcel.Unit_Price;
+                existingParcel.Weight = model.Parcel.Weight;
+                existingParcel.Final_Price = model.Parcel.Final_Price;
+                existingParcel.DelivaryDate = model.Parcel.DelivaryDate;
+                existingParcel.Discount = model.Parcel.Discount;
+                existingParcel.Status = "Processing";
+                existingParcel.UpdateAt = currentTime;
+                existingParcel.UpdateBy = userGuid;
+                _context.Update(existingParcel);
+
+                _context.SaveChanges();
+                return Json(new { success = true, message = PopupMessage.success });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
         }
     }
 }
