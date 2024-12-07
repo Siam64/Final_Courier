@@ -46,14 +46,15 @@
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "OrderTable" ? "active" : "")" href="/Parcel/OrderTable">
                     <i class="fas fa-table"></i> Order Table
                 </a>
-
-                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "Shipment" ? "active" : "")" href="/Order/Shipment">
-                    <i class="fa fa-paper-plane"></i> Shipment
-                </a>
-
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "AssignRider" ? "active" : "")" href="/Order/AssignRider">
                     <i class="fa fa-motorcycle"></i> Assign a rider
                 </a>
+
+                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "Shipment" ? "active" : "")" href="/Order/Shipment">
+                    <i class="fa fa-paper-plane"></i> Shipments
+                </a>
+
+                
 
                @*  <a class="collapse-item" href="/Parcel/Form">Add Customer</a>
                 <a class="collapse-item" href="/Parcel/OrderTable">Order Table</a> *@

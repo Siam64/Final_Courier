@@ -345,7 +345,7 @@ namespace CourierManagement.Controllers
                     DelivaryDate = model.Parcel.DelivaryDate,
                     Discount = model.Parcel.Discount,
                     TrackingNumber = DateTime.Now.ToString("yyyyMMddHHmmss"),
-                    Status = "Processing",
+                    Status = Status.Processing,
                     Rider = "Not Assigned Yet",
                     OrderDate = currentTime,
                     CreateAt = currentTime,
@@ -449,7 +449,7 @@ namespace CourierManagement.Controllers
                 existingParcel.Final_Price = model.Parcel.Final_Price;
                 existingParcel.DelivaryDate = model.Parcel.DelivaryDate;
                 existingParcel.Discount = model.Parcel.Discount;
-                existingParcel.Status = "Processing";
+                existingParcel.Status = Status.Processing;
                 existingParcel.UpdateAt = currentTime;
                 existingParcel.UpdateBy = userGuid;
                 _context.Update(existingParcel);

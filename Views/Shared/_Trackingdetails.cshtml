@@ -1,0 +1,102 @@
+﻿
+<div class="modal-header">
+    @if (Model.Parcel.Status == Status.Delivered){
+        <h5 class="modal-title">Your Parcel is delivered </h5>
+    }
+    @if (Model.Parcel.Status == Status.OnTheWay)
+    {
+        <h5 class="modal-title">Your Parcel is on the way </h5>
+    }
+    @if (Model.Parcel.Status == Status.Processing)
+    {
+        <h5 class="modal-title">Your Parcel is processing now </h5>
+    }
+    
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    @if (Model != null)
+    {
+            <div class="tracking-info">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h6 class="mb-0">Parcel Information</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <strong>Tracking Number:</strong><br />
+                            @Model.Parcel.TrackingNumber
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Status:</strong><br />
+                            @Model.Parcel.Status
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <strong>Order Date:</strong><br />
+                            @Model.Parcel.OrderDate.ToString("dd MMM yyyy")
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Expected Delivery:</strong><br />
+                            @Model.Parcel.DelivaryDate.ToString("dd MMM yyyy")
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <strong>Parcel Type:</strong><br />
+                            @Model.Parcel.Parcel_Type
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Weight:</strong><br />
+                            @Model.Parcel.Weight kg
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Price:</strong><br />
+                                @Model.Parcel.Final_Price Taka
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="mb-0">Sender Details</h6>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Name:</strong> @Model.Sender.Customer_Name</p>
+                                <p><strong>Phone:</strong> @Model.Sender.Customer_Phone</p>
+                                <p><strong>City:</strong> @Model.Sender.Customer_City</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="mb-0">Receiver Details</h6>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Name:</strong> @Model.Receiver.Customer_Name</p>
+                                <p><strong>Phone:</strong> @Model.Receiver.Customer_Phone</p>
+                                <p><strong>City:</strong> @Model.Receiver.Customer_City</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    }
+    else
+    {
+            <div class="alert alert-warning">
+                No tracking information found for this number.
+            </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>

@@ -20,6 +20,14 @@
 
     }
 
+    public static class Status
+    {
+        public const string Processing = "Processing";
+        public const string OnTheWay = "On the way";
+        public const string Delivered = "Delivered";
+
+    }
+
     public static class GuidHelper
     {
         public static Guid ToGuidOrDefault(string guidString)

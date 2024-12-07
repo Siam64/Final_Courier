@@ -282,13 +282,7 @@
 
             // Clear button handler
             $("#clearButton").click(function() {
-                $("#Unit_Price").val('');
-                $("#Final_Price").val('');
-                $("#Weight").val('');
-                $("#Discount").val('0');
-                $("#DelivaryDate").val('');
-                $("#TrackingNumber").val('');
-                $("#Status").val('');
+                $('#cpForm')[0].reset();
             });
 
         $("#submitButton").click(function (event) {

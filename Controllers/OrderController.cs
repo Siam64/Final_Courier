@@ -1,4 +1,5 @@
-﻿using CourierManagement.Data;
+﻿using AspNetCoreGeneratedDocument;
+using CourierManagement.Data;
 using CourierManagement.Models;
 using CourierManagement.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -54,7 +55,7 @@ namespace CourierManagement.Controllers
             }
 
             
-            parcel.Status = "Delivered";
+            parcel.Status = Status.Delivered;
 
             // Save changes to database
             _context.SaveChanges();
@@ -72,7 +73,7 @@ namespace CourierManagement.Controllers
                .ToList();
 
             var parcelList = _context.Parcel
-                 .Where(p => p.Status != "Delivered" && p.Status != "On the way")
+                 .Where(p => p.Status != Status.Delivered && p.Status != Status.OnTheWay)
                  .ToList();
 
             ViewBag.Rider = _context.Employee.Select(x=>x.Name).ToList();   
@@ -90,11 +91,35 @@ namespace CourierManagement.Controllers
                 return NotFound();
             }
 
-            parcel.Status = "On the way";
+            parcel.Status = Status.OnTheWay;
             parcel.Rider = rider;
             _context.SaveChanges();
 
             return RedirectToAction("AssignRider", "Order");
+        }
+
+
+        [HttpPost]
+        public IActionResult Tracking(string tracking_item)
+        {
+            var parcel = _context.Parcel
+                .Join(_context.Customer,
+                    p => p.Sender_ID,
+                    c => c.Customer_ID,
+                    (p, s) => new { Parcel = p, Sender = s })
+                .Join(_context.Customer,
+                    ps => ps.Parcel.Receiver_ID,
+                    c => c.Customer_ID,
+                    (ps, r) => new
+                    {
+                        Parcel = ps.Parcel,
+                        Sender = ps.Sender,
+                        Receiver = r
+                    })
+                .Where(x => x.Parcel.TrackingNumber == tracking_item)
+                .FirstOrDefault();
+
+            return PartialView("_Trackingdetails", parcel);
         }
     }
 }
