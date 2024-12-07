@@ -28,7 +28,7 @@
                             <h4 class="text-center">Sender Information</h4>
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                
+                                <input id="IdNum" readonly value="@Model.SenderCustomer.IdNum"  />
                                 <input id="Sender_Name" value="@Model.SenderCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
                                 <span class="text-danger"></span>
                             </div>
@@ -76,6 +76,7 @@
                             <h4 class="text-center">Receiver Information</h4>
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
+                                <input id="IdNum" readonly value="@Model.ReciverCustomer.IdNum" />
                                 <input id="Receiver_Name" value="@Model.ReciverCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
                                 <span class="text-danger"></span>
                             </div>
@@ -130,7 +131,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Weight (in kg)</label>
-                            <input id="ID" hidden value="@Model.Parcels.ID" />
+                            <input id="ID" readonly value="@Model.Parcels.ID" />
                             <input id="Weight" value="@Model.Parcels.Weight" class="form-control" placeholder="Enter Weight" required />
                             <span class="text-danger"></span>
                         </div>

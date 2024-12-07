@@ -6,7 +6,7 @@ namespace CourierManagement.ViewModel
     public class CustomerVM
     {
         [Key]
-        public int ID { get; set; }
+        public int IdNum { get; set; }
         public Guid Sender_ID { get; set; }
 
         public string Sender_Phone { get; set; }

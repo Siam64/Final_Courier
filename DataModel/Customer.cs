@@ -5,7 +5,7 @@ namespace CourierManagement.DataModel
     public class Customer
     {
         [Key]
-        public int ID { get; set; }
+        public int IdNum { get; set; }
         public Guid Customer_ID { get; set; }
         public string Customer_Phone { get; set; }
         public string Customer_Name { get; set; }

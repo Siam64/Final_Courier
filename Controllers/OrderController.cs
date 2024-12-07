@@ -74,6 +74,7 @@ namespace CourierManagement.Controllers
 
             var parcelList = _context.Parcel
                  .Where(p => p.Status != Status.Delivered && p.Status != Status.OnTheWay)
+                 .OrderByDescending(x => x.Parcel_ID)
                  .ToList();
 
             ViewBag.Rider = _context.Employee.Select(x=>x.Name).ToList();   
