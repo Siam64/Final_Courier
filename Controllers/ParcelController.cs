@@ -462,5 +462,32 @@ namespace CourierManagement.Controllers
                 return Json(new { success = false, message = PopupMessage.error });
             }
         }
+
+        public IActionResult GetPhone(string phone)
+        {
+            if (string.IsNullOrEmpty(phone))
+                return Json(new { success = false, message = PopupMessage.error });
+            try
+            {
+                var references = _context.Customer
+                    .Where(x => x.Customer_Phone.StartsWith(phone))
+                    .Select(x => new
+                    {
+                        x.IdNum,
+                        Customer_Name = x.Customer_Name,
+                        Customer_Phone = x.Customer_Phone,
+                        Customer_Address = x.Customer_Address,
+                        Customer_Email = x.Customer_Email,
+                        Customer_City = x.Customer_City
+                    })
+                    .Take(5)
+                    .ToList();
+                return Json(new { success = true, message = PopupMessage.success, refference = references });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = PopupMessage.error });
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@
                             <h4 class="text-center">Sender Information</h4>
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                <input id="IdNum" readonly value="@Model.SenderCustomer.IdNum"  />
+                                <input id="IdNum" readonly hidden value="@Model.SenderCustomer.IdNum"  />
                                 <input id="Sender_Name" value="@Model.SenderCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
                                 <span class="text-danger"></span>
                             </div>
@@ -36,6 +36,8 @@
                                 <label class="form-label">Phone Number</label>
                                 <input id="Sender_Phone" value="@Model.SenderCustomer.Customer_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
                                 <span class="text-danger"></span>
+                                <div id="Sender_suggestions" style="position: absolute; z-index: 1000; background: white; border: 1px solid #ccc; display: none;"></div>
+
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
@@ -76,7 +78,7 @@
                             <h4 class="text-center">Receiver Information</h4>
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                <input id="IdNum" readonly value="@Model.ReciverCustomer.IdNum" />
+                                <input id="IdNum" readonly hidden value="@Model.ReciverCustomer.IdNum" />
                                 <input id="Receiver_Name" value="@Model.ReciverCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
                                 <span class="text-danger"></span>
                             </div>
@@ -84,6 +86,7 @@
                                 <label class="form-label">Phone Number</label>
                                 <input id="Receiver_Phone" value="@Model.ReciverCustomer.Customer_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
                                 <span class="text-danger"></span>
+                                <div id="Receiver_suggestions" style="position: absolute; z-index: 1000; background: white; border: 1px solid #ccc; display: none;"></div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
@@ -131,7 +134,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Weight (in kg)</label>
-                            <input id="ID" readonly value="@Model.Parcels.ID" />
+                            <input id="ID" readonly hidden value="@Model.Parcels.ID" />
                             <input id="Weight" value="@Model.Parcels.Weight" class="form-control" placeholder="Enter Weight" required />
                             <span class="text-danger"></span>
                         </div>
@@ -202,181 +205,311 @@
 <script src="~/js/jquery-3.6.0.min.js"></script>
 <script src="~/js/alert.js"></script>
 <script src="~/js/alert2.js"></script>
-<script>
-    $(document).ready(function () {
+@section scripts{
+    <script>
+        $(document).ready(function () {
 
-            function calculatePrice() {
-                var parcelType = $("#Parcel_Type").val();
-                var weight = $("#Weight").val();
-                var discount = $("#Discount").val() || 0; // Default to 0 if empty
+                function calculatePrice() {
+                    var parcelType = $("#Parcel_Type").val();
+                    var weight = $("#Weight").val();
+                    var discount = $("#Discount").val() || 0; // Default to 0 if empty
 
-                // Validate inputs
-                if (!parcelType || !weight || weight <= 0) {
-                    $("#Unit_Price").val('');
-                    $("#Final_Price").val('');
-                    return;
-                }
+                    // Validate inputs
+                    if (!parcelType || !weight || weight <= 0) {
+                        $("#Unit_Price").val('');
+                        $("#Final_Price").val('');
+                        return;
+                    }
 
-                // Convert inputs to numbers
-                weight = parseFloat(weight);
-                discount = parseFloat(discount);
+                    // Convert inputs to numbers
+                    weight = parseFloat(weight);
+                    discount = parseFloat(discount);
 
-                // Ensure discount is not negative
-                if (discount < 0) {
-                    alert('Discount cannot be negative');
-                    $("#Discount").val('0');
-                    discount = 0;
-                }
+                    // Ensure discount is not negative
+                    if (discount < 0) {
+                        alert('Discount cannot be negative');
+                        $("#Discount").val('0');
+                        discount = 0;
+                    }
 
-                // Make AJAX call to get price
-                $.ajax({
-                    url: '/Parcel/GetPrice',
-                    type: 'POST',
-                    data: {
-                        parcelType: parcelType,
-                        weight: weight,
-                        discount: discount
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            // Update the unit price (base price) and final price fields
-                            $("#Unit_Price").val(response.unitPrice.toFixed(2));
-                            $("#Final_Price").val(response.finalPrice.toFixed(2));
+                    // Make AJAX call to get price
+                    $.ajax({
+                        url: '/Parcel/GetPrice',
+                        type: 'POST',
+                        data: {
+                            parcelType: parcelType,
+                            weight: weight,
+                            discount: discount
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                // Update the unit price (base price) and final price fields
+                                $("#Unit_Price").val(response.unitPrice.toFixed(2));
+                                $("#Final_Price").val(response.finalPrice.toFixed(2));
 
-                            // If final price is 0, show warning about discount being too high
-                            if (response.finalPrice === 0 && discount > 0) {
-                                    Swal.fire({
-                                            position: "top-end",
-                                            icon: "warning",
-                                            title: "Discount exceeds total price!",
-                                            timer: 1500,
-                                            showConfirmButton: false,
-                                            customClass: {
-                                                popup: 'small-alert'
-                                            }
-                                    });
-                                     $("#Discount").val(0);
-                                   
+                                // If final price is 0, show warning about discount being too high
+                                if (response.finalPrice === 0 && discount > 0) {
+                                        Swal.fire({
+                                                position: "top-end",
+                                                icon: "warning",
+                                                title: "Discount exceeds total price!",
+                                                timer: 1500,
+                                                showConfirmButton: false,
+                                                customClass: {
+                                                    popup: 'small-alert'
+                                                }
+                                        });
+                                         $("#Discount").val(0);
+
+                                }
+                            } else {
+                                alert('Error: ' + response.message);
+                                $("#Unit_Price").val('');
+                                $("#Final_Price").val('');
                             }
-                        } else {
-                            alert('Error: ' + response.message);
+                        },
+                        error: function() {
+                            alert('Error calculating price. Please try again.');
                             $("#Unit_Price").val('');
                             $("#Final_Price").val('');
                         }
+                    });
+                }
+
+                // Calculate price when parcel type, weight, or discount changes
+                $("#Parcel_Type").change(function() {
+                    calculatePrice();
+                });
+
+                $("#Weight, #Discount").on('input', function() {
+                    calculatePrice();
+                });
+
+                // Clear button handler
+                $("#clearButton").click(function() {
+                    $('#cpForm')[0].reset();
+                });
+
+            $("#submitButton").click(function (event) {
+                event.preventDefault();
+                var form = document.getElementById('cpForm');
+                if (!form.checkValidity()) {
+                    Swal.fire("Error", "Please fill in all fields.", "error");
+                    return;
+                }
+                var mainData = {
+                    Customer: {
+                        Sender_Name: $('#Sender_Name').val(),
+                        Sender_Phone: $('#Sender_Phone').val(),
+                        Sender_Email: $('#Sender_Email').val(),
+                        Sender_City: $('#Sender_City').val(),
+                        Sender_Address: $('#Sender_Address').val(),
+                        Sender_Note: $('#Sender_Note').val(),
+                        Receiver_Name: $('#Receiver_Name').val(),
+                        Receiver_Phone: $('#Receiver_Phone').val(),
+                        Receiver_Email: $('#Receiver_Email').val(),
+                        Receiver_City: $('#Receiver_City').val(),
+                        Receiver_Address: $('#Receiver_Address').val(),
+                        Receiver_Note: $('#Receiver_Note').val()
                     },
-                    error: function() {
-                        alert('Error calculating price. Please try again.');
-                        $("#Unit_Price").val('');
-                        $("#Final_Price").val('');
+                    Parcel: {
+                        ID: $('#ID').val(),
+                        Parcel_Type: $('#Parcel_Type').val(),
+                        Unit_Price: $('#Unit_Price').val(),
+                        Weight: $('#Weight').val(),
+                        Final_Price: $('#Final_Price').val(),
+                        DelivaryDate: $('#DelivaryDate').val(),
+                        DelivaryDate: $('#DelivaryDate').val(),
+                        Discount: $('#Discount').val(),
+                        TrackingNumber: $('#TrackingNumber').val(),
+                        Status: $('#Status').val()
+                    }
+                };
+
+
+                 Swal.fire({
+                    title: 'Saving...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                 });
+
+
+                 const idValue = document.getElementById('ID').value;
+                 const url = idValue > 0 ? '/Parcel/Update' : '/Parcel/Form';
+
+
+                var antiForgeryToken = $('input[name="__RequestVerificationToken"]').val();
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: JSON.stringify(mainData),
+                    contentType: 'application/json',
+                    headers: {
+                        "RequestVerificationToken": antiForgeryToken
+                    },
+
+                    success: function () {
+                         Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Invoice has been saved!",
+                                timer: 1500,
+                                showConfirmButton: false,
+                                customClass: {
+                                    popup: 'small-alert'
+                                }
+                         }).then(function () {
+                            window.location.href = "/Parcel/OrderTable";
+                         });
+                        $('#cpForm')[0].reset();
+                    },
+
+                    error: function () {
+                        Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "Something went wrong",
+                                timer: 1500,
+                                showConfirmButton: false,
+                                customClass: {
+                                    popup: 'small-alert'
+                                }
+                        });
+                    }
+                })
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            function debounce(func, delay) {
+                let timeoutId;
+                return function (...args) {
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(() => func.apply(this, args), delay);
+                };
+            }
+
+            function populateSuggestion(item, target) {
+                if (!item) {
+                    console.error('Invalid item:', item);
+                    return;
+                }
+
+                console.log('Populating data:', item);
+
+                if (target === 'Sender') {
+                    $('#Sender_IdNum').val(item.idNum || '0');
+                    $('#Sender_Name').val(item.customer_Name || '');
+                    $('#Sender_Phone').val(item.customer_Phone || '');
+                    $('#Sender_Email').val(item.customer_Email || '');
+                    $('#Sender_City').val(item.customer_City || '');
+                    $('#Sender_Address').val(item.customer_Address || '');
+                    $('#Sender_suggestions').hide();
+                } else if (target === 'Receiver') {
+                    $('#Receiver_IdNum').val(item.idNum || '0');
+                    $('#Receiver_Name').val(item.customer_Name || '');
+                    $('#Receiver_Phone').val(item.customer_Phone || '');
+                    $('#Receiver_Email').val(item.customer_Email || '');
+                    $('#Receiver_City').val(item.customer_City || '');
+                    $('#Receiver_Address').val(item.customer_Address || '');
+                    $('#Receiver_suggestions').hide();
+                }
+            }
+
+            function fetchPhoneSuggestions(phoneNumber, target) {
+                const suggestionsDiv = target === 'Sender' ? $('#Sender_suggestions') : $('#Receiver_suggestions');
+
+                if (phoneNumber.length < 3) {
+                    suggestionsDiv.hide();
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetPhone", "Parcel")',
+                    type: 'GET',
+                    data: { phone: phoneNumber },
+                    success: function (data) {
+                        suggestionsDiv.empty().hide();
+
+                        if (data.success && data.refference && data.refference.length) {
+                            data.refference.forEach(function (item) {
+                                const suggestionItem = $(`
+                                    <div class="suggestion-item"
+                                         style="padding: 5px; cursor: pointer;"
+                                         data-idNum="${item.idNum}"
+                                         data-customer_Name="${item.customer_Name}"
+                                         data-customer_Phone="${item.customer_Phone}"
+                                         data-customer_Address="${item.customer_Address}"
+                                         data-customer_City="${item.customer_City}"
+                                         data-customer_Email="${item.customer_Email}">
+                                         ${item.customer_Name} - ${item.customer_Phone}
+                                    </div>
+                                `);
+
+                                suggestionItem.on('click', function () {
+                                    populateSuggestion({
+                                        idNum: $(this).data('idnum'),
+                                        customer_Name: $(this).data('customer_name'),
+                                        customer_Phone: $(this).data('customer_phone'),
+                                        customer_Address: $(this).data('customer_address'),
+                                        customer_City: $(this).data('customer_city'),
+                                        customer_Email: $(this).data('customer_email')
+                                    }, target);
+                                });
+
+                                suggestionsDiv.append(suggestionItem);
+                            });
+
+                            suggestionsDiv.show();
+                        } else {
+                            suggestionsDiv.append(`<div style="padding: 5px;">No suggestions found</div>`);
+                            suggestionsDiv.show();
+                        }
+                    },
+                    error: function () {
+                        console.error('Error fetching phone suggestions.');
+                        suggestionsDiv.hide();
                     }
                 });
             }
 
-            // Calculate price when parcel type, weight, or discount changes
-            $("#Parcel_Type").change(function() {
-                calculatePrice();
+            // Debounced suggestion handlers for Sender and Receiver
+            const debouncedSenderSuggestions = debounce(function (phoneNumber) {
+                fetchPhoneSuggestions(phoneNumber, 'Sender');
+            }, 300);
+
+            const debouncedReceiverSuggestions = debounce(function (phoneNumber) {
+                fetchPhoneSuggestions(phoneNumber, 'Receiver');
+            }, 300);
+
+            // Event listeners for Sender and Receiver phone input
+            $('#Sender_Phone').on('input', function () {
+                const phoneNumber = $(this).val();
+                $('#Sender_IdNum').val('0'); // Reset customer ID on input
+                debouncedSenderSuggestions(phoneNumber);
             });
 
-            $("#Weight, #Discount").on('input', function() {
-                calculatePrice();
+            $('#Receiver_Phone').on('input', function () {
+                const phoneNumber = $(this).val();
+                $('#Receiver_IdNum').val('0'); // Reset customer ID on input
+                debouncedReceiverSuggestions(phoneNumber);
             });
 
-            // Clear button handler
-            $("#clearButton").click(function() {
-                $('#cpForm')[0].reset();
+            // Close suggestions when clicking outside
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('#Sender_Phone, #Sender_suggestions, #Receiver_Phone, #Receiver_suggestions').length) {
+                    $('#Sender_suggestions, #Receiver_suggestions').hide();
+                }
             });
-
-        $("#submitButton").click(function (event) {
-            event.preventDefault();
-            var form = document.getElementById('cpForm');
-            if (!form.checkValidity()) {
-                Swal.fire("Error", "Please fill in all fields.", "error");
-                return;
-            }
-            var mainData = {
-                Customer: {
-                    Sender_Name: $('#Sender_Name').val(),
-                    Sender_Phone: $('#Sender_Phone').val(),
-                    Sender_Email: $('#Sender_Email').val(),
-                    Sender_City: $('#Sender_City').val(),
-                    Sender_Address: $('#Sender_Address').val(),
-                    Sender_Note: $('#Sender_Note').val(),
-                    Receiver_Name: $('#Receiver_Name').val(),
-                    Receiver_Phone: $('#Receiver_Phone').val(),
-                    Receiver_Email: $('#Receiver_Email').val(),
-                    Receiver_City: $('#Receiver_City').val(),
-                    Receiver_Address: $('#Receiver_Address').val(),
-                    Receiver_Note: $('#Receiver_Note').val()
-                },
-                Parcel: {
-                    ID: $('#ID').val(),
-                    Parcel_Type: $('#Parcel_Type').val(),
-                    Unit_Price: $('#Unit_Price').val(),
-                    Weight: $('#Weight').val(),
-                    Final_Price: $('#Final_Price').val(),
-                    DelivaryDate: $('#DelivaryDate').val(),
-                    DelivaryDate: $('#DelivaryDate').val(),
-                    Discount: $('#Discount').val(),
-                    TrackingNumber: $('#TrackingNumber').val(),
-                    Status: $('#Status').val()
-                }
-            };
-
-
-             Swal.fire({
-                title: 'Saving...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-             });
-
-
-             const idValue = document.getElementById('ID').value;
-             const url = idValue > 0 ? '/Parcel/Update' : '/Parcel/Form';
-
-
-            var antiForgeryToken = $('input[name="__RequestVerificationToken"]').val();
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: JSON.stringify(mainData),
-                contentType: 'application/json',
-                headers: {
-                    "RequestVerificationToken": antiForgeryToken
-                },
-
-                success: function () {
-                     Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Invoice has been saved!",
-                            timer: 1500,
-                            showConfirmButton: false,
-                            customClass: {
-                                popup: 'small-alert'
-                            }
-                     }).then(function () {
-                        window.location.href = "/Parcel/OrderTable";
-                     });
-                    $('#cpForm')[0].reset();
-                },
-
-                error: function () {
-                    Swal.fire({
-                            position: "top-end",
-                            icon: "error",
-                            title: "Something went wrong",
-                            timer: 1500,
-                            showConfirmButton: false,
-                            customClass: {
-                                popup: 'small-alert'
-                            }
-                    });
-                }
-            })
         });
-    });
-</script>
+
+    </script>
+}
+
 
 
