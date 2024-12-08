@@ -283,61 +283,92 @@ namespace CourierManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public IActionResult Form([FromBody] MultimodelVM model)
         {
             try
             {
-                if (model?.Customer == null || model?.Parcel == null)
+                if (model?.SenderCustomer == null || model?.ReciverCustomer == null || model?.Parcel == null)
                 {
                     return BadRequest("Invalid data submitted");
                 }
-
                 var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 DateTime currentTime = DateTime.UtcNow;
                 Guid userGuid = GuidHelper.ToGuidOrDefault(userid);
 
-                // Create and save Sender Customer
-                var senderCustomerData = new Customer
-                {
-                    Customer_ID = Guid.NewGuid(),
-                    Customer_Name = model.Customer.Sender_Name,
-                    Customer_Phone = model.Customer.Sender_Phone,
-                    Customer_Email = model.Customer.Sender_Email,
-                    Customer_City = model.Customer.Sender_City,
-                    Customer_Address = model.Customer.Sender_Address,
-                    Note = model.Customer.Sender_Note,
-                    CreateAt = currentTime,
-                    UpdateAt = currentTime,
-                    CreateBy = userGuid,
-                    UpdateBy = userGuid
-                };
-                _context.Add(senderCustomerData);
-                _context.SaveChanges();
+                Guid senderCustomerId;
+                Guid receiverCustomerId;
 
-                // Create and save Receiver Customer
-                var receiverCustomerData = new Customer
+                // Handle Sender Customer
+                if (model.SenderCustomer.IdNum <= 0)
                 {
-                    Customer_ID = Guid.NewGuid(),
-                    Customer_Name = model.Customer.Receiver_Name,
-                    Customer_Phone = model.Customer.Receiver_Phone,
-                    Customer_Email = model.Customer.Receiver_Email,
-                    Customer_City = model.Customer.Receiver_City,
-                    Customer_Address = model.Customer.Receiver_Address,
-                    Note = model.Customer.Receiver_Note,
-                    CreateAt = currentTime,
-                    UpdateAt = currentTime,
-                    CreateBy = userGuid,
-                    UpdateBy = userGuid
-                };
-                _context.Add(receiverCustomerData);
-                _context.SaveChanges();
+                    var senderCustomerData = new Customer
+                    {
+                        Customer_ID = Guid.NewGuid(),
+                        Customer_Name = model.Customer.Sender_Name,
+                        Customer_Phone = model.Customer.Sender_Phone,
+                        Customer_Email = model.Customer.Sender_Email,
+                        Customer_City = model.Customer.Sender_City,
+                        Customer_Address = model.Customer.Sender_Address,
+                        Note = model.Customer.Sender_Note,
+                        CreateAt = currentTime,
+                        UpdateAt = currentTime,
+                        CreateBy = userGuid,
+                        UpdateBy = userGuid
+                    };
+                    _context.Add(senderCustomerData);
+                    _context.SaveChanges();
+                    senderCustomerId = senderCustomerData.Customer_ID;
+                }
+                else
+                {
+                    // Find existing sender customer
+                    var existingSenderCustomer = _context.Customer.Find(model.SenderCustomer.IdNum);
+                    if (existingSenderCustomer == null)
+                    {
+                        return BadRequest("Sender customer not found");
+                    }
+                    senderCustomerId = existingSenderCustomer.Customer_ID;
+                }
+
+                // Handle Receiver Customer
+                if (model.ReciverCustomer.IdNum <= 0)
+                {
+                    var receiverCustomerData = new Customer
+                    {
+                        Customer_ID = Guid.NewGuid(),
+                        Customer_Name = model.Customer.Receiver_Name,
+                        Customer_Phone = model.Customer.Receiver_Phone,
+                        Customer_Email = model.Customer.Receiver_Email,
+                        Customer_City = model.Customer.Receiver_City,
+                        Customer_Address = model.Customer.Receiver_Address,
+                        Note = model.Customer.Receiver_Note,
+                        CreateAt = currentTime,
+                        UpdateAt = currentTime,
+                        CreateBy = userGuid,
+                        UpdateBy = userGuid
+                    };
+                    _context.Add(receiverCustomerData);
+                    _context.SaveChanges();
+                    receiverCustomerId = receiverCustomerData.Customer_ID;
+                }
+                else
+                {
+                    // Find existing receiver customer
+                    var existingReceiverCustomer = _context.Customer.Find(model.ReciverCustomer.IdNum);
+                    if (existingReceiverCustomer == null)
+                    {
+                        return BadRequest("Receiver customer not found");
+                    }
+                    receiverCustomerId = existingReceiverCustomer.Customer_ID;
+                }
 
                 // Create and save Parcel
                 var parcelData = new Parcel
                 {
                     Parcel_ID = Guid.NewGuid(),
-                    Sender_ID = senderCustomerData.Customer_ID,
-                    Receiver_ID = receiverCustomerData.Customer_ID,
+                    Sender_ID = senderCustomerId,
+                    Receiver_ID = receiverCustomerId,
                     Parcel_Type = model.Parcel.Parcel_Type,
                     Unit_Price = model.Parcel.Unit_Price,
                     Weight = model.Parcel.Weight,
@@ -355,7 +386,6 @@ namespace CourierManagement.Controllers
                 };
                 _context.Add(parcelData);
                 _context.SaveChanges();
-
                 return Json(new { success = true, message = PopupMessage.success });
             }
             catch (Exception ex)
@@ -392,28 +422,24 @@ namespace CourierManagement.Controllers
         {
             try
             {
-                if (model?.Customer == null || model?.Parcel == null)
+                if (model?.Customer == null || model?.SenderCustomer == null ||
+                    model?.ReciverCustomer == null || model?.Parcel == null)
                 {
                     return BadRequest("Invalid data submitted");
                 }
-
                 var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 DateTime currentTime = DateTime.UtcNow;
                 Guid userGuid = GuidHelper.ToGuidOrDefault(userid);
 
-                
                 var existingParcel = _context.Parcel
                     .FirstOrDefault(p => p.ID == model.Parcel.ID);
-
                 if (existingParcel == null)
                 {
                     return NotFound("Parcel not found");
                 }
 
-                
                 var existingSender = _context.Customer
                     .FirstOrDefault(c => c.Customer_ID == existingParcel.Sender_ID);
-
                 if (existingSender != null)
                 {
                     existingSender.Customer_Name = model.Customer.Sender_Name;
@@ -429,7 +455,6 @@ namespace CourierManagement.Controllers
 
                 var existingReceiver = _context.Customer
                     .FirstOrDefault(c => c.Customer_ID == existingParcel.Receiver_ID);
-
                 if (existingReceiver != null)
                 {
                     existingReceiver.Customer_Name = model.Customer.Receiver_Name;
