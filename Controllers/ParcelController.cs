@@ -21,6 +21,13 @@ namespace CourierManagement.Controllers
 
         }
 
+
+
+
+
+
+
+        //This is the view for Price, it returns a viewag
         public IActionResult PriceTable()
         {
             ViewBag.PriceList = _context.PriceTable.ToList();
@@ -31,6 +38,16 @@ namespace CourierManagement.Controllers
                 .ToList();
             return View();
         }
+
+
+
+
+
+
+
+
+
+        //Inherits the PriceTable Method and responsible to create new entries
         [HttpPost]
         public IActionResult PriceTable(PriceTableVM model)
         {
@@ -67,6 +84,14 @@ namespace CourierManagement.Controllers
         }
 
 
+
+
+
+
+
+
+
+        //Responsible for deleting any price entry
         public IActionResult deletePrice(int Id)
         {
             if (Id < 0)
@@ -85,15 +110,26 @@ namespace CourierManagement.Controllers
             }
         }
 
+
+
+
+
+
+
+
+
+        //Responsible for populating data to rspective fields for update
         public IActionResult getDataForupdate(PriceTableVM model)
         {
             if (model == null || model.Id < 1)
                 return Json(new { success = false, message = PopupMessage.error });
 
+            //getting data for by Id
             var result = _context.PriceTable.Where(x => x.Id == model.Id).First();
             if (result == null)
                 return Json(new { success = false, message = PopupMessage.error });
 
+            //returns the existing data
             return Json(new
             {
                 success = true,
@@ -110,6 +146,14 @@ namespace CourierManagement.Controllers
         }
 
 
+
+
+
+
+
+
+
+        //Responsible for updating the price data
         public IActionResult updatePriceTable(PriceTableVM model)
         {
             if (model == null || model.Id < 0)
@@ -123,6 +167,7 @@ namespace CourierManagement.Controllers
             if (data == null)
                 return Json(new { success = false, message = PopupMessage.error });
 
+            //updates the data
             data.ParcelType = model.ParcelType;
             data.BasePrice = model.BasePrice;
 
@@ -131,6 +176,7 @@ namespace CourierManagement.Controllers
                 _context.PriceTable.Update(data);
                 _context.SaveChanges();
 
+                //returns the data
                 var dataResult = _context.PriceTable.Where(x => x.Id == data.Id).OrderBy(x => x.Id).ToList();
                 return Json(new { success = true, message = PopupMessage.success, data = dataResult });
             }
@@ -141,6 +187,14 @@ namespace CourierManagement.Controllers
             
             }
         }
+
+
+
+
+
+
+
+
 
 
         public IActionResult ImageUpload()
@@ -174,10 +228,6 @@ namespace CourierManagement.Controllers
             return Json(new { success = false, message = "File upload failed." });
         }
 
-
-
-
-
         [HttpPost]
         public IActionResult DeleteImage(string fileName)
         {
@@ -198,6 +248,13 @@ namespace CourierManagement.Controllers
 
 
     
+
+
+
+
+
+
+        //Responsible for geting the base price accroding to parcel type and calculation for final price
         [HttpPost]
         public JsonResult GetPrice(string parcelType, double weight, double discount)
         {
@@ -241,9 +298,17 @@ namespace CourierManagement.Controllers
         }
 
 
+
+
+
+
+
+
+
+        //Responsible for the view page of the taking order form
         public IActionResult Form()
         {
-            // Initialize the model with empty objects
+            // Initialize the model with empty objects for avoiding null exceptions
             MultimodelVM model = new MultimodelVM
             {
                 SenderCustomer = new Customer(),
@@ -265,6 +330,16 @@ namespace CourierManagement.Controllers
             return View(model);  // Pass the initialized model to the view
         }
 
+
+
+
+
+
+
+
+
+
+        //Responsible for order table view naqd returns all the data needed
         public IActionResult OrderTable()
         {
             var customerList = _context.Customer
@@ -281,6 +356,13 @@ namespace CourierManagement.Controllers
 
 
 
+
+
+
+
+
+
+        //Responsible for creating new entry, inherits the form method
         [HttpPost]
         [ValidateAntiForgeryToken]
         
@@ -395,8 +477,18 @@ namespace CourierManagement.Controllers
         }
 
 
+
+
+
+
+
+
+
+        //Responsible for populating the fields with existing data for update by id
         public IActionResult Edit(int id)
         {
+
+            //getting parcel and sender, receiver customer information
             MultimodelVM model = new MultimodelVM();
             model.Parcels = _context.Parcel.Where(x => x.ID == id).FirstOrDefault();
             if (model.Parcels.Receiver_ID != Guid.Empty && model.Parcels.Sender_ID != Guid.Empty) { 
@@ -418,10 +510,20 @@ namespace CourierManagement.Controllers
             return View("Form",model);
         }
 
+
+
+
+
+
+
+
+        //Responsible for updating
         public IActionResult Update([FromBody] MultimodelVM model)
         {
             try
             {
+                //validating sender, receiver, customer and parcel because all these are bieng sent form ajax,
+                //without receiving the customer, update wont work as per existing MultiModelVM
                 if (model?.Customer == null || model?.SenderCustomer == null ||
                     model?.ReciverCustomer == null || model?.Parcel == null)
                 {
@@ -431,6 +533,7 @@ namespace CourierManagement.Controllers
                 DateTime currentTime = DateTime.UtcNow;
                 Guid userGuid = GuidHelper.ToGuidOrDefault(userid);
 
+                //getting the parcel info by id
                 var existingParcel = _context.Parcel
                     .FirstOrDefault(p => p.ID == model.Parcel.ID);
                 if (existingParcel == null)
@@ -438,6 +541,8 @@ namespace CourierManagement.Controllers
                     return NotFound("Parcel not found");
                 }
 
+
+                //getting existing sender customer to update
                 var existingSender = _context.Customer
                     .FirstOrDefault(c => c.Customer_ID == existingParcel.Sender_ID);
                 if (existingSender != null)
@@ -453,6 +558,8 @@ namespace CourierManagement.Controllers
                     _context.Update(existingSender);
                 }
 
+
+                //getting recever customer for update
                 var existingReceiver = _context.Customer
                     .FirstOrDefault(c => c.Customer_ID == existingParcel.Receiver_ID);
                 if (existingReceiver != null)
@@ -468,6 +575,8 @@ namespace CourierManagement.Controllers
                     _context.Update(existingReceiver);
                 }
 
+
+                //lastly update parcel
                 existingParcel.Parcel_Type = model.Parcel.Parcel_Type;
                 existingParcel.Unit_Price = model.Parcel.Unit_Price;
                 existingParcel.Weight = model.Parcel.Weight;
@@ -488,6 +597,15 @@ namespace CourierManagement.Controllers
             }
         }
 
+
+
+
+
+
+
+
+        //responsible for getting phone number suggestion,
+        //it checks the phone number that is being received here and returns all the infos accroding to that number
         public IActionResult GetPhone(string phone)
         {
             if (string.IsNullOrEmpty(phone))
@@ -513,6 +631,12 @@ namespace CourierManagement.Controllers
             {
                 return Json(new { success = false, message = PopupMessage.error });
             }
+        }
+
+        public IActionResult AllCustomers()
+        {
+            var data = _context.Customer.ToList();
+            return View(data);
         }
     }
 }

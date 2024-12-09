@@ -58,6 +58,12 @@
         </a>
     </li>
 
+    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "AllCustomers" ? "active" : "")">
+        <a class="nav-link" href="/Parcel/AllCustomers">
+            <i class="fa fa-paper-plane"></i> All Customers
+        </a>
+    </li>
+
 
 
     <li class="nav-item">
