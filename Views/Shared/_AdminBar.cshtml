@@ -30,47 +30,44 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Take Order -->
+    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "Form" ? "active" : "")">
+        <a class="nav-link" href="/Parcel/Form">
+            <i class="fa fa-plus"></i> Take Order
+        </a>
+    </li>
+
+    <!-- Nav Item - Order Table -->
+    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "OrderTable" ? "active" : "")">
+        <a class="nav-link" href="/Parcel/OrderTable">
+            <i class="fas fa-table"></i> Order Table
+        </a>
+    </li>
+
+    <!-- Nav Item - Assign a Rider -->
+    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "AssignRider" ? "active" : "")">
+        <a class="nav-link" href="/Order/AssignRider">
+            <i class="fa fa-motorcycle"></i> Assign a rider
+        </a>
+    </li>
+
+    <!-- Nav Item - Shipments -->
+    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "Shipment" ? "active" : "")">
+        <a class="nav-link" href="/Order/Shipment">
+            <i class="fa fa-paper-plane"></i> Shipments
+        </a>
+    </li>
+
+
+
     <li class="nav-item">
+
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>Operations</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Components:</h6>
-                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "Form" ? "active" : "")" href="/Parcel/Form">
-                    <i class="fa fa-plus"></i> Take Order
-                </a>
-
-                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "OrderTable" ? "active" : "")" href="/Parcel/OrderTable">
-                    <i class="fas fa-table"></i> Order Table
-                </a>
-                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "AssignRider" ? "active" : "")" href="/Order/AssignRider">
-                    <i class="fa fa-motorcycle"></i> Assign a rider
-                </a>
-
-                <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Order" && ViewContext.RouteData.Values["action"].ToString() == "Shipment" ? "active" : "")" href="/Order/Shipment">
-                    <i class="fa fa-paper-plane"></i> Shipments
-                </a>
-
-                
-
-               @*  <a class="collapse-item" href="/Parcel/Form">Add Customer</a>
-                <a class="collapse-item" href="/Parcel/OrderTable">Order Table</a> *@
-            </div>
-        </div>
-    </li>
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-           aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Parcel" && ViewContext.RouteData.Values["action"].ToString() == "PriceTable" ? "active" : "")" href="/Parcel/PriceTable">
@@ -80,17 +77,16 @@
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Lookup" && ViewContext.RouteData.Values["action"].ToString() == "CreateLookup" ? "active" : "")" href="/Lookup/CreateLookup">
                     <i class="fa fa-cogs"></i> Manage City & Parcel
                 </a>
-
                 <a class="collapse-item @(ViewContext.RouteData.Values["controller"].ToString() == "Employee" && ViewContext.RouteData.Values["action"].ToString() == "Employee" ? "active" : "")" href="/Employee/Employee">
                     <i class="fas fa-user-plus"></i> Manage Employee
                 </a>
+               @*  <a class="collapse-item" href="/Parcel/Form">Add Customer</a>
+                <a class="collapse-item" href="/Parcel/OrderTable">Order Table</a> *@
             </div>
         </div>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
+   
 @*     <!-- Heading -->
     <div class="sidebar-heading">
         Addons
