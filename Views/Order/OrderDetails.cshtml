@@ -68,7 +68,7 @@
                 </div>
                 <div class="mb-2">
                     <strong>Email:</strong>
-                    <p class="text-muted">@sender.Customer_Email</p>
+                    <p class="text-muted">@(string.IsNullOrEmpty(sender.Customer_Email) ? "N/A" : sender.Customer_Email)</p>
                 </div>
                 <div class="mb-2">
                     <strong>City:</strong>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="mb-2">
                     <strong>Email:</strong>
-                    <p class="text-muted">@receiver.Customer_Email</p>
+                    <p class="text-muted">@(string.IsNullOrEmpty(receiver.Customer_Email) ? "N/A" : receiver.Customer_Email)</p>
                 </div>
                 <div class="mb-2">
                     <strong>City:</strong>

@@ -16,9 +16,9 @@
 <div class="d-flex align-items-start min-vh-100 pt-3 w-100">
     <div class="col-12">
         <div class="card shadow-lg">
-            <div class="card-header bg-primary text-white text-center">
+            @* <div class="card-header bg-primary text-white text-center">
                 <h3 class="mb-0">FiroTech Courier</h3>
-            </div>
+            </div> *@
             <div class="card-body">
                 <form id="cpForm">
                     @Html.AntiForgeryToken()
@@ -27,14 +27,14 @@
                         <div class="col-md-6">
                             <h4 class="text-center">Sender Information</h4>
                             <div class="mb-3">
-                                <label class="form-label">Phone Number</label>
+                                <label class="form-label">Phone Number<span style="color: red;">*</span></label>
                                 <input id="Sender_Phone" value="@Model.SenderCustomer.Customer_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
                                 <span class="text-danger"></span>
                                 <div id="Sender_suggestions" style="position: absolute; z-index: 1000; background: white; border: 1px solid #ccc; display: none;"></div>
 
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Sender Name</label>
+                                <label class="form-label">Sender Name<span style="color: red;">*</span></label>
                                 <input id="Sender_IdNum" hidden name="Sender_IdNum"  value="@Model.SenderCustomer.IdNum" />
                                 <input id="Sender_Name" value="@Model.SenderCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
                                 <span class="text-danger"></span>
@@ -42,11 +42,11 @@
                            
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input id="Sender_Email" value="@Model.SenderCustomer.Customer_Email" class="form-control" placeholder="email@email.com" required />
+                                <input id="Sender_Email" value="@Model.SenderCustomer.Customer_Email" class="form-control" placeholder="email@email.com"  />
                                 <span class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">City</label>
+                                <label class="form-label">City<span style="color: red;">*</span></label>
                                 <select id="Sender_City" class="form-control">
                                     @if (ViewBag.CityList != null)
                                     {
@@ -65,7 +65,7 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Address</label>
+                                <label class="form-label">Address<span style="color: red;">*</span></label>
                                 <input id="Sender_Address" value="@Model.SenderCustomer.Customer_Address" class="form-control" placeholder="Enter Address" required />
                                 <span class="text-danger"></span>
                             </div>
@@ -78,13 +78,13 @@
                         <div class="col-md-6">
                             <h4 class="text-center">Receiver Information</h4>
                             <div class="mb-3">
-                                <label class="form-label">Phone Number</label>
+                                <label class="form-label">Phone Number<span style="color: red;">*</span></label>
                                 <input id="Receiver_Phone" value="@Model.ReciverCustomer.Customer_Phone" class="form-control" placeholder="01XXXXXXXXX" required />
                                 <span class="text-danger"></span>
                                 <div id="Receiver_suggestions" style="position: absolute; z-index: 1000; background: white; border: 1px solid #ccc; display: none;"></div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Receiver Name</label>
+                                <label class="form-label">Receiver Name<span style="color: red;">*</span></label>
                                 <input id="Receiver_IdNum" hidden name="Receiver_IdNum"  value="@Model.ReciverCustomer.IdNum" />
                                 <input id="Receiver_Name" value="@Model.ReciverCustomer.Customer_Name" class="form-control" placeholder="Enter Name" required />
                                 <span class="text-danger"></span>
@@ -92,11 +92,11 @@
                            
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input id="Receiver_Email" value="@Model.ReciverCustomer.Customer_Email" class="form-control" placeholder="email@email.com" required />
+                                <input id="Receiver_Email" value="@Model.ReciverCustomer.Customer_Email" class="form-control" placeholder="email@email.com" />
                                 <span class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">City</label>
+                                <label class="form-label">City<span style="color: red;">*</span></label>
                                 <select id="Receiver_City" class="form-control">
                                     @if (ViewBag.CityList != null)
                                     {
@@ -115,7 +115,7 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Address</label>
+                                <label class="form-label">Address<span style="color: red;">*</span></label>
                                 <input id="Receiver_Address" value="@Model.ReciverCustomer.Customer_Address" class="form-control" placeholder="Enter Address" required />
                                 <span class="text-danger"></span>
                             </div>
@@ -135,7 +135,7 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Weight (in kg)</label>
+                            <label class="form-label">Weight (in kg)<span style="color: red;">*</span></label>
                             <input id="ID" readonly hidden value="@Model.Parcels.ID" />
                             <input id="Weight" value="@Model.Parcels.Weight" class="form-control" placeholder="Enter Weight" required />
                             <span class="text-danger"></span>
@@ -152,7 +152,7 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Parcel Type</label>
+                            <label class="form-label">Parcel Type<span style="color: red;">*</span></label>
                             <select id="Parcel_Type" class="form-control">
                                 @if (ViewBag.ParcelList != null)
                                 {
@@ -183,7 +183,7 @@
                             <span class="text-danger"></span>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Estimated Delivery Date</label>
+                            <label class="form-label">Estimated Delivery Date<span style="color: red;">*</span></label>
                             <input id="DelivaryDate"
                                    value="@(Model.Parcels.DelivaryDate == default(DateTime) ? "" : Model.Parcels.DelivaryDate.ToString("yyyy-MM-dd"))"
                                    type="date"

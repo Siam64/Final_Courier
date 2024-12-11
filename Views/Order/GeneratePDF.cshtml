@@ -146,7 +146,7 @@
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Email:</div>
-                        <div class="detail-value">@sender.Customer_Email</div>
+                        <div class="detail-value">@(string.IsNullOrEmpty(sender.Customer_Email) ? "N/A" : sender.Customer_Email)</div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">City:</div>
@@ -175,7 +175,7 @@
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Email:</div>
-                        <div class="detail-value">@receiver.Customer_Email</div>
+                        <div class="detail-value">@(string.IsNullOrEmpty(receiver.Customer_Email) ? "N/A" : receiver.Customer_Email)</div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">City:</div>
