@@ -9,7 +9,7 @@ using System.IO;
 
 namespace CourierManagement.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ParcelController : Controller
     {
         private readonly CourierManagementContext _context;
@@ -26,7 +26,7 @@ namespace CourierManagement.Controllers
 
 
 
-
+        [Authorize(Roles = "SuperAdmin")]
         //This is the view for Price, it returns a viewag
         public IActionResult PriceTable()
         {
@@ -46,7 +46,7 @@ namespace CourierManagement.Controllers
 
 
 
-
+        [Authorize(Roles = "SuperAdmin")]
         //Inherits the PriceTable Method and responsible to create new entries
         [HttpPost]
         public IActionResult PriceTable(PriceTableVM model)
@@ -304,7 +304,7 @@ namespace CourierManagement.Controllers
 
 
 
-
+        [Authorize(Roles = "SuperAdmin, Admin")]
         //Responsible for the view page of the taking order form
         public IActionResult Form()
         {
@@ -338,7 +338,7 @@ namespace CourierManagement.Controllers
 
 
 
-
+        [Authorize(Roles = "SuperAdmin, Admin")]
         //Responsible for order table view naqd returns all the data needed
         public IActionResult OrderTable()
         {
@@ -361,11 +361,10 @@ namespace CourierManagement.Controllers
 
 
 
-
+        [Authorize(Roles = "SuperAdmin, Admin")]
         //Responsible for creating new entry, inherits the form method
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
         public IActionResult Form([FromBody] MultimodelVM model)
         {
             try
@@ -633,6 +632,7 @@ namespace CourierManagement.Controllers
             }
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult AllCustomers()
         {
             var data = _context.Customer.ToList();

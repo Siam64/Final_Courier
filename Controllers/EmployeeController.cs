@@ -2,6 +2,7 @@
 using CourierManagement.DataModel;
 using CourierManagement.Models;
 using CourierManagement.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourierManagement.Controllers
@@ -16,12 +17,16 @@ namespace CourierManagement.Controllers
             _webHostEnvironment = Webhost;
 
         }
+
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult Employee()
         {
             ViewBag.EmpList = _context.Employee.ToList();
             return View();
         }
 
+
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         public IActionResult Employee(EmployeeVM model)
         {

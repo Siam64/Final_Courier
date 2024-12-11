@@ -1,0 +1,240 @@
+﻿@* @model CourierManagement.DataModel.Parcel
+
+@{
+    Layout = null;
+    var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
+    var sender = customerList.FirstOrDefault(c => c.Customer_ID == Model.Sender_ID);
+    var receiver = customerList.FirstOrDefault(c => c.Customer_ID == Model.Receiver_ID);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parcel Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .print-container {
+            width: 100%;
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .section {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f4f8fb;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        .detail-label {
+            width: 35%;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .detail-value {
+            width: 65%;
+            color: #2c3e50;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+            .row > div {
+                flex: 1;
+            }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-info {
+            background-color: #3498db;
+            color: white;
+        }
+
+            .btn-info:hover {
+                background-color: #2980b9;
+            }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .edit-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="print-container">
+        <h1>Courier Management System</h1>
+        <div class="section">
+            <div class="section-title">Parcel Information</div>
+            <div class="detail-row">
+                <div class="detail-label">Tracking Number:</div>
+                <div class="detail-value">@Model.TrackingNumber</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Parcel Type:</div>
+                <div class="detail-value">@Model.Parcel_Type</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Weight:</div>
+                <div class="detail-value">@Model.Weight kg</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Unit Price:</div>
+                <div class="detail-value">@Model.Unit_Price Taka</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Final Price:</div>
+                <div class="detail-value">@Model.Final_Price Taka</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Order Date:</div>
+                <div class="detail-value">@Model.OrderDate.ToString("dd/MM/yyyy")</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Estimated Delivery:</div>
+                <div class="detail-value">@Model.DelivaryDate.ToString("dd/MM/yyyy")</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Discount:</div>
+                <div class="detail-value">@Model.Discount Taka</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Rider:</div>
+                <div class="detail-value">@Model.Rider</div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <div class="section">
+                    <div class="section-title">Sender Details</div>
+                    <div class="detail-row">
+                        <div class="detail-label">Name:</div>
+                        <div class="detail-value">@sender.Customer_Name</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Phone:</div>
+                        <div class="detail-value">@sender.Customer_Phone</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Email:</div>
+                        <div class="detail-value">@sender.Customer_Email</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">City:</div>
+                        <div class="detail-value">@sender.Customer_City</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Address:</div>
+                        <div class="detail-value">@sender.Customer_Address</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Note:</div>
+                        <div class="detail-value">@(string.IsNullOrEmpty(sender.Note) ? "N/A" : sender.Note)</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="section">
+                    <div class="section-title">Receiver Details</div>
+                    <div class="detail-row">
+                        <div class="detail-label">Name:</div>
+                        <div class="detail-value">@receiver.Customer_Name</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Phone:</div>
+                        <div class="detail-value">@receiver.Customer_Phone</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Email:</div>
+                        <div class="detail-value">@receiver.Customer_Email</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">City:</div>
+                        <div class="detail-value">@receiver.Customer_City</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Address:</div>
+                        <div class="detail-value">@receiver.Customer_Address</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Note:</div>
+                        <div class="detail-value">@(string.IsNullOrEmpty(receiver.Note) ? "N/A" : receiver.Note) </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="edit-section">
+            @if (Model.Status == "Delivered" || Model.Status == "On the way")
+            {
+                <button class="btn btn-secondary" disabled>Edit</button>
+            }
+            else
+            {
+                <a href="@Url.Action("Edit", "Parcel", new { id = @Model.ID })" class="btn btn-info">Edit</a>
+            }
+        </div>
+        <div class="footer">
+            &copy; 2024 Courier Management System. All Rights Reserved. Samiul Alim
+        </div>
+    </div>
+</body>
+</html> *@
