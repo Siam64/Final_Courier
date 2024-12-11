@@ -119,14 +119,16 @@
     <div class="d-flex justify-content-start">
         @if (Model.Status == "Delivered" || Model.Status == "On the way")
         {
-            <button class="btn btn-secondary btn-sm" disabled>Edit</button>
+            <button class="btn btn-secondary btn-sm" disabled style="margin-right: 10px;">Edit</button>
             <a href="@Url.Action("GeneratePDF", "Order", new { id = @Model.ID })" class="btn btn-info">Download PDF</a>
+
         }
+
         else
         {
             <a href="@Url.Action("Edit", "Parcel", new { id = @Model.ID })"
-               class="btn btn-info btn-sm text-white fw-bold ">Edit</a>
-            <a href="@Url.Action("GeneratePDF", "Order", new { id = @Model.ID })" class="btn btn-info">Download PDF</a>
+               class="btn btn-info btn-sm text-white fw-bold" style="margin-right: 10px;">Edit</a>
+            <a href="@Url.Action("GeneratePDF", "Order", new { id = @Model.ID })" class="btn btn-info ms-2">Download PDF</a>
         }
     </div>
 

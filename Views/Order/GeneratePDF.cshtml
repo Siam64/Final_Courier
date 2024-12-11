@@ -1,16 +1,14 @@
-﻿@* @model CourierManagement.DataModel.Parcel
-
+﻿@model CourierManagement.DataModel.Parcel
 @{
     Layout = null;
     var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
     var sender = customerList.FirstOrDefault(c => c.Customer_ID == Model.Sender_ID);
     var receiver = customerList.FirstOrDefault(c => c.Customer_ID == Model.Receiver_ID);
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Parcel Details</title>
     <style>
         body {
@@ -23,27 +21,27 @@
         .print-container {
             width: 100%;
             max-width: 210mm;
-            min-height: 297mm;
+            height: auto; 
             margin: auto;
-            padding: 20px;
-            background: white;
+            padding: 15px; 
+            
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
+            box-sizing: border-box; 
             border-radius: 10px;
         }
 
         h1 {
             text-align: center;
             font-size: 24px;
-            margin-bottom: 20px;
+            margin-bottom: 15px; 
             color: #2c3e50;
         }
 
         .section {
             border: 1px solid #ddd;
             border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 10px; 
+            margin-bottom: 15px; 
             background-color: #f4f8fb;
         }
 
@@ -58,7 +56,7 @@
 
         .detail-row {
             display: flex;
-            margin-bottom: 8px;
+            margin-bottom: 5px; 
         }
 
         .detail-label {
@@ -75,50 +73,22 @@
         .row {
             display: flex;
             justify-content: space-between;
-            gap: 20px;
+            gap: 15px; 
         }
 
             .row > div {
                 flex: 1;
             }
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 14px;
-            text-align: center;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn-info {
-            background-color: #3498db;
-            color: white;
-        }
-
-            .btn-info:hover {
-                background-color: #2980b9;
-            }
-
-        .btn-secondary {
-            background-color: #95a5a6;
-            color: white;
-        }
-
-        .edit-section {
-            text-align: center;
-            margin-top: 20px;
-        }
-
         .footer {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 15px;
             font-size: 12px;
             color: #7f8c8d;
         }
+       
     </style>
+
 </head>
 <body>
     <div class="print-container">
@@ -217,24 +187,14 @@
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Note:</div>
-                        <div class="detail-value">@(string.IsNullOrEmpty(receiver.Note) ? "N/A" : receiver.Note) </div>
+                        <div class="detail-value">@(string.IsNullOrEmpty(receiver.Note) ? "N/A" : receiver.Note)</div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="edit-section">
-            @if (Model.Status == "Delivered" || Model.Status == "On the way")
-            {
-                <button class="btn btn-secondary" disabled>Edit</button>
-            }
-            else
-            {
-                <a href="@Url.Action("Edit", "Parcel", new { id = @Model.ID })" class="btn btn-info">Edit</a>
-            }
         </div>
         <div class="footer">
             &copy; 2024 Courier Management System. All Rights Reserved. Samiul Alim
         </div>
     </div>
 </body>
-</html> *@
+</html>
