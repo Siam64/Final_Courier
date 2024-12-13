@@ -23,7 +23,7 @@ namespace CourierManagement.Controllers
             //ViewBag.List = _context.Lookups.OrderBy(x=>x.Id).ToList();
             int pageSize = 10;
             var lookups = _context.Lookups.AsQueryable();
-            var paginatedLookups = await Pagination<Lookup>.CreateAsync(lookups.OrderByDescending(x => x.Id), pageNumber ?? 1, pageSize);
+            var paginatedLookups = await Pagination<Lookup>.CreateAsync(lookups.OrderBy(x => x.Serial), pageNumber ?? 1, pageSize);
 
             return View(paginatedLookups);
         }
@@ -32,7 +32,7 @@ namespace CourierManagement.Controllers
         {
             int pageSize = 10;
             var lookups = _context.Lookups.AsQueryable();
-            var paginatedLookups = await Pagination<Lookup>.CreateAsync(lookups.OrderByDescending(x => x.Id), pageNumber ?? 1, pageSize);
+            var paginatedLookups = await Pagination<Lookup>.CreateAsync(lookups.OrderBy(x => x.Serial), pageNumber ?? 1, pageSize);
             return PartialView("_lookupPartial", paginatedLookups);
         }
 
@@ -85,7 +85,7 @@ namespace CourierManagement.Controllers
                 _context.SaveChanges();
                 ModelState.Clear();
 
-                var dataResult = _context.Lookups.Where(x => x.Id == data.Id).OrderBy(x => x.Id).ToList();
+                var dataResult = _context.Lookups.Where(x => x.Id == data.Id).OrderBy(x => x.Serial).ToList();
 
                 return Json(new
                 {
@@ -161,7 +161,7 @@ namespace CourierManagement.Controllers
                 _context.SaveChanges();
                 ModelState.Clear();
 
-                var dataResult = _context.Lookups.Where(x => x.Id == data.Id).OrderBy(x => x.Id).ToList();
+                var dataResult = _context.Lookups.Where(x => x.Id == data.Id).OrderBy(x => x.Serial).ToList();
                 return Json(new { success = true, message = PopupMessage.success, data = dataResult });
             }
             catch (Exception ex)

@@ -346,6 +346,14 @@
                 })
             });
 
+
+        //auto fill value field
+          $('#Name').on('input', function() {
+            let nameValue = $(this).val();
+            $('#Value').val(nameValue);
+          });
+
+
             // Create new
             $("#submitButton").click(function (event) {
                 // Prevent the default form submission

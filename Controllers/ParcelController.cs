@@ -632,11 +632,6 @@ namespace CourierManagement.Controllers
             }
         }
 
-        [Authorize(Roles = "SuperAdmin, Admin")]
-        public IActionResult AllCustomers()
-        {
-            var data = _context.Customer.ToList();
-            return View(data);
-        }
+       
     }
 }

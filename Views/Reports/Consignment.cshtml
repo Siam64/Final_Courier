@@ -3,13 +3,18 @@
     var customerList = (List<CourierManagement.DataModel.Customer>)ViewData["CList"];
 }
 
+<header>
+    <link href="~/css/dataTable.css" rel="stylesheet" />
+
+</header>
+
 <div class="col-12">
     <div class="card shadow-lg mb-4">
         <div class="card-header bg-secondary text-white text-center">
-            <h4 class="mb-0">Shipment</h4>
+            <h4 class="mb-0">All Consignments</h4>
         </div>
         <div>
-            <table class="table table-hover table-bordered text-center align-middle" id="ShipmentTable">
+            <table class="table table-hover table-bordered text-center align-middle" id="Table">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Id</th>
@@ -18,7 +23,7 @@
                         <th scope="col">Sender Info</th>
                         <th scope="col">Receiver Info</th>
                         <th scope="col">Order Date</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,19 +37,19 @@
                             <tr class="text-left">
                                 <td>@parcel.ID</td>
                                 <td class="text-left">
-                                  <b>Parcel Type:</b> @parcel.Parcel_Type <br />
-                                  <b>Parcel Weight:</b> @parcel.Weight KG <br />
-                                  <b>Price:</b> @parcel.Final_Price Taka <br />
+                                    <b>Parcel Type:</b> @parcel.Parcel_Type <br />
+                                    <b>Parcel Weight:</b> @parcel.Weight KG <br />
+                                    <b>Price:</b> @parcel.Final_Price Taka <br />
                                 </td>
 
                                 <td>@parcel.TrackingNumber</td>
 
                                 <td class="text-left">
-                                  <b>Name:</b> @sender?.Customer_Name <br />
-                                  <b>Address:</b> @sender?.Customer_Address <br />
-                                  <b>Phone:</b> @sender?.Customer_Phone <br />
+                                    <b>Name:</b> @sender?.Customer_Name <br />
+                                    <b>Address:</b> @sender?.Customer_Address <br />
+                                    <b>Phone:</b> @sender?.Customer_Phone <br />
                                 </td>
-                                
+
                                 <td class="text-left">
                                     <b>Name:</b> @receiver?.Customer_Name <br />
                                     <b>Address:</b> @receiver?.Customer_Address <br />
@@ -52,18 +57,9 @@
                                 </td>
                                 <td>@parcel.OrderDate.ToString("dd/MM/yyyy")</td>
                                 <td>
-                                    <div class="btn-group" role="group">
-                                        @if (parcel.Status == "Delivered")
-                                        {
-                                            <button class="btn btn-secondary btn-sm" disabled>Delivered</button>
-                                        }
-                                        else
-                                        {
-                                            <a href="@Url.Action("UpdateStatus", "Order", new { id = parcel.ID })"
-                                               class="btn btn-info btn-sm">Confirm Delivery</a>
-                                        }
-                                    </div>
+                                    @parcel.Status
                                 </td>
+                                
                             </tr>
                         }
                     }
@@ -78,3 +74,11 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/jquery-3.7.1.js"></script>
+<script src="~/js/dataTables.js"></script>
+
+<script>
+    new DataTable('#Table');
+
+</script>

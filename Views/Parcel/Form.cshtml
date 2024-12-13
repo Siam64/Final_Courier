@@ -178,7 +178,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Discount</label>
+                            <label class="form-label">Discount(Ammount)</label>
                             <input id="Discount" value="@Model.Parcels.Discount" class="form-control"  />
                             <span class="text-danger"></span>
                         </div>
@@ -404,6 +404,7 @@
     </script>
 
 
+
     <script>
         $(document).ready(function () {
             function debounce(func, delay) {
@@ -513,6 +514,10 @@
                 $('#Sender_IdNum').val('0'); // Reset customer ID on input
                 debouncedSenderSuggestions(phoneNumber);
             });
+
+            
+
+
 
             $('#Receiver_Phone').on('input', function () {
                 const phoneNumber = $(this).val();

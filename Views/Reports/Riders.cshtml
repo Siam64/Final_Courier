@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CourierManagement.DataModel.Employee>
+@{
+}
+
+<div class="col-12">
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-secondary text-white text-center">
+            <h4 class="mb-0">Riders</h4>
+        </div>
+        <div>
+            <table class="table table-hover table-bordered text-center align-middle" id="ShipmentTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var data in Model)
+                        {
+                           
+                            <tr class="text-left">
+                                <td>@data.EmployeId</td>
+                                <td class="text-left">
+                                   @data.Name
+                                </td>
+
+                                <td>@data.Address</td>
+
+                                <td class="text-left">
+                                   @data.Phone
+                                </td>
+
+                                <td class="text-left">
+                                    @data.Email
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" class="text-muted">No Riders</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
