@@ -18,6 +18,7 @@
                         <th scope="col">Sender Info</th>
                         <th scope="col">Receiver Info</th>
                         <th scope="col">Order Date</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -51,6 +52,7 @@
                                     <b>Phone:</b> @receiver?.Customer_Phone <br />
                                 </td>
                                 <td>@parcel.OrderDate.ToString("dd/MM/yyyy")</td>
+                                <td>@parcel.Status</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         @if (parcel.Status == "Delivered")

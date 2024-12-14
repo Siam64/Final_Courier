@@ -11,10 +11,11 @@
         <strong>Order Management</strong>
         <ul>
             <li>Take order.</li>
+            <li><mark>Used Ajax, no relode on submit</mark></li>
             <li>
                 Input phone number:
                 <ul>
-                    <li>If the phone number is already stored in the database, it will show suggestions and auto-fill respective fields.</li>
+                    <li><mark>If the phone number is already stored in the database, it will show suggestions and auto-fill respective fields if clicked.</mark></li>
                 </ul>
             </li>
             <li>Select weight in the parcel section.</li>
@@ -22,30 +23,30 @@
             <li>
                 Final price:
                 <ul>
-                    <li>Calculated automatically.</li>
+                    <li><mark>Calculated automatically.</mark></li>
                     <li>Input discount if needed; it will be adjusted in the final price.</li>
                 </ul>
             </li>
-            <li>Order status after taking order: <em>Processing</em>.</li>
+            <li><mark>Order status after taking order: <em>Processing</em>.</mark></li>
             <li>
                 In the Parcel table:
                 <ul>
                     <li>View all orders.</li>
                     <li>Edit orders.</li>
-                    <li>Download PDF as an invoice or document to provide to customers.</li>
+                    <li><mark>Download PDF as an invoice or document to provide to customers.</mark></li>
                 </ul>
             </li>
-            <li>If the parcel is <em>On the way</em> or <em>Delivered</em>, details cannot be edited.</li>
+            <li><mark>If the parcel is <em>On the way</em> or <em>Delivered</em>, details cannot be edited.</mark></li>
             <li>
                 Assign rider to deliver the parcel:
                 <ul>
-                    <li>Status will change to <em>On the way</em>.</li>
+                    <li><mark>Status will change to <em>On the way</em>.</mark></li>
                 </ul>
             </li>
             <li>
                 In Shipments:
                 <ul>
-                    <li>Mark a parcel as delivered; status will change to <em>Delivered</em>.</li>
+                    <li><mark>Mark a parcel as delivered; status will change to <em>Delivered</em>.</mark></li>
                 </ul>
             </li>
         </ul>
@@ -57,6 +58,7 @@
                 Manage employees as riders:
                 <ul>
                     <li>Add, update, or delete employees.</li>
+                    <li><mark>Used Ajax, no relode in CRUD operation</mark></li>
                 </ul>
             </li>
             <li>
@@ -64,21 +66,37 @@
                 <ul>
                     <li>Add, update, or delete cities and parcel types.</li>
                     <li>Cities and parcel types appear as dropdowns in <em>Take Orders</em>.</li>
+                    <li><mark>Used Ajax, no relode in CRUD operation</mark></li>
                 </ul>
             </li>
             <li>
                 Manage prices:
                 <ul>
-                    <li>Add, update, or delete prices per parcel type.</li>
-                    <li>Prices are used to calculate the final price.</li>
+                    <li>Add, update, or delete unit prices per parcel type.</li>
+                    <li>Unit prices are used to calculate the final price.</li>
+                    <li><mark>Used Ajax, no relode in CRUD operation</mark></li>
                 </ul>
             </li>
             <li>
                 Roles
                 <ul>
                     <li>Super Admin has all access</li>
-                    <li>Admin has all access except Operations dropdown options</li>
+                    <li><mark>Admin has all access except Operations dropdown options</mark></li>
                 </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>Reports</strong>
+        <ul>
+            <li>
+                All Consignmnets Report
+            </li>
+            <li>
+                Employee Report
+            </li>
+            <li>
+                All Customer Report
             </li>
         </ul>
     </li>
