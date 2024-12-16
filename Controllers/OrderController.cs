@@ -76,6 +76,9 @@ namespace CourierManagement.Controllers
             return View(parcel);
         }
 
+
+
+
         [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult Shipment()
         {

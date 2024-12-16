@@ -162,6 +162,14 @@
                      return;
                  }
 
+                  Swal.fire({
+                        title: 'Saving...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                     });
+
                  var mainData = {
                      Name: $('#Name').val(),
                      Phone: $('#Phone').val(),
@@ -234,6 +242,14 @@
                     Swal.fire("Error", "Cant update without submitting", "error");
                     return;
               }
+
+               Swal.fire({
+                        title: 'Saving...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                     });
 
                var mainData = {
                      EmployeId: $('#EmployeId').val(),

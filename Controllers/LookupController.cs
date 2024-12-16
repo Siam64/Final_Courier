@@ -21,7 +21,7 @@ namespace CourierManagement.Controllers
         public async Task<IActionResult> CreateLookup(int? pageNumber)
         {
             //ViewBag.List = _context.Lookups.OrderBy(x=>x.Id).ToList();
-            int pageSize = 10;
+            int pageSize = 15;
             var lookups = _context.Lookups.AsQueryable();
             var paginatedLookups = await Pagination<Lookup>.CreateAsync(lookups.OrderBy(x => x.Serial), pageNumber ?? 1, pageSize);
 
@@ -30,7 +30,7 @@ namespace CourierManagement.Controllers
 
         public async Task<IActionResult> LoadPage(int? pageNumber)
         {
-            int pageSize = 10;
+            int pageSize = 15;
             var lookups = _context.Lookups.AsQueryable();
             var paginatedLookups = await Pagination<Lookup>.CreateAsync(lookups.OrderBy(x => x.Serial), pageNumber ?? 1, pageSize);
             return PartialView("_lookupPartial", paginatedLookups);

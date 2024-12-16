@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="d-grid gap-4">
-                            <button type="submit" id="submitButton">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
                             <button type="button" id="submitUpdateButton" hidden >Confirm Update</button>
                             <button type="reset" id="clearForm">Clear Form</button>
                         </div>
@@ -187,6 +187,13 @@
                     Swal.fire("Error", "Cant update without submitting", "error");
                     return;
               }
+               Swal.fire({
+                        title: 'Saving...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                     });
 
               var PriceData = {
                     Id: PriceId,
